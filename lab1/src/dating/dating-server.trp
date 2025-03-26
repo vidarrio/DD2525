@@ -67,7 +67,7 @@ let
                     
 
     (* Main server loop *)
-    fun server (profiles, authorities) =
+    fun server (profiles) =
         let 
             val _ = receive [
                 hn ("NEWPROFILE", (profile, agent, clientNode)) => 
@@ -77,14 +77,14 @@ let
                         (* TODO: find and send matches *)
                         val _ = findMatches (profiles, profile, agent, clientNode)
                     in
-                        server (newProfiles, authorities)
+                        server (newProfiles)
                     end
 
                 (* Other handlers can go here *)
             ]
         in
             (* This should never be reached, because our receive is blocking *)
-            server (profiles, authorities)
+            server (profiles)
         end
 
     (* Main function *)
@@ -92,7 +92,7 @@ let
         let 
             val thisNode = node (self ())
             val _ = printString ("Running node with identifier: " ^ thisNode)
-            val serverProcess = spawn (fn () => server ([], []))
+            val serverProcess = spawn (fn () => server ([]))
             val _ =  register ("datingServer", serverProcess, authority)
         in  
 
