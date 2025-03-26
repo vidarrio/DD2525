@@ -51,9 +51,9 @@ let
                     then
                         let
                             (* Send the match *)
+                            val _ = print ("Match found between " ^ newName ^ " and " ^ name)
                             val _ = sendMatchNotification (clientNode, newProfileView, secLev)
                             val _ = sendMatchNotification (newClientNode, matchProfileView, newSecLev)
-                            val _ = print ("Match found between " ^ newName ^ " and " ^ name)
                         in
                             checkMatches rest
                         end
@@ -73,8 +73,6 @@ let
                 hn ("NEWPROFILE", (profile, agent, clientNode)) => 
                     let
                         val newProfiles = storeProfile(profiles, profile, agent, clientNode)
-                        
-                        val _ = printString "Profile processed"
 
                         (* TODO: find and send matches *)
                         val _ = findMatches (profiles, profile, agent, clientNode)
