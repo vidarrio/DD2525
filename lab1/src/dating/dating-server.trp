@@ -74,7 +74,7 @@ let
                     let
                         val newProfiles = storeProfile(profiles, profile, agent, clientNode)
 
-                        (* TODO: find and send matches *)
+                        (* Find and send matches *)
                         val _ = findMatches (profiles, profile, agent, clientNode)
                     in
                         server (newProfiles)
