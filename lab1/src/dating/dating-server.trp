@@ -4,22 +4,22 @@ import lists
 import declassifyutil
 let 
     (* Helper functions *)
-    fun storeProfile (profiles, profile, agent, clientNode) =
+    fun storeProfile (profiles, profile, agent, pid) =
         let
             val _ = printString "Storing profile"
         in
-            (profile, agent, clientNode) :: profiles
+            (profile, agent, pid) :: profiles
         end
 
-    fun sendMatchNotification (recipientNode, profileView, recipientSecLev) =
+    fun sendMatchNotification (recipientPID, profileView, recipientSecLev) =
         (* We use let pini authority to clear the block level classification after the in *)
         let pini authority
             val _ = print "Sending match notification"
         in
-            send (recipientNode, ("NEWMATCH", profileView))
+            send (recipientPID, ("NEWMATCH", profileView))
         end
 
-    fun findMatches (profiles, newProfile, newAgent, newClientNode) =
+    fun findMatches (profiles, newProfile, newAgent, newPID) =
         let
             (* Extract profile components *)
             val (newSecLev, newName, newYearOfBirth, newIsFemale, newInterests) = newProfile
@@ -29,10 +29,13 @@ let
 
             (* Find matches *)
             fun checkMatches [] = ()
-              | checkMatches ((profile, agent, clientNode)::rest) = 
+              | checkMatches ((profile, agent, pid)::rest) = 
                 let
                     (* Extract existing profile components *)
                     val (secLev, name, yearOfBirth, isFemale, interests) = profile
+
+                    val _ = printWithLabels ("newagent:", newAgent(profile))
+                    val _ = printWithLabels ("agent:", agent(newProfile))
 
                     (* Create authority for this profile *)
                     val matchAuthority = attenuate(authority, secLev)
@@ -52,8 +55,8 @@ let
                         let
                             (* Send the match *)
                             val _ = print ("Match found between " ^ newName ^ " and " ^ name)
-                            val _ = sendMatchNotification (clientNode, newProfileView, secLev)
-                            val _ = sendMatchNotification (newClientNode, matchProfileView, newSecLev)
+                            val _ = sendMatchNotification (pid, newProfileView, secLev)
+                            val _ = sendMatchNotification (newPID, matchProfileView, newSecLev)
                         in
                             checkMatches rest
                         end
@@ -70,12 +73,12 @@ let
     fun server (profiles) =
         let 
             val _ = receive [
-                hn ("NEWPROFILE", (profile, agent, clientNode)) => 
+                hn ("NEWPROFILE", (profile, agent, pid)) => 
                     let
-                        val newProfiles = storeProfile(profiles, profile, agent, clientNode)
+                        val newProfiles = storeProfile(profiles, profile, agent, pid)
 
                         (* Find and send matches *)
-                        val _ = findMatches (profiles, profile, agent, clientNode)
+                        val _ = findMatches (profiles, profile, agent, pid)
                     in
                         server (newProfiles)
                     end
@@ -97,7 +100,7 @@ let
         in  
 
             (* Use this line to call the dispatch server *)
-            send (whereis ("@dispatcher", "dispatcher"), ("DISPATCH", thisNode));
+            (*send (whereis ("@dispatcher", "dispatcher"), ("DISPATCH", thisNode));*)
             ()
         end
 in 

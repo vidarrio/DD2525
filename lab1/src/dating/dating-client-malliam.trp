@@ -1,0 +1,33 @@
+(* Placeholder for the dating-client. Note that in order to communicate 
+   with your server you will need to create the corresponding trustmap *)
+   
+import lists
+let 
+   fun client () =
+      let val _ = receive [hn ("NEWMATCH", _)
+            => (printString "New match received")
+         ]
+      in client ()
+      end
+
+   fun rejectAll _ =
+      (false, ())
+
+   fun main () =       
+      let val thisNode = node (self ())
+          val _ = printString ("Running node with identifier: " ^ thisNode)
+          val _ =  register ("datingClient", spawn client, authority)
+          val securityLevel = `{malliam}`
+          val name = "malliam" raisedTo `{malliam}`
+          val yearOfBirth = 1999 raisedTo `{malliam}`
+          val isFemale = true raisedTo `{malliam}`
+          val interests = ["Hiking", "Biking"] raisedTo `{malliam}`
+          val profile = (securityLevel, name, yearOfBirth, isFemale, interests)
+          val _ = printWithLabels ("Profile: ", profile)
+          val datingServer = whereis ("QmWoe9ofTc42sjuueJiw6YcAYVq9Yi6DVijjoZTYZhiehr", "datingServer")
+      in
+         send (datingServer, ("NEWPROFILE", (profile, rejectAll, thisNode)))
+      end
+in 
+   main ()
+end
