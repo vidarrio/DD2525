@@ -1,25 +1,107 @@
 (* Starting file for the server *)
 
 import lists
-let fun server () = (* TODO: finish this *)
-         let val _ = receive [hn ("NEWPROFILE", _ )
-                                => printString "New profile received"
-                             ]
-         in server ()
-         end
+import declassifyutil
+let 
+    (* Helper functions *)
+    fun storeProfile (profiles, profile, agent, clientNode) =
+        let
+            val _ = printString "Storing profile"
+        in
+            (profile, agent, clientNode) :: profiles
+        end
 
-    (* Our main function starts the server and then requests the
-       dispatcher to send some clients this way. *)
+    fun sendMatchNotification (recipientNode, profileView, recipientSecLev) =
+        (* We use let pini authority to clear the block level classification after the in *)
+        let pini authority
+            val _ = print "Sending match notification"
+        in
+            send (recipientNode, ("NEWMATCH", profileView))
+        end
 
+    fun findMatches (profiles, newProfile, newAgent, newClientNode) =
+        let
+            (* Extract profile components *)
+            val (newSecLev, newName, newYearOfBirth, newIsFemale, newInterests) = newProfile
+
+            (* Create authority for this profile *)
+            val profileAuthority = attenuate(authority, newSecLev)
+
+            (* Find matches *)
+            fun checkMatches [] = ()
+              | checkMatches ((profile, agent, clientNode)::rest) = 
+                let
+                    (* Extract existing profile components *)
+                    val (secLev, name, yearOfBirth, isFemale, interests) = profile
+
+                    (* Create authority for this profile *)
+                    val matchAuthority = attenuate(authority, secLev)
+
+                    (* Check if the profiles match *)
+                    val (newProfileAcceptsMatch, newProfileView) = newAgent(profile)
+                    val (matchAcceptsNewProfile, matchProfileView) = agent(newProfile)
+
+                    (* Declassify the booleans of the match, avoiding pc dependencies *)
+                    val declassifiedNewProfileAcceptsMatch = declassify_with_block(newProfileAcceptsMatch, authority, `{}`)
+                    val declassifiedMatchAcceptsNewProfile = declassify_with_block(matchAcceptsNewProfile, authority, `{}`)
+
+                in
+                    (* If both profiles accept the match, send the match *)
+                    if declassifiedNewProfileAcceptsMatch andalso declassifiedMatchAcceptsNewProfile 
+                    then
+                        let
+                            (* Send the match *)
+                            val _ = sendMatchNotification (clientNode, newProfileView, secLev)
+                            val _ = sendMatchNotification (newClientNode, matchProfileView, newSecLev)
+                            val _ = print ("Match found between " ^ newName ^ " and " ^ name)
+                        in
+                            checkMatches rest
+                        end
+                    else
+                        checkMatches rest
+                end
+
+        in
+            checkMatches profiles
+        end
+                    
+
+    (* Main server loop *)
+    fun server (profiles, authorities) =
+        let 
+            val _ = receive [
+                hn ("NEWPROFILE", (profile, agent, clientNode)) => 
+                    let
+                        val newProfiles = storeProfile(profiles, profile, agent, clientNode)
+                        
+                        val _ = printString "Profile processed"
+
+                        (* TODO: find and send matches *)
+                        val _ = findMatches (profiles, profile, agent, clientNode)
+                    in
+                        server (newProfiles, authorities)
+                    end
+
+                (* Other handlers can go here *)
+            ]
+        in
+            (* This should never be reached, because our receive is blocking *)
+            server (profiles, authorities)
+        end
+
+    (* Main function *)
     fun main () =       
-        let val thisNode = node (self ())
+        let 
+            val thisNode = node (self ())
             val _ = printString ("Running node with identifier: " ^ thisNode)
-            val _ =  register ("datingServer", spawn server, authority)
-        in  (* TODO: Feel free to comment out the next line
-                     while you develop your solution and work on a few 
-                     custom clients;  *)
-            send (whereis ("@dispatcher", "dispatcher"), ("DISPATCH", thisNode)); 
+            val serverProcess = spawn (fn () => server ([], []))
+            val _ =  register ("datingServer", serverProcess, authority)
+        in  
+
+            (* Use this line to call the dispatch server *)
+            send (whereis ("@dispatcher", "dispatcher"), ("DISPATCH", thisNode));
             ()
         end
-in main ()
+in 
+    main ()
 end
