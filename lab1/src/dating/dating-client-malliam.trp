@@ -14,8 +14,8 @@ let
       (false, ())
 
    fun main () =       
-      let val thisNode = node (self ())
-          val _ = printString ("Running node with identifier: " ^ thisNode)
+      let val pid = spawn client
+          val _ = printString ("Running node with identifier: " ^ pid)
           val _ =  register ("datingClient", spawn client, authority)
           val securityLevel = `{malliam}`
           val name = "malliam" raisedTo `{malliam}`
@@ -24,9 +24,9 @@ let
           val interests = ["Hiking", "Biking"] raisedTo `{malliam}`
           val profile = (securityLevel, name, yearOfBirth, isFemale, interests)
           val _ = printWithLabels ("Profile: ", profile)
-          val datingServer = whereis ("QmWoe9ofTc42sjuueJiw6YcAYVq9Yi6DVijjoZTYZhiehr", "datingServer")
+          val datingServer = whereis ("@datingServer", "datingServer")
       in
-         send (datingServer, ("NEWPROFILE", (profile, rejectAll, thisNode)))
+         send (datingServer, ("NEWPROFILE", (profile, rejectAll, pid)))
       end
 in 
    main ()
