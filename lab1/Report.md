@@ -14,9 +14,7 @@ We've acquired the id of the server using an alias file, and then a whereis call
 
 # Malicious clients
 
-Our first malicious client, "mal", is a brute force client. It sends new profiles over and over, slightly changing its information, in this case the year of birth, every time it sends a new one. This is done to try to match with as many clients as possible, collecting their information. It avoids matching with its own old profiles. 
-
-Our second malicious client, "malliam"
+Our malicious client, "mal", is a brute force client. It sends new profiles over and over, slightly changing its information, in this case the year of birth, every time it sends a new one. This is done to try to match with as many clients as possible, collecting their information. It avoids matching with its own old profiles. 
 
 # Contributions
 We did pair programming for a majority of the time, streaming the code to each other and discussing over discord. We took turns doing this, with Lucas streaming the server coding session, and Marcus streaming the client coding session. We got together for a final third session, and did the malicious clients along with the report in the same manner.
