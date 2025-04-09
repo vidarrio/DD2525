@@ -4,29 +4,59 @@
 import lists
 let 
    fun client () =
-      let val _ = receive [hn ("NEWMATCH", _)
-            => (printString "New match received")
+      let val _ = receive [hn ("NEWMATCH", profileView)
+            => print ("New match received", profileView)
          ]
-      in client ()
+      in 
+         client ()
       end
 
-   fun rejectAll _ =
-      (false, ())
+   fun sameYearAgent matchProfile =
+      let 
+         val securityLevel = `{malliam}`
+         val name = "malliam" 
+         val yearOfBirth = 1999 
+         val isFemale = true
+         val interests = ["Hiking", "Biking"]
+
+         val (matchSecLev, _, matchYearOfBirth, _, _) = matchProfile
+
+      in
+         if matchYearOfBirth = yearOfBirth
+         then
+            (
+               true, 
+               (
+                  name raisedTo matchSecLev, 
+                  yearOfBirth raisedTo matchSecLev, 
+                  isFemale raisedTo matchSecLev, 
+                  interests raisedTo matchSecLev
+               )
+            )
+         else
+            (false, ())
+      end
 
    fun main () =       
-      let val pid = spawn client
-          val _ = printString ("Running node with identifier: " ^ pid)
-          val _ =  register ("datingClient", spawn client, authority)
-          val securityLevel = `{malliam}`
-          val name = "malliam" raisedTo `{malliam}`
-          val yearOfBirth = 1999 raisedTo `{malliam}`
-          val isFemale = true raisedTo `{malliam}`
-          val interests = ["Hiking", "Biking"] raisedTo `{malliam}`
-          val profile = (securityLevel, name, yearOfBirth, isFemale, interests)
-          val _ = printWithLabels ("Profile: ", profile)
-          val datingServer = whereis ("@datingServer", "datingServer")
+      let 
+         val pid = spawn client
+         val _ = print ("Running node with identifier: ", pid)
+         val _ =  register ("datingClientmalliam", pid, authority)
+
+         (* Pass empty security level, causing the matches agent to make their data public *)
+         val securityLevel = `{}`
+         val name = "Malliam" raisedTo `{malliam}`
+         val yearOfBirth = 1999 raisedTo `{malliam}`
+         val isFemale = true raisedTo `{malliam}`
+         val interests = ["Hiking", "Biking"] raisedTo `{malliam}`
+         
+         val profile = (securityLevel, name, yearOfBirth, isFemale, interests)
+         
+         val datingServer = whereis ("@datingServer", "datingServer")
+         val data = ("NEWPROFILE", (profile, sameYearAgent, pid))
+         val _ = printWithLabels ("data: ", data)
       in
-         send (datingServer, ("NEWPROFILE", (profile, rejectAll, pid)))
+         send (datingServer, data)
       end
 in 
    main ()
