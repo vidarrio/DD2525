@@ -78,7 +78,10 @@ function register(req, username, password, done) {
           if(err) { return done(err) }
           if(user){
             console.log('plate catch')
-            return done(null, false, {message: 'License plate already registered by other user'});
+            // return done(null, false, {message: 'License plate already registered by other user'});
+            
+            // Storage side channel fix: no longer give away licence plate registration nor user info
+            return done(null, false, {message: 'Unable to complete registration request: invalid licence plate'});
           }
 
         // Password and username validation

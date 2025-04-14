@@ -60,11 +60,18 @@ function validatePassword(req, res, next) {
   let name = req.user.username;
 
   // vaildate password
+  /*
   if (name.match(pass)) {
     req.flash('error', 'Do not include password in name.')
     return res.redirect('back')
   }
+  */
 
+  // ReDoS safe variant
+  if (name.includes(pass)) {
+    req.flash('error', 'Do not include password in name.')
+    return res.redirect('back')
+  }
 
   if (! (/\d+/.test(pass))) {
     req.flash('error', 'Password must contain a number')

@@ -14,12 +14,23 @@ function validatePassword(req, res, next) {
 
   //console.log(pass, name)
   // vaildate password
+  /*   
   if (name.match(pass)) {
     req.flash('error', 'Do not include password in name.')
     req.flash('message', 'Do not include password in name.')
 
     return res.redirect('/register')
-  }
+  } 
+  */
+  
+  // ReDoS safe variant
+  if (name.includes(pass)) {
+    req.flash('error', 'Do not include password in name.')
+    req.flash('message', 'Do not include password in name.')
+
+    return res.redirect('/register')
+  } 
+
   next()
 }
 

@@ -62,7 +62,10 @@ router
         console.log(e);
         if(e.length != 0 ) {
           // This car is already parked here, send error
-          req.flash("error", "This car is already parked in the selected location. Do not waste your money !")
+          // req.flash("error", "This car is already parked in the selected location. Do not waste your money !")
+
+          // Storage side channel fix: no longer give away information (neither location nor if parked)
+          req.flash("error", "Unable to complete parking request. Please try again later.")
           // TODO check if it comes not from the browser and then use as an API
           res.redirect('/')
         } else {
