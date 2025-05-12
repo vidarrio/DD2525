@@ -184,53 +184,42 @@ def calculate_timing(logs):
     return timing_results
 
 def identify_location(total_rtt, server_delay=None, receiver_delay=None):
-    """Identify location using multiple timing components when available"""
-    best_match = None
-    min_total_difference = float('inf')
+    # Step 1: Find the best matching region based on server delay
+    best_region = None
+    min_region_difference = float('inf')
     
     for region, region_rtt in REGION_RTT.items():
-        for city, city_rtt in CITY_RTT.items():
-            if CITY_TO_REGION[city] != region:
-                continue
-                
-            # Calculate estimated total RTT
-            estimated_total_rtt = region_rtt + city_rtt
-            
-            # Calculate base difference using total RTT
-            base_difference = abs(estimated_total_rtt - total_rtt)
-            
-            # Adjust difference based on server and receiver components if available
-            adjusted_difference = base_difference
-            
-            if server_delay is not None and receiver_delay is not None:
-                # Theoretical model: 
-                # - server_delay should be roughly half of region_rtt
-                # - receiver_delay should correlate with city_rtt
-                expected_server_delay = region_rtt / 2
-                server_diff = abs(server_delay - expected_server_delay)
-                
-                # If server delay is way off from expected, increase the difference
-                if server_diff > region_rtt / 4:
-                    adjusted_difference += server_diff
-                
-                # Receiver delay should correlate with city_rtt
-                receiver_diff = abs(receiver_delay - city_rtt)
-                if receiver_diff > city_rtt / 2:
-                    adjusted_difference += receiver_diff
-            
-            if adjusted_difference < min_total_difference:
-                min_total_difference = adjusted_difference
-                best_match = {
-                    "city": city,
-                    "region": region,
-                    "city_rtt": city_rtt,
-                    "region_rtt": region_rtt,
-                    "estimated_total_rtt": estimated_total_rtt,
-                    "rtt_difference": base_difference,
-                    "adjusted_difference": adjusted_difference
-                }
+        difference = abs(server_delay - region_rtt)
+        
+        if difference < min_region_difference:
+            min_region_difference = difference
+            best_region = region
     
-    return best_match
+    # Step 2: Find the best matching city in the identified region
+    best_city_match = None
+    min_city_difference = float('inf')
+    
+    for city, city_rtt in CITY_RTT.items():
+        if CITY_TO_REGION[city] != best_region:
+            continue
+        
+        # Receiver delay should approximate the city RTT
+        difference = abs(receiver_delay - city_rtt)
+        
+        if difference < min_city_difference:
+            min_city_difference = difference
+            best_city_match = {
+                "city": city,
+                "region": best_region,
+                "city_rtt": city_rtt,
+                "region_rtt": REGION_RTT[best_region],
+                "estimated_total_rtt": REGION_RTT[best_region] + city_rtt,
+                "region_difference": min_region_difference,
+                "city_difference": difference,
+                "rtt_difference": abs((REGION_RTT[best_region] + city_rtt) - total_rtt)
+            }
+    
+    return best_city_match
 
 def process_logs_realtime():
     """Process logcat output in real-time with user location tracking"""
@@ -261,7 +250,7 @@ def process_logs_realtime():
                 for timing in timings:
                     user_id = timing["user"]
                     if timing["total_rtt"] is not None and timing["total_rtt"] > 0:
-                        location = location = identify_location(
+                        location = identify_location(
                                                                     timing["total_rtt"], 
                                                                     timing["server_delay"], 
                                                                     timing["receiver_delay"]
@@ -285,6 +274,7 @@ def process_logs_realtime():
                                 print(f"  ⏱  Measured RTT: {timing['total_rtt']:.1f}ms")
                                 print(f"  ⏱  Expected RTT: {location['city_rtt']}ms (±{location['rtt_difference']:.1f}ms)")
                                 print(f"  🌐 Regional RTT: {location['region_rtt']}ms\n")
+                                
                                 print(f" === MESSAGE DETAILS ===")
                                 print(f"  ⏱ Sender delay: {timing['server_delay']:.1f}ms")
                                 print(f"  ⏱ Receiver delay: {timing['receiver_delay']:.1f}ms\n")
@@ -305,7 +295,7 @@ def process_logs_realtime():
         
         for timing in timings:
             print(f"\nMessage: '{timing['message']}'")
-            print(f"  User: {timing['user']}")
+            print(f"  User: {USERNAMES[timing['user']]}")
             print(f"  Server delay: {timing['server_delay']:.1f}ms")
             
             if timing["receiver_delay"] is not None:
@@ -313,7 +303,11 @@ def process_logs_realtime():
                 print(f"  Total RTT: {timing['total_rtt']:.1f}ms")
                 
                 if timing["total_rtt"] > 0:  # Ignore negative RTTs
-                    location = identify_location(timing["total_rtt"])
+                    location = identify_location(
+                                                    timing["total_rtt"], 
+                                                    timing["server_delay"], 
+                                                    timing["receiver_delay"]
+                                                )
                     if location:
                         print(f"  Likely location: {location['city']} in {location['region']}")
                         confidence = 100 - min(99, (location['rtt_difference'] / location['city_rtt'] * 100))

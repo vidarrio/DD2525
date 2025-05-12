@@ -289,7 +289,7 @@ User:001 ; Type:server_ack ; Message:1 ; MessageID:1 ; Time:12:40:20.455
 User:001 ; Type:receiver_ack ; Message:1 ; MessageID:1 ; Time:12:40:20.746
 ```
 
-All the information from the logs are then stored in a dictionary, where the unique key is the user ID combined with the message ID. Once all the information is collected, we use it to idientify the location of the user. The regions and cities, as well as their round trip times(RTT), are stored in dictionaries based on the tables given in the lab instructions. The script then uses the RTT to determine the location of the user based on the what region and city matches the RTTs.
+All the information from the logs are then stored in a dictionary, where the unique key is the user ID combined with the message ID. Once all the information is collected, we use it to identify the location of the user. The regions and cities, as well as their round trip times(RTT), are stored in dictionaries based on the tables given in the lab instructions. The script then uses the RTT to determine the location of the user based on the what region and city matches the RTTs.
 
 ### Difficulties of using this method in the real world
 There are several difficulties in using this method in the real world:
@@ -299,7 +299,7 @@ There are several difficulties in using this method in the real world:
 - These services might use countermessures to prevent timing attacks, such as randomizing the timing of messages or normalizing the timings.
 
 ### How to prevent timing attacks
-To prevent timing attacks, we can implement several countermeasures:
+To prevent timing attacks, we can implement several countermeasures(Here are two examples):
 1. **Use randomized delays**: By introducing random delays in the sending and receiving of messages, we can make it more difficult for an attacker to determine the timing of messages and the location of users.
 2. **Normalize message timings**: By normalizing the timings of messages, we can make it more difficult for an attacker to determine the timing of messages and the location of users. This can be done by introducing a fixed delay between messages or by using a fixed interval for sending and receiving messages.
 
