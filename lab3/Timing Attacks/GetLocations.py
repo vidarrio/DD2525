@@ -302,7 +302,7 @@ def process_logs_realtime():
                 print(f"  Receiver delay: {timing['receiver_delay']:.1f}ms")
                 print(f"  Total RTT: {timing['total_rtt']:.1f}ms")
                 
-                if timing["total_rtt"] > 0:  # Ignore negative RTTs
+                if timing["total_rtt"] > 0:
                     location = identify_location(
                                                     timing["total_rtt"], 
                                                     timing["server_delay"], 

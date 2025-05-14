@@ -37,7 +37,7 @@ private class LocationReceiver extends BroadcastReceiver {
 }
 ```
 
-We then registered the receiver in the ´onCreate´ method with intent filters for the actions we want to listen to. In this case, we checked for the relevant addresses to filter in the Location application.
+We then registered the receiver in the ´onResume´ method with intent filters for the actions we want to listen to. In this case, we checked for the relevant addresses to filter in the Location application.
 
 The adresses where:
 - `tcs.lbs.weather_app.WeatherBroadcastReceiver` for the inter-app broadcast
@@ -311,3 +311,6 @@ To prevent timing attacks, we can implement several countermeasures(Here are two
 - **Normalized message timings**:
     - Pros: Makes it difficult for an attacker to determine the timing of messages and the location of users.
     - Cons: Can introduce latency in message delivery and may affect user experience. Additionally, it may not be as effective against more sophisticated attacks that can still analyze the timing patterns.
+
+## Contributions
+We worked through pair programming. We both worked on looking for the solutions on our own computers and shared what we found.
