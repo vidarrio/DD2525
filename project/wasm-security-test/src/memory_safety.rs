@@ -43,3 +43,25 @@ pub fn safe_copy_user_data(input: &str, position: usize) -> String {
     
     format!("\nBuffer 1: {}\nBuffer 2: {}", result1, result2)
 }
+
+// Unsafe version: Heap metadata corruption
+#[wasm_bindgen]
+pub fn unsafe_heap_corruption(input: &str, position: usize) -> String {
+    // Allocate a vector on the heap
+    let mut vec = vec![b'A'; 16]; // Vector filled with 'A's
+    
+
+    unsafe {
+        // Get a raw pointer to the vector's data
+        let vec_ptr = vec.as_mut_ptr();
+        
+        // Perform unsafe memory writes without bounds checking
+        for (i, byte) in input.bytes().enumerate() {
+            *vec_ptr.add(position + i) = byte;
+        }
+    }
+
+    // Show the vector to demonstrate the corruption
+    let result = String::from_utf8_lossy(&vec).to_string();
+    format!("\nVector: {}", result)
+}
