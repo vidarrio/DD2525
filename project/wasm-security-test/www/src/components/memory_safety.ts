@@ -17,7 +17,7 @@ function setupMemorySafetyDemo() {
         const userInput = userInputField?.value || "AAAAAAAAAAAAAAAAAAAAAAAAA";
         
         // Demonstration: Write past the buffer boundaries (position 12 in a 16-byte buffer)
-        const result = (wasm as any).unsafe_copy_user_data(userInput, 12);
+        const result = wasm.unsafe_copy_user_data(userInput, 12);
         
         // Show the result and explain what happened
         exploitOutput.innerHTML = `
@@ -40,7 +40,7 @@ function setupMemorySafetyDemo() {
         const userInput = userInputField?.value || "AAAAAAAAAAAAAAAAAAAAAAAAA";
         
         // Use the safe implementation with proper bounds checking
-        const result = (wasm as any).safe_copy_user_data(userInput, 12);
+        const result = wasm.safe_copy_user_data(userInput, 12);
         
         // Show the result and explain what happened
         mitigationOutput.innerHTML = `

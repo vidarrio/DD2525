@@ -119,6 +119,8 @@ export function setupTabs() {
 function init() {
     console.log('Init function called');
 
+    wasm.set_panic_hook();
+
     // Setup navigation and UI components
     setupNavigation();
     setupHeader();
