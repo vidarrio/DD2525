@@ -26,7 +26,7 @@ jobs:
 
       - name: Build WASM package
         working-directory: project/wasm-security-test
-        run: wasm-pack build --release --target web
+        run: wasm-pack build --release --target bundler
 
       - name: Install Node.js
         uses: actions/setup-node@v4
