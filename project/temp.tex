@@ -1,0 +1,312 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage[parfill]{parskip} % Removes the need to use \noindent
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{float}
+\lstset{
+    basicstyle=\small\ttfamily,
+    columns=flexible,
+    breaklines=true,
+    showstringspaces=false,
+    float, captionpos=b,
+}
+\definecolor{GrayCodeBlock}{RGB}{241,241,241}
+\definecolor{BlackText}{RGB}{110,107,94}
+\definecolor{RedTypename}{RGB}{182,86,17}
+\definecolor{GreenString}{RGB}{96,172,57}
+\definecolor{PurpleKeyword}{RGB}{184,84,212}
+\definecolor{GrayComment}{RGB}{170,170,170}
+\definecolor{GoldDocumentation}{RGB}{180,165,45}
+\lstdefinelanguage{rust}
+{
+    columns=fullflexible,
+    numbers=left,
+    keepspaces=true,
+    frame=single,
+    framesep=0pt,
+    framerule=0pt,
+    framexleftmargin=4pt,
+    framexrightmargin=4pt,
+    framextopmargin=5pt,
+    framexbottommargin=3pt,
+    xleftmargin=4pt,
+    xrightmargin=4pt,
+    backgroundcolor=\color{GrayCodeBlock},
+    basicstyle=\ttfamily\color{BlackText},
+    keywords={
+        true,false,
+        unsafe,async,await,move,
+        use,pub,crate,super,self,mod,
+        struct,enum,fn,const,static,let,mut,ref,type,impl,dyn,trait,where,as,
+        break,continue,if,else,while,for,loop,match,return,yield,in
+    },
+    keywordstyle=\color{PurpleKeyword},
+    ndkeywords={
+        bool,u8,u16,u32,u64,u128,i8,i16,i32,i64,i128,char,str,
+        Self,Option,Some,None,Result,Ok,Err,String,Box,Vec,Rc,Arc,Cell,RefCell,HashMap,BTreeMap,
+        macro_rules
+    },
+    ndkeywordstyle=\color{RedTypename},
+    comment=[l][\color{GrayComment}\slshape]{//},
+    morecomment=[s][\color{GrayComment}\slshape]{/*}{*/},
+    morecomment=[l][\color{GoldDocumentation}\slshape]{///},
+    morecomment=[s][\color{GoldDocumentation}\slshape]{/*!}{*/},
+    morecomment=[l][\color{GoldDocumentation}\slshape]{//!},
+    morecomment=[s][\color{RedTypename}]{\#![}{]},
+    morecomment=[s][\color{RedTypename}]{\#[}{]},
+    stringstyle=\color{GreenString},
+    string=[b]"
+}
+\usepackage{svg}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\usepackage{url}
+\usepackage[
+    citestyle=authoryear-comp, 
+    bibstyle=authoryear-comp,
+    sorting=nty, 
+    sortcites=true,
+    maxcitenames=1,
+    uniquelist=false,
+    citetracker=true,
+    dashed=false,
+    autocite=inline
+]{biblatex}
+
+% This sets chronological ordering for citations specifically
+\ExecuteBibliographyOptions{
+    sortcites=ynt          % Year, name, title order for citations
+}
+
+% add comma to citations
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+
+\usepackage{csquotes} % Recommended by biblatex
+\addbibresource{references.bib}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}% Package for algorithms
+
+\title{DD2525\\A dive into WebAssembly \\Exploitation and Mitigation}
+\author{by \\Lucas Kristiansson\\Marcus Samuelsson}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Introduction}
+WebAssembly (Wasm) is a binary instruction format designed for secure, high-performance execution in
+the browser. It provides a universal compilation target for programming languages, including but not
+limited to Go, C++, and Rust. Wasm promises improved security through sandboxing, but concerns exist
+about potential vulnerabilities, like memory corruption or side-channel attacks. We plan to investigate the
+security landscape of Wasm, both in theory and practicality.
+
+The security model of WebAssembly's has two specified goals:
+
+\begin{enumerate}
+    \item Protect users from buggy or malicious modules.
+    \item Provide developers with useful primitives and mitigations for developing safe applications, within the constraints of (1).
+\end{enumerate}
+
+\subsection{Project Scope and Limitations}
+Our project aims to:
+
+\begin{enumerate}
+    \item Analyse WebAssembly's security model and inherent risks.
+    \item Demonstrate practical exploitation.
+    \item Evaluate existing mitigation mechanisms.
+    \item Showcase a few real-world examples of Wasm exploitation.
+\end{enumerate}
+
+\section{Background}
+\subsection{WebAssembly Concepts}
+WebAssembly is a low-level assembly-like language with a compact binary format. It has a few key concepts:
+
+\begin{itemize}
+    \item \textbf{Values}: The basic data types in WebAssembly include integers (32-bit and 64-bit), floats (32-bit and 64-bit), a 128-bit wide vector type for packed data (of integers or floats), and opaque references that represent pointers to various entities. Unlike the other types, the sizes and layouts of the reference types are not observable.
+    \item \textbf{Instructions}:  Wasm is based on a stack machine architecture. Code consists of sequences of instructions that are executed in order. Instructions manipulate values on an implicit operand stack and are categorized into two main groups: simple instructions that perform basic operations on data, and control instructions that manage the flow of execution (loops, blocks, etc.).
+    \item \textbf{Traps}: A trap is a mechanism for handling errors or exceptional conditions during execution. When a trap occurs, the WebAssembly runtime stops execution and returns an error code. Traps can be triggered by various conditions, such as division by zero, stack overflow, or invalid memory access.
+    \item \textbf{Functions}: Functions are the primary building blocks of WebAssembly modules. Each function takes a set of input parameters, performs computations, and returns a result. Functions can call each other, including recursive calls, and this results in an implicit call stack that cannot be accessed directly.
+    \item \textbf{Tables}: A table is an array of opaque values of a particular element type. It allows programs to select values indirectly through a dynamic index operand, enabling emulation of function pointers. Currently, the only supported element type is a function reference or a reference to an external host value.
+    \item \textbf{Linear Memory}: Linear memory is a contiguous, mutable array of bytes. It's created with an initial size and can be resized dynamically. A WebAssembly module can access linear memory using load and store instructions, and can read both aligned and unaligned data. A trap occurs if an access is out of bounds of the memory.
+    \item \textbf{Modules}: A WebAssembly binary takes the form of a module, which is a collection of functions, tables, and linear memories, as well as global variables. A module can also import and export functions, allowing it to interact with other modules or the host environment. It can also define initialisation data for its linear memory and tables.
+    \item \textbf{Embedder}: The embedder is the host environment that executes the WebAssembly module. We say that the embedder embeds the module, and it is responsible for providing the module with the necessary resources and context to execute. The embedder can be a web browser, a server-side runtime, or any other environment that supports WebAssembly. It is responsible for providing imports and handling exports.
+\end{itemize}
+
+\subsection{WebAssembly Security Model}
+The WebAssembly security model is designed to provide a safe execution environment for untrusted code. It achieves this through a combination of techniques:
+
+\begin{itemize}
+    \item \textbf{Memory Safety}: Linear memory is isolated from the host environment, preventing direct access to the host's memory. It has a fixed size and can only be accessed through load and store instructions. These instructions perform bounds checking to ensure that memory accesses are within the allocated range. This prevents accessing the host's memory or other modules' memory, but does not prevent accessing other buffers within the same module, so buffer overflows are still possible. The memory is non-executable, meaning that code cannot be executed from memory regions.
+    \item \textbf{Control Flow Integrity (CFI)}: WebAssembly uses a control flow graph to ensure that the execution flow of a module follows a valid path. Generally, there are three types of external control flow transitions that need to be protected: direct function calls, indirect function calls, and returns. Direct and indirect calls are referred to as ``forward edges'' in the control-flow graph, while returns are referred to as ``backward edges''. During compilation, the compiler generates a control flow graph that describes the valid paths of execution, along with the set of expected call targets for each call site. The runtime checks that the actual call targets match the expected targets, erroring if they do not. This prevents control flow hijacking attacks, such as return-oriented programming (ROP) and jump-oriented programming (JOP). Wasm guarantees the safety of direct calls through the use of explicit function section indexes, and returns through the use of a protected call stack. Indirect calls can only target functions that are in the module's function table. This still lets through code reuse attacks against indirect calls.
+    \item \textbf{Sandboxing}: WebAssembly modules run in a sandboxed environment, isolated from the host system. This prevents direct access to system resources, such as files, network sockets, and other sensitive data. The embedder is responsible for providing controlled access to these resources through imports and exports.
+    \item \textbf{Deterministic Execution}: WebAssembly is designed to behave the same way across different platforms and environments. This means that the same WebAssembly module will produce the same results regardless of where it is executed. This is achieved through a well-defined specification and a set of runtime requirements.
+    \item \textbf{Validation and Compilation}: Before execution, WebAssembly modules are validated to ensure they conform to the specification. This includes checking for well-formedness, type correctness, and control flow integrity. Once validated, modules are compiled into machine code for execution. The compilation process can also include optimisations to improve performance.
+\end{itemize}
+
+\subsection{Potential Exploits and Vulnerabilities}
+Despite WebAssembly's robust security model, several classes of vulnerabilities remain possible within its execution environment:
+
+\begin{itemize}
+    \item \textbf{Time-of-Check-to-Time-of-Use (TOCTOU)}: These race condition vulnerabilities can occur when WebAssembly interacts with the host environment, particularly when validation checks and operations occur in separate steps, creating exploitable timing windows.
+    
+    \item \textbf{Code Reuse Attacks}: While direct calls and returns are protected, indirect calls remain vulnerable to code reuse techniques. Attackers can potentially chain together existing functions through the module's function table to execute unintended operations.
+    
+    \item \textbf{Side-Channel Attacks}: WebAssembly's deterministic execution model does not protect against timing, cache, or other side-channel attacks that can leak sensitive information without directly accessing it.
+\end{itemize}
+
+Additionally, several implementation-specific security concerns exist:
+
+\begin{itemize}
+    \item \textbf{Low-Level Exploitation Impact}: The low-level nature of WebAssembly means that successful Remote Code Execution (RCE) exploits potentially provide greater control and capability to attackers compared to higher-level languages.
+    
+    \item \textbf{Debugging Complexity}: The binary format and compilation process can obscure code execution paths, making vulnerability detection and debugging more challenging compared to JavaScript applications.
+    
+    \item \textbf{Cross-Language Vulnerabilities}: WebAssembly modules compiled from languages like C++ may inherit memory safety issues from their source language, even when the WebAssembly sandbox itself is functioning correctly.
+\end{itemize}
+
+\subsection{Related Work}
+First of all, a shout-out to the WebAssembly specification, which is a great resource for understanding the language and its security model. The specification is available at \url{https://webassembly.github.io/spec/core/}.
+
+In~\cite{everythingold}, the authors analyse the binary security of WebAssembly and find that many classic vulnerabilities which are no longer exploitable in native code due to common mitigations are completely exposed in WebAssembly. They identify a set of attack primitives that enable writing arbitrary memory, overwriting sensitive data, and triggering unexpected behaviour by diverting control flow or manipulating the host environment. Their empirical risk assessment on real-world binaries shows these attack primitives are likely feasible in practice, revealing a lack of binary security protections in WebAssembly. The authors discuss potential protection mechanisms to mitigate these risks.
+
+Since the paper came out in 2020, the WebAssembly community has made significant progress in addressing these issues, but it was still a good starting point for our research. The authors also mention that the WebAssembly community is aware of these issues and is actively working on improving the security model.
+
+A more modern paper \parencite{PERRONE2025100728} provides a comprehensive review of the WebAssembly security landscape. The authors analyse 121 papers across seven security categories, including security analysis, attack scenarios, use cases in cybersecurity, vulnerability discovery, security enhancements, and attack detection approaches. They note that despite WebAssembly's isolation guarantees, several studies confirm it remains vulnerable to side-channel attacks and memory-based exploits when compiling unsafe code. Their review shows that crypto-mining detection and smart contract vulnerability discovery dominate the current research landscape, while significant gaps remain in analysing WebAssembly applications in other domains like web applications, data visualization, and gaming.
+
+\section{Experiments}
+In this section, we will present our experiments and findings regarding WebAssembly exploitation and mitigation. To conduct our experiments, we compiled unsafe and safe Rust code to WebAssembly and executed it in a browser environment. We used the following tools:
+
+\begin{itemize}
+    \item \textbf{Rust}: We used the Rust programming language to write our code. Rust provides a strong type system and memory safety guarantees, and it is a popular choice for compiling to WebAssembly. Rust allows us to write both safe and unsafe code, which is useful for our experiments. We thought it highly relevant, since the course is about language based security, and Rust is a language that has been designed with security in mind, automatically mitigating many common vulnerabilities.
+    \item \textbf{wasm-pack}: This is a tool for building and packaging Rust code for WebAssembly. It simplifies the process of compiling Rust to WebAssembly and generating the necessary JavaScript bindings.
+    \item \textbf{React}: We used React to create a simple web application that loads and executes our WebAssembly modules. It is the most popular JavaScript library for building user interfaces, and so provides a fitting environment for our experiments.
+    \item \textbf{TypeScript}: We used TypeScript to write our JavaScript code. TypeScript is a superset of JavaScript that adds static typing and other features, and is commonly used in modern web development. It allows us to write safer and more maintainable code.
+    \item \textbf{Firefox}: We used the Firefox web browser to run our experiments. Firefox has good support for WebAssembly and provides developer tools for debugging and profiling WebAssembly modules. It is one of the most popular browsers, and therefore provides a good general environment for our experiments.
+\end{itemize}
+
+The experiments are categorised under a few different sections, each focusing on a specific aspect of WebAssembly exploitation and mitigation.
+
+\subsection{Memory Safety}
+This section focuses on the memory safety of WebAssembly and how it can be exploited. We will present a few different types of memory safety vulnerabilities, including buffer overflows, heap metadata corruption, and stack overflows. We will also discuss how these vulnerabilities can be exploited in WebAssembly.
+
+\subsubsection{Buffer Overflow}
+A buffer overflow occurs when a program writes more data to a buffer than it can hold, causing adjacent memory to be overwritten. In WebAssembly, while memory accesses are bounds-checked at the linear memory level, there is no protection between different buffers within the same memory region. This means that buffer overflows can still corrupt adjacent data structures, even though the module cannot access memory outside its own linear memory.
+
+As shown in Listing~\ref{lst:unsafe-buffer-overflow}, two adjacent buffers are allocated on the stack. The unsafe function allows writing user input starting at a specified position in the first buffer, without bounds checking. If the user input is too long, it will overwrite the contents of the second buffer, demonstrating a buffer overflow. In Rust's safe code, such overflows are prevented by bounds checks, but in unsafe code, these checks are bypassed.
+
+\begin{lstlisting}[language=rust, float, caption={Unsafe buffer overflow example in Rust}, label={lst:unsafe-buffer-overflow}]
+#[wasm_bindgen]
+pub fn unsafe_copy_user_data(input: &str, position: usize) -> String {
+    let mut buffer1 = [b'A'; 16];
+    let buffer2 = [b'B'; 16];
+    unsafe {
+        let buffer_ptr = buffer1.as_mut_ptr();
+        for (i, byte) in input.bytes().enumerate() {
+            *buffer_ptr.add(position + i) = byte;
+        }
+    }
+    let result1 = String::from_utf8_lossy(&buffer1).to_string();
+    let result2 = String::from_utf8_lossy(&buffer2).to_string();
+    format!("\nBuffer 1: {}\nBuffer 2: {}", result1, result2)
+}
+\end{lstlisting}
+
+To mitigate this, Listing~\ref{lst:safe-buffer-overflow} shows a safe version of the function using Rust's bounds checking to prevent writing past the end of the buffer. This safe version will panic if an out-of-bounds write is attempted, preventing memory corruption. In our experiments, we observed that the unsafe version allows overwriting adjacent stack data, while the safe version reliably prevents such overflows.
+
+\begin{lstlisting}[language=rust, float, caption={Safe buffer copy in Rust}, label={lst:safe-buffer-overflow}]
+#[wasm_bindgen]
+pub fn safe_copy_user_data(input: &str, position: usize) -> String {
+    let mut buffer1 = [b'A'; 16];
+    let buffer2 = [b'B'; 16];
+    for (i, byte) in input.bytes().enumerate() {
+        buffer1[position + i] = byte;
+    }
+    let result1 = String::from_utf8_lossy(&buffer1).to_string();
+    let result2 = String::from_utf8_lossy(&buffer2).to_string();
+    format!("\nBuffer 1: {}\nBuffer 2: {}", result1, result2)
+}
+\end{lstlisting}
+
+\subsubsection{Heap Metadata Corruption}
+Heap metadata corruption occurs when a buffer overflow on the heap overwrites data structures used by the memory allocator, or adjacent heap data. In native code, this can lead to powerful exploits. In Rust, safe code always checks bounds and will panic (trap) if you go out of bounds, preventing memory corruption. However, if you use \texttt{unsafe} Rust and bypass bounds checks, you can still demonstrate how writing past a heap buffer can corrupt adjacent data, just like in C/C++. WebAssembly itself does not add extra protection against heap overflows; it is Rust's safety that prevents them in safe code.
+
+Listing~\ref{lst:unsafe-heap-corruption} demonstrates a heap metadata corruption vulnerability. A single 32-byte heap buffer is allocated, with the first 16 bytes (region 1) filled with 'A' (\texttt{\textbackslash x41}) and the next 16 bytes (region 2) filled with 'B' (\texttt{\textbackslash x42}). These regions are adjacent in memory. If the input is too long or the position is too close to the end of region 1, the write will overflow into region 2, corrupting its contents. This simulates heap metadata or adjacent allocation corruption.
+
+\begin{lstlisting}[language=rust, float, caption={Unsafe heap metadata corruption in Rust}, label={lst:unsafe-heap-corruption}]
+#[wasm_bindgen]
+pub fn unsafe_heap_corruption(input: &str, position: usize) -> String {
+    let mut buffer = vec![b'A'; 16];
+    buffer.extend(vec![b'B'; 16]); // buffer[0..16] = 'A', buffer[16..32] = 'B'
+    let (region1, region2) = buffer.split_at_mut(16);
+    unsafe {
+        let ptr = region1.as_mut_ptr();
+        for (i, byte) in input.bytes().enumerate() {
+            *ptr.add(position + i) = byte;
+        }
+    }
+    let result1 = String::from_utf8_lossy(region1);
+    let result2 = String::from_utf8_lossy(region2);
+    format!("\nRegion 1: {}\nRegion 2: {}", result1, result2)
+}
+\end{lstlisting}
+
+A safe version of the function, shown in Listing~\ref{lst:safe-heap-corruption}, uses Rust's bounds checking to prevent writing past the end of the first region. In our experiments, the unsafe version allowed us to overwrite the contents of region 2, while the safe version reliably prevented any out-of-bounds writes. This demonstrates that, although WebAssembly provides isolation at the module level, memory safety within a module still depends on the safety guarantees of the source language and its usage.
+
+\begin{lstlisting}[language=rust, float, caption={Safe heap corruption prevention in Rust}, label={lst:safe-heap-corruption}]
+#[wasm_bindgen]
+pub fn safe_heap_corruption(input: &str, position: usize) -> String {
+    let mut buffer = vec![b'A'; 16];
+    buffer.extend(vec![b'B'; 16]);
+    let (region1, region2) = buffer.split_at_mut(16);
+    for (i, byte) in input.bytes().enumerate() {
+        // This will panic if position + i >= 16
+        region1[position + i] = byte;
+    }
+    let result1 = String::from_utf8_lossy(region1);
+    let result2 = String::from_utf8_lossy(region2);
+    format!("\nRegion 1: {}\nRegion 2: {}", result1, result2)
+}
+\end{lstlisting}
+
+\subsubsection{Stack Overflow}
+
+A stack overflow occurs when a program's call stack exceeds its maximum size, typically due to uncontrolled recursion or excessive stack allocation. In WebAssembly, stack overflows are detected by the runtime, which triggers a trap and halts execution. This prevents classic stack smashing attacks seen in native code, but denial-of-service is still possible.
+
+Listing~\ref{lst:stack-overflow} shows a minimal example of a stack overflow in Rust compiled to WebAssembly. The function recursively calls itself without a base case, causing the stack to grow until the WebAssembly runtime detects the overflow and traps:
+
+\begin{lstlisting}[language=rust, float, caption={Stack overflow via infinite recursion in Rust}, label={lst:stack-overflow}]
+#[wasm_bindgen]
+#[allow(unconditional_recursion)]
+pub fn stack_overflow() {
+    // This will always overflow the stack and trap in WASM
+    stack_overflow(); 
+}
+\end{lstlisting}
+
+When this function is invoked, the WebAssembly runtime immediately halts execution upon detecting the stack overflow, raising a trap. Unlike buffer or heap overflows, this does not allow memory corruption or code execution, but it does terminate the module's execution. This demonstrates that, while WebAssembly's runtime enforces stack safety, stack overflows can still be used to cause denial-of-service by crashing the module. Since Wasm and the embedder shares the same stack space, this can also lead to a crash of the embedder, potentially crashing the browser tab. We have intentionally ignored Rusts unconditional recursion warning in this example, which would notify the developer of the potential for infinite recursion. 
+
+\subsection{Side-channel Attacks}
+
+
+\section{Discussion}
+
+
+\newpage
+\nocite{*}
+\printbibliography[title=References]
+
+\end{document}
