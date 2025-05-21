@@ -5,6 +5,7 @@ import CodeInjection from './components/CodeInjection';
 import SideChannels from './components/SideChannels';
 import SandboxEscapes from './components/SandboxEscapes';
 import Home from './components/Home';
+import * as wasm from 'wasm-security-test';
 
 const App: React.FC = () => {
   const [activePage, setActivePage] = useState<string>('home');
@@ -21,6 +22,9 @@ const App: React.FC = () => {
 
     // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
+
+    // Add wasm error logging
+    wasm.set_panic_hook();
     
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
