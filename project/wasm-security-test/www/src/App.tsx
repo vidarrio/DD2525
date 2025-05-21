@@ -1,9 +1,9 @@
 import React, { useState, useEffect, createContext } from 'react';
 import Header from './components/General/Header';
-import MemorySafety from './components/Exploits/MemorySafety';
-import CodeInjection from './components/Exploits/CodeInjection';
-import SideChannels from './components/Exploits/SideChannels';
-import SandboxEscapes from './components/Exploits/SandboxEscapes';
+import MemorySafety from './components/Exploits/MemorySafety/MemorySafety';
+import CodeInjection from './components/Exploits/CodeInjection/CodeInjection';
+import SideChannels from './components/Exploits/SideChannels/SideChannels';
+import SandboxEscapes from './components/Exploits/SandboxEscapes/SandboxEscapes';
 import Home from './components/General/Home';
 import * as wasm from 'wasm-security-test';
 

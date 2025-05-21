@@ -3,6 +3,13 @@ use wasm_bindgen::prelude::*;
 // UNSAFE VERSION: Buffer overflow vulnerability
 #[wasm_bindgen]
 pub fn unsafe_copy_user_data(input: &str, position: usize) -> String {
+    if position + input.len() > 32 {
+        return format!(
+            "[Error]\nYou tried to write {} bytes at position {} (position + input length = {}).\nThis would exceed the total buffer size of 32 bytes.\n\nNo write was performed. Please enter a shorter input or a lower position so that the data fits within the 32-byte region.",
+            input.len(), position, position + input.len()
+        );
+    }
+
     // Create two adjacent arrays in memory
     let mut buffer1 = [b'A'; 16]; // First buffer filled with 'A's
     let buffer2 = [b'B'; 16]; // Second buffer filled with 'B's
@@ -27,13 +34,20 @@ pub fn unsafe_copy_user_data(input: &str, position: usize) -> String {
 // SAFE VERSION: Memory-safe copy
 #[wasm_bindgen]
 pub fn safe_copy_user_data(input: &str, position: usize) -> String {
+    if position + input.len() > 32 {
+        return format!(
+            "[Error]\nYou tried to write {} bytes at position {} (position + input length = {}).\nThis would exceed the total buffer size of 32 bytes.\n\nNo write was performed. Please enter a shorter input or a lower position so that the data fits within the 32-byte region.",
+            input.len(), position, position + input.len()
+        );
+    }
+
     // Create two adjacent arrays in memory (mirroring unsafe version)
     let mut buffer1 = [b'A'; 16]; // First buffer filled with 'A's
     let buffer2 = [b'B'; 16]; // Second buffer filled with 'B's
     
     // Safe copy - panics if out of bounds
     for (i, byte) in input.bytes().enumerate() {
-            buffer1[position + i] = byte;
+        buffer1[position + i] = byte;
     }
     
     // Show both buffers to demonstrate NO corruption in buffer2
@@ -46,6 +60,13 @@ pub fn safe_copy_user_data(input: &str, position: usize) -> String {
 // Unsafe version: Heap metadata corruption
 #[wasm_bindgen]
 pub fn unsafe_heap_corruption(input: &str, position: usize) -> String {
+    if position + input.len() > 32 {
+        return format!(
+            "[Error]\nYou tried to write {} bytes at position {} (position + input length = {}).\nThis would exceed the total buffer size of 32 bytes.\n\nNo write was performed. Please enter a shorter input or a lower position so that the data fits within the 32-byte region.",
+            input.len(), position, position + input.len()
+        );
+    }
+
     // Allocate a single buffer, treat as two regions
     let mut buffer = vec![b'A'; 16];
     buffer.extend(vec![b'B'; 16]); // buffer[0..16] = 'A', buffer[16..32] = 'B'
@@ -66,6 +87,13 @@ pub fn unsafe_heap_corruption(input: &str, position: usize) -> String {
 // Safe version: Heap metadata corruption
 #[wasm_bindgen]
 pub fn safe_heap_corruption(input: &str, position: usize) -> String {
+    if position + input.len() > 32 {
+        return format!(
+            "[Error]\nYou tried to write {} bytes at position {} (position + input length = {}).\nThis would exceed the total buffer size of 32 bytes.\n\nNo write was performed. Please enter a shorter input or a lower position so that the data fits within the 32-byte region.",
+            input.len(), position, position + input.len()
+        );
+    }
+
     // Allocate a single buffer, treat as two regions
     let mut buffer = vec![b'A'; 16];
     buffer.extend(vec![b'B'; 16]); // buffer[0..16] = 'A', buffer[16..32] = 'B'
