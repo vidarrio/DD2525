@@ -113,5 +113,6 @@ pub fn safe_heap_corruption(input: &str, position: usize) -> String {
 #[wasm_bindgen]
 #[allow(unconditional_recursion)]
 pub fn stack_overflow() {
-    stack_overflow(); // This will always overflow the stack and trap in WASM
+    // This will always overflow the stack and trap in WASM
+    stack_overflow(); 
 }
