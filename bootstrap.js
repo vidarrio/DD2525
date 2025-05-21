@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("\nconsole.log('Bootstrap loading...');\nPromise.all(/*! import() */[__webpack_require__.e(\"vendors-node_modules_react-dom_client_js\"), __webpack_require__.e(\"src_index_ts\")]).then(__webpack_require__.bind(__webpack_require__, /*! ./src/index */ \"./src/index.ts\"))\n    .then(() => console.log('React app loaded successfully'))\n    .catch(e => console.error('Error loading React app:', e));\n\n\n//# sourceURL=webpack://create-wasm-app/./bootstrap.js?");
+eval("\nconsole.log('Bootstrap loading...');\nPromise.all(/*! import() */[__webpack_require__.e(\"vendors-node_modules_react-dom_client_js-node_modules_react-syntax-highlighter_dist_esm_prism-6f3db3\"), __webpack_require__.e(\"src_index_ts\")]).then(__webpack_require__.bind(__webpack_require__, /*! ./src/index */ \"./src/index.ts\"))\n    .then(() => console.log('React app loaded successfully'))\n    .catch(e => console.error('Error loading React app:', e));\n\n\n//# sourceURL=webpack://create-wasm-app/./bootstrap.js?");
 
 /***/ })
 
