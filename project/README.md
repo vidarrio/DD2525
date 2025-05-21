@@ -1,5 +1,7 @@
 # Project: A dive into WebAssembly: Exploitation and Mitigation
 
+[Live Demo](https://vidarrio.github.io/DD2525/)
+
 ## Build rust code
 
 ```bash
