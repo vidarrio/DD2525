@@ -13,6 +13,9 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   background-color: var(--bg-color) !important;
+  min-height: 100vh !important;
+  padding-bottom: 4rem !important; /* Add padding at the bottom to account for footer height */
+  position: relative !important;
 }
 
 header {
@@ -48,9 +51,10 @@ header h1 {
 }
 
 main {
-  max-width: 1200px !important;
-  margin: 2rem auto !important;
-  padding: 0 1rem !important;
+    max-width: 1200px !important;
+    margin: 2rem auto !important;
+    padding: 0 1rem !important;
+    margin-bottom: 3rem !important; /* Add margin at the bottom */
 }
 
 .page {
@@ -123,7 +127,7 @@ footer {
     color: white !important;
     text-align: center !important;
     padding: 1rem !important;
-    position: fixed !important;
+    position: fixed !important; /* Keep this to maintain it at the bottom */
     left: 0 !important;
     bottom: 0 !important;
     width: 100% !important;
@@ -132,10 +136,11 @@ footer {
 }
 
 .wasm-errors {
-  background-color: #ffeeee;
-  padding: 10px;
-  border-left: 4px solid #ff0000;
-  margin-top: 20px;
+    background-color: #ffeeee;
+    padding: 10px;
+    border-left: 4px solid #ff0000;
+    margin-top: 20px;
+    margin-bottom: 4rem; /* Add extra margin at the bottom for errors */
 }
 
 .wasm-errors h4 {
