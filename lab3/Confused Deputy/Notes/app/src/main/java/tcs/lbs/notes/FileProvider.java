@@ -23,9 +23,9 @@ public class FileProvider extends ContentProvider
         }
 
         // Reject paths containing directory traversal sequences
-        /*if (path.contains("../") || path.contains("..\\")) {
+        if (path.contains("../") || path.contains("..\\")) {
             return null;
-        }*/
+        }
 
         try
         {

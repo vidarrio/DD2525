@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
         IntentFilter filter = new IntentFilter();
         
         filter.addAction("tcs.lbs.weather_app.WeatherBroadcastReceiver");
-        //filter.addAction("tcs.lbs.locationapp.MainActivityReceiver");
+        filter.addAction("tcs.lbs.locationapp.MainActivityReceiver");
         
         // Register our receiver
         registerReceiver(locationReceiver, filter);

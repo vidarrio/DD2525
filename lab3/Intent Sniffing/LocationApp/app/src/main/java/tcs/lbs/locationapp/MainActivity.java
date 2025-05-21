@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         registerReceiver(new MainActivityReceiver(), filter);
 
         // LocalbroadcastManager fix
-        //LocalBroadcastManager.getInstance(this).registerReceiver(mainActivityReceiver, filter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mainActivityReceiver, filter);
 
 
         // Check if the app has access to device's Location

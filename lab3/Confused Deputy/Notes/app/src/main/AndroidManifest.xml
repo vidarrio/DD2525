@@ -39,6 +39,7 @@
 
         <activity
             android:name=".DataBaseActivity"
+            android:exported="false"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="tcs.lbs.notes.DataBaseManager"/>
