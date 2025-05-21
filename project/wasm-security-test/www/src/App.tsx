@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import MemorySafety from './components/MemorySafety';
-import CodeInjection from './components/CodeInjection';
-import SideChannels from './components/SideChannels';
-import SandboxEscapes from './components/SandboxEscapes';
-import Home from './components/Home';
+import Header from './components/General/Header';
+import MemorySafety from './components/Exploits/MemorySafety';
+import CodeInjection from './components/Exploits/CodeInjection';
+import SideChannels from './components/Exploits/SideChannels';
+import SandboxEscapes from './components/Exploits/SandboxEscapes';
+import Home from './components/General/Home';
 import * as wasm from 'wasm-security-test';
 
 const App: React.FC = () => {
