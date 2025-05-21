@@ -65,7 +65,8 @@ const Home: React.FC = () => {
           It showcases both vulnerable and secure implementations of various security-critical functions.
         </p>
         <p>
-          The backend is implemented in Rust and compiled to WebAssembly, with a React frontend for visualization.
+          The critical functionality is implemented in Rust and compiled to WebAssembly, running directly in your browser.
+          The user interface is built with React for interactive visualization of the security concepts.
         </p>
       </div>
     </div>
