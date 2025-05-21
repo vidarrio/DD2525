@@ -9,9 +9,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: project/wasm-security-test/www
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,9 +25,8 @@ jobs:
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Build WASM package
-        run: |
-          cd ../
-          wasm-pack build --release --target web
+        working-directory: project/wasm-security-test
+        run: wasm-pack build --release --target web
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -38,13 +34,15 @@ jobs:
           node-version: '20'
 
       - name: Install npm dependencies
+        working-directory: project/wasm-security-test/www
         run: npm install
 
       - name: Build frontend
+        working-directory: project/wasm-security-test/www
         run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: project/wasm-security-test/www/dist
