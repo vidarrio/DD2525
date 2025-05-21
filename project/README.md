@@ -13,3 +13,4 @@ wasm-pack build
 # From www directory
 npm run start 
 ```
+
