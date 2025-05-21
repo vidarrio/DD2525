@@ -2,17 +2,72 @@ import React from 'react';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <h2>A dive into WebAssembly: Exploitation and Mitigation</h2>
-      <p>This demonstration showcases various security vulnerabilities in WebAssembly and their mitigations.</p>
-      <p>Select a category from the navigation to explore different security aspects:</p>
+    <div className="home-container">
+      <div className="hero-section">
+        <h2>A dive into WebAssembly: Exploitation and Mitigation</h2>
+        <p className="lead">
+          This interactive demonstration showcases security vulnerabilities in WebAssembly 
+          and their corresponding mitigations.
+        </p>
+      </div>
+
+      <div className="category-section">
+        <p>Select a category from the navigation to explore different security aspects:</p>
+        
+        <div className="category-cards">
+          <div className="category-card memory-safety">
+            <h3>Memory Safety</h3>
+            <p>
+              Explore buffer overflows, heap corruption, and other memory safety vulnerabilities 
+              in WebAssembly.
+            </p>
+            <ul>
+              <li>Buffer Overflow on Stack</li>
+              <li>Heap Metadata Corruption</li>
+              <li>Stack Overflow</li>
+            </ul>
+          </div>
+          
+          <div className="category-card code-injection">
+            <h3>Code Injection</h3>
+            <p>
+              Learn about code injection vulnerabilities and how WebAssembly's 
+              execution model helps mitigate them.
+            </p>
+          </div>
+          
+          <div className="category-card side-channels">
+            <h3>Side-Channel Attacks</h3>
+            <p>
+              Discover how information can leak through timing and storage side channels, 
+              even in a sandboxed environment.
+            </p>
+            <ul>
+              <li>Storage Side Channel</li>
+              <li>Timing Side Channel</li>
+            </ul>
+          </div>
+          
+          <div className="category-card sandbox-escapes">
+            <h3>Sandbox Escapes</h3>
+            <p>
+              Understand how WebAssembly's sandbox protection works and 
+              potential vulnerabilities in its implementation.
+            </p>
+          </div>
+        </div>
+      </div>
       
-      <ul>
-        <li><strong>Memory Safety</strong> - Buffer overflows and related vulnerabilities</li>
-        <li><strong>Code Injection</strong> - Executing untrusted code</li>
-        <li><strong>Side-Channel Attacks</strong> - Information leakage through timing and other side channels</li>
-        <li><strong>Sandbox Escapes</strong> - Attempts to break out of the WebAssembly sandbox</li>
-      </ul>
+      <div className="project-info">
+        <h3>About This Project</h3>
+        <p>
+          This demonstration was developed for the Language-Based Security course (DD2525) at KTH Royal Institute of Technology.
+          It showcases both vulnerable and secure implementations of various security-critical functions.
+        </p>
+        <p>
+          The backend is implemented in Rust and compiled to WebAssembly, with a React frontend for visualization.
+        </p>
+      </div>
     </div>
   );
 };
