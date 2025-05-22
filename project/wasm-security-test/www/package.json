@@ -29,9 +29,10 @@
   "dependencies": {
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
+    "@wooorm/starry-night": "^3.7.0",
+    "hast-util-to-html": "^9.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-syntax-highlighter": "^15.6.1",
     "wasm-security-test": "file:../pkg"
   },
   "devDependencies": {
