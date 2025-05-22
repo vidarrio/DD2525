@@ -1,6 +1,7 @@
 mod utils;
 mod memory_safety;
 mod side_channel;
+mod control_flow;
 
 use wasm_bindgen::prelude::*;
 
@@ -12,6 +13,9 @@ pub use memory_safety::*;
 
 // Export the side-channel functions
 pub use side_channel::*;
+
+// Export the control flow functions
+pub use control_flow::*;
 
 #[wasm_bindgen]
 extern "C" {
