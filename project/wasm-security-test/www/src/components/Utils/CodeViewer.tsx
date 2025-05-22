@@ -41,7 +41,7 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, title = "
             <StarryNightHighlighter
               code={activeTab === 'unsafe' ? unsafeCode : safeCode}
               language="rust"
-              className={activeTab === 'unsafe' ? 'unsafe-code' : 'safe-code'}
+              className={activeTab === 'unsafe' ? 'unsafe-code starry-night-block' : 'safe-code starry-night-block'}
             />
           </div>
         </div>
