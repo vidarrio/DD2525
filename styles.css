@@ -955,6 +955,10 @@ button.stop-attack:hover {
   background-color: #20c997;
 }
 
+.category-card.control-flow::before {
+  background-color: #0078d7;
+}
+
 .category-card h3 {
   margin-top: 0.25rem;
   margin-bottom: 1rem;
@@ -1190,4 +1194,14 @@ button.stop-attack:hover {
 .starry-night-block {
   /* Add padding inside the code block for better readability */
   padding: 10px;
+}
+
+.category-card[role="button"] {
+  cursor: pointer;
+}
+
+.category-card[role="button"]:hover, .category-card[role="button"]:focus {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
