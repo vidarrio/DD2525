@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ activePage }) => {
         onClick={() => window.location.assign('/#home')} 
         tabIndex={0} 
         role="button" 
-        onKeyPress={e => { if (e.key === 'Enter') window.location.assign('/#/home'); }}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.assign('/#home'); } }}
       >
         WebAssembly Security: Exploits & Mitigations
       </h1>
