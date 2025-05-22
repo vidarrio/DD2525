@@ -90,7 +90,6 @@ impl TimingResult {
 // UNSAFE VERSION: Leaks password length through timing
 #[wasm_bindgen]
 pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> TimingResult {
-    // For demo purposes, we only use the admin account
     if username != "admin" {
         return TimingResult {
             message: "Error: Invalid username or password".to_string(),
@@ -123,7 +122,6 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
     
     // SIMULATED TIMING:
     // Base processing time (50ms) + 2ms for each matching character
-    // This simulates what would happen with real processing delays
     let simulated_time = 50.0 + (matching_chars as f64 * 2.0);
     
     TimingResult {
@@ -140,7 +138,6 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
 // SAFE VERSION: Constant-time comparison
 #[wasm_bindgen]
 pub fn safe_check_credentials_timing(username: &str, password: &str) -> TimingResult {
-    // For demo purposes, we only use the admin account
     if username != "admin" {
         return TimingResult {
             message: "Error: Invalid username or password".to_string(),
@@ -152,7 +149,6 @@ pub fn safe_check_credentials_timing(username: &str, password: &str) -> TimingRe
     let correct_password = "admin123";
     
     // Constant-time comparison - we always check all characters
-    // and use a bitwise operation to track correctness
     let mut result = if password.len() == correct_password.len() { 1 } else { 0 };
     
     // Compare all characters in constant time
@@ -176,5 +172,145 @@ pub fn safe_check_credentials_timing(username: &str, password: &str) -> TimingRe
         },
         simulated_time_ms: 300.0, // Always constant time
         matching_chars: correct_chars,
+    }
+}
+
+// ----------------------------------------------------------
+// Cache Timing Side-Channel Attack
+// ----------------------------------------------------------
+
+#[wasm_bindgen]
+pub struct CacheTimingResult {
+    message: String,
+    simulated_time_ms: f64,
+    access_pattern: Vec<u8>,
+    memory_value: u8,
+}
+
+#[wasm_bindgen]
+impl CacheTimingResult {
+    #[wasm_bindgen(getter)]
+    pub fn message(&self) -> String {
+        self.message.clone()
+    }
+    
+    #[wasm_bindgen(getter)]
+    pub fn simulated_time_ms(&self) -> f64 {
+        self.simulated_time_ms
+    }
+    
+    #[wasm_bindgen(getter)]
+    pub fn access_pattern(&self) -> Vec<u8> {
+        self.access_pattern.clone()
+    }
+    
+    #[wasm_bindgen(getter)]
+    pub fn memory_value(&self) -> u8 {
+        self.memory_value
+    }
+}
+
+// Unsafe implementation - accesses memory in patterns that depend on secret data
+#[wasm_bindgen]
+pub fn unsafe_cache_timing(probe_index: u32) -> CacheTimingResult {
+    // Create an array to simulate an AES lookup table in memory
+    let buffer_size = 16;
+    let mut lookup_table: Vec<u8> = vec![0; buffer_size];
+    
+    // Fill with realistic-looking encryption key bytes
+    lookup_table[0] = 0x7A; 
+    lookup_table[1] = 0x2B;
+    lookup_table[2] = 0x15;
+    lookup_table[3] = 0xED;
+    lookup_table[4] = 0x9C;
+    lookup_table[5] = 0x5F;
+    lookup_table[6] = 0xD1;
+    lookup_table[7] = 0x41;
+    lookup_table[8] = 0x86;
+    lookup_table[9] = 0x03;
+    lookup_table[10] = 0xB2;
+    lookup_table[11] = 0xA7;
+    lookup_table[12] = 0xE4; // The "secret" key byte at index 12
+    lookup_table[13] = 0x6D;
+    lookup_table[14] = 0x33;
+    lookup_table[15] = 0xC8;
+    
+    // Convert probe index to usize and ensure it's within bounds
+    let index = (probe_index as usize) % buffer_size;
+    
+    // Access the table at the index being probed
+    let accessed_value = lookup_table[index];
+    
+    // Hard-coded "secret" index for simulation
+    const SECRET_INDEX: usize = 12;
+    
+    // Simulate timing - accessing the SECRET_INDEX is FASTER (cache hit)
+    // while all other indices are slower (cache miss)
+    let simulated_time = if index == SECRET_INDEX {
+        0.2 
+    } else {
+        4.5 + (index as f64 * 0.1)
+    };
+    
+    // Track which indices were accessed (for visualization)
+    let mut access_pattern = vec![0; buffer_size];
+    access_pattern[index] = 1;
+    
+    CacheTimingResult {
+        message: format!("Accessed key byte: 0x{:02X}", accessed_value),
+        simulated_time_ms: simulated_time,
+        access_pattern,
+        memory_value: accessed_value,
+    }
+}
+
+// Safe implementation - access pattern doesn't depend on secret data
+#[wasm_bindgen]
+pub fn safe_cache_timing(probe_index: u32) -> CacheTimingResult {
+    // Create an array to simulate an AES lookup table in memory
+    let buffer_size = 16;
+    let mut lookup_table: Vec<u8> = vec![0; buffer_size];
+    
+    // Fill with realistic-looking encryption key bytes
+    lookup_table[0] = 0x7A;
+    lookup_table[1] = 0x2B;
+    lookup_table[2] = 0x15;
+    lookup_table[3] = 0xED;
+    lookup_table[4] = 0x9C;
+    lookup_table[5] = 0x5F;
+    lookup_table[6] = 0xD1;
+    lookup_table[7] = 0x41;
+    lookup_table[8] = 0x86;
+    lookup_table[9] = 0x03;
+    lookup_table[10] = 0xB2;
+    lookup_table[11] = 0xA7;
+    lookup_table[12] = 0xE4; // The "secret" key byte at index 12
+    lookup_table[13] = 0x6D;
+    lookup_table[14] = 0x33;
+    lookup_table[15] = 0xC8;
+    
+    // Convert probe index to usize and ensure it's within bounds
+    let index = (probe_index as usize) % buffer_size;
+    
+    // Always access EVERY element in the table regardless of the secret index
+    let mut accessed_value = 0;
+    for i in 0..buffer_size {
+        // Use a dummy operation that can't be optimized away
+        if i == index {
+            accessed_value = lookup_table[i];
+        } else {
+            // Still access the memory location, but don't use the value
+            let _ = lookup_table[i];
+        }
+    }
+    
+    // Track all memory accesses (for visualization)
+    let access_pattern = vec![1; buffer_size];
+    
+    CacheTimingResult {
+        message: format!("Accessed key byte: 0x{:02X}", accessed_value),
+        simulated_time_ms: 5.2, // Constant time regardless of index
+        access_pattern,
+        memory_value: accessed_value,
     }
 }

@@ -45,6 +45,7 @@ const Home: React.FC = () => {
             <ul>
               <li>Storage Side Channel</li>
               <li>Timing Side Channel</li>
+              <li>Cache Timing Side Channel</li>
             </ul>
           </div>
           
