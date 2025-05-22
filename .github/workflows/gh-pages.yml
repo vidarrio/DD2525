@@ -28,6 +28,10 @@ jobs:
         working-directory: project/wasm-security-test
         run: wasm-pack build --release --target bundler
 
+      - name: Patch wasm-bindgen glue file to export wasm
+        working-directory: project/wasm-security-test
+        run: node patch_wasm_bg_export.js
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:

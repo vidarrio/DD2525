@@ -11,15 +11,17 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, title = "
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'unsafe' | 'safe'>('unsafe');
 
+  // Use a more generic button label
+  const buttonLabel = isOpen ? 'Hide Code' : 'Show Code';
+
   return (
     <div className="code-viewer-container">
       <button 
         className="code-toggle-button" 
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? 'Hide Code' : 'Show Rust Code'}
+        {buttonLabel}
       </button>
-      
       {isOpen && (
         <div className="code-panel">
           <h4>{title}</h4>
