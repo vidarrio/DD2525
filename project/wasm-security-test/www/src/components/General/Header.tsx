@@ -7,7 +7,15 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activePage }) => {
   return (
     <header>
-      <h1>WebAssembly Security: Exploits & Mitigations</h1>
+      <h1 
+        style={{ cursor: 'pointer' }} 
+        onClick={() => window.location.assign('/#home')} 
+        tabIndex={0} 
+        role="button" 
+        onKeyPress={e => { if (e.key === 'Enter') window.location.assign('/#/home'); }}
+      >
+        WebAssembly Security: Exploits & Mitigations
+      </h1>
       <nav id="main-nav">
         <ul>
           <li>

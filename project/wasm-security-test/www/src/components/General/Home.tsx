@@ -15,7 +15,19 @@ const Home: React.FC = () => {
         <p>Select a category from the navigation to explore different security aspects:</p>
         
         <div className="category-cards">
-          <div className="category-card memory-safety">
+          <div
+            className="category-card memory-safety"
+            onClick={() => window.location.assign('#memory-safety')}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => {
+              if (e.key === 'Enter') window.location.assign('#memory-safety');
+              if (e.key === ' ') {
+                e.preventDefault();
+                window.location.assign('#memory-safety');
+              }
+            }}
+          >
             <h3>Memory Safety</h3>
             <p>
               Explore buffer overflows, heap corruption, and other memory safety vulnerabilities 
@@ -28,7 +40,19 @@ const Home: React.FC = () => {
             </ul>
           </div>
           
-          <div className="category-card code-injection">
+          <div
+            className="category-card code-injection"
+            onClick={() => window.location.assign('#code-injection')}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => {
+              if (e.key === 'Enter') window.location.assign('#code-injection');
+              if (e.key === ' ') {
+                e.preventDefault();
+                window.location.assign('#code-injection');
+              }
+            }}
+          >
             <h3>Code Injection</h3>
             <p>
               Learn about code injection vulnerabilities and how WebAssembly's 
@@ -36,7 +60,19 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          <div className="category-card side-channels">
+          <div
+            className="category-card side-channels"
+            onClick={() => window.location.assign('#side-channels')}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => {
+              if (e.key === 'Enter') window.location.assign('#side-channels');
+              if (e.key === ' ') {
+                e.preventDefault();
+                window.location.assign('#side-channels');
+              }
+            }}
+          >
             <h3>Side-Channel Attacks</h3>
             <p>
               Discover how information can leak through timing and storage side channels, 
@@ -49,7 +85,19 @@ const Home: React.FC = () => {
             </ul>
           </div>
           
-          <div className="category-card sandbox-escapes">
+          <div
+            className="category-card sandbox-escapes"
+            onClick={() => window.location.assign('#sandbox-escapes')}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => {
+              if (e.key === 'Enter') window.location.assign('#sandbox-escapes');
+              if (e.key === ' ') {
+                e.preventDefault();
+                window.location.assign('#sandbox-escapes');
+              }
+            }}
+          >
             <h3>Sandbox Escapes</h3>
             <p>
               Understand how WebAssembly's sandbox protection works and 
@@ -57,13 +105,27 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          <div className="category-card control-flow">
+          <div
+            className="category-card control-flow"
+            onClick={() => window.location.assign('#control-flow')}
+            tabIndex={0}
+            role="button"
+            onKeyDown={e => {
+              if (e.key === 'Enter') window.location.assign('#control-flow');
+              if (e.key === ' ') {
+                e.preventDefault();
+                window.location.assign('#control-flow');
+              }
+            }}
+          >
             <h3>Control Flow Attacks</h3>
             <p>
-              See how indirect function calls and table indices can be abused if control flow integrity is not enforced.
+              See how CFI can be bypassed in WASM:
             </p>
             <ul>
-              <li>CFI Bypass</li>
+              <li>Host Export Exposure</li>
+              <li>Indirect Call Logic Flaw</li>
+              <li>Exported Table Modification</li>
             </ul>
           </div>
         </div>
