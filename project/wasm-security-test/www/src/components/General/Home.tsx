@@ -55,6 +55,16 @@ const Home: React.FC = () => {
               potential vulnerabilities in its implementation.
             </p>
           </div>
+          
+          <div className="category-card control-flow">
+            <h3>Control Flow Attacks</h3>
+            <p>
+              See how indirect function calls and table indices can be abused if control flow integrity is not enforced.
+            </p>
+            <ul>
+              <li>CFI Bypass</li>
+            </ul>
+          </div>
         </div>
       </div>
       

@@ -50,6 +50,14 @@ const Header: React.FC<HeaderProps> = ({ activePage }) => {
               Sandbox Escapes
             </a>
           </li>
+          <li>
+            <a
+              href="#control-flow"
+              className={`nav-link ${activePage === 'control-flow' ? 'active' : ''}`}
+            >
+              Control Flow Attacks
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
