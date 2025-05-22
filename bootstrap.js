@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("\nconsole.log('Bootstrap loading...');\nPromise.all(/*! import() */[__webpack_require__.e(\"vendors-node_modules_react-dom_client_js-node_modules_react-syntax-highlighter_dist_esm_prism-6f3db3\"), __webpack_require__.e(\"src_index_ts\")]).then(__webpack_require__.bind(__webpack_require__, /*! ./src/index */ \"./src/index.ts\"))\n    .then(() => console.log('React app loaded successfully'))\n    .catch(e => console.error('Error loading React app:', e));\n\n\n//# sourceURL=webpack://create-wasm-app/./bootstrap.js?");
+eval("\nconsole.log('Bootstrap loading...');\nPromise.all(/*! import() */[__webpack_require__.e(\"vendors-node_modules_react-dom_client_js-node_modules_wooorm_starry-night_style_both_css-node-11e4fa\"), __webpack_require__.e(\"src_index_ts\")]).then(__webpack_require__.bind(__webpack_require__, /*! ./src/index */ \"./src/index.ts\"))\n    .then(() => console.log('React app loaded successfully'))\n    .catch(e => console.error('Error loading React app:', e));\n\n\n//# sourceURL=webpack://create-wasm-app/./bootstrap.js?");
 
 /***/ })
 
@@ -40,7 +40,7 @@ eval("\nconsole.log('Bootstrap loading...');\nPromise.all(/*! import() */[__webp
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
@@ -391,6 +391,11 @@ eval("\nconsole.log('Bootstrap loading...');\nPromise.all(/*! import() */[__webp
 /******/ 		var chunkLoadingGlobal = self["webpackChunkcreate_wasm_app"] = self["webpackChunkcreate_wasm_app"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
