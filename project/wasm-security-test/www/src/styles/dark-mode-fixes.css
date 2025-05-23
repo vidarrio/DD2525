@@ -1,6 +1,39 @@
 /* Additional Dark Mode Fixes */
 /* This file contains additional dark mode fixes for control flow components */
 
+/* Fix Set Secret / Set Safe buttons in the WebAssembly Function Table */
+[data-theme="dark"] .action-button.secret-button {
+  display: inline-block;
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08) !important;
+  margin-left: 8px;
+  transition: background 0.2s, box-shadow 0.2s;
+  outline: none;
+  text-align: center;
+}
+
+[data-theme="dark"] .action-button.secret-button:hover,
+[data-theme="dark"] .action-button.secret-button:focus {
+  background-color: #c82333 !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(220,53,69,0.15) !important;
+}
+
+[data-theme="dark"] .action-button.safe-button {
+  background-color: #28a745;
+  color: white;
+}
+
+[data-theme="dark"] .action-button.safe-button:hover {
+  background-color: #218838;
+}
+
 /* Make the control flow tabs more prominent in dark mode */
 [data-theme="dark"] .control-flow-tabs .tab-btn {
   background-color: #1e1e1e;
@@ -33,6 +66,71 @@
 
 [data-theme="dark"] .control-group {
   margin-bottom: 1rem;
+}
+
+/* Fix the WebAssembly Function Table in dark mode */
+[data-theme="dark"] .wasm-function-table {
+  background-color: #1a1a1a;
+}
+
+[data-theme="dark"] .wasm-function-table th {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-bottom: 2px solid #333;
+}
+
+[data-theme="dark"] .wasm-function-table td {
+  color: #e0e0e0;
+  border-bottom: 1px solid #23272e !important;
+}
+
+[data-theme="dark"] .wasm-function-table tr:nth-child(even) td {
+  background-color: #181a1f !important;
+}
+
+[data-theme="dark"] .wasm-function-table tr:nth-child(odd) td {
+  background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .wasm-function-table .export {
+  background-color: #182a3a !important; /* blue-tinted background for export */
+  color: #4db8ff !important;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0.15em 0.5em;
+  display: inline-block;
+}
+
+[data-theme="dark"] .wasm-function-table .function-name.secret-function {
+  color: #ff6b6b !important;
+}
+
+[data-theme="dark"] .wasm-function-table .function-name.safe-function {
+  color: #4db8ff !important;
+}
+
+/* Fix table visualization explanation in dark mode */
+[data-theme="dark"] .table-visualization-explanation {
+  background-color: #2a2a2a;
+  border-left: 4px solid #4db8ff;
+  color: #e0e0e0;
+}
+
+/* Fix indirect call simulator in dark mode */
+[data-theme="dark"] .indirect-call-simulator {
+  background-color: #2a2a2a;
+  border: 1px solid #333;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .run-button {
+  background-color: #2c7be5;
+  color: white;
+  border-color: transparent;
+}
+
+[data-theme="dark"] .run-button:hover {
+  background-color: #1a68d1;
 }
 
 /* Fix code highlighting */
@@ -637,6 +735,23 @@
   color: #32cd57;
 }
 
+/* Style for Set Safe and Set Secret buttons */
+[data-theme="dark"] .action-button.safe-button {
+  background-color: #1e663b;
+}
+
+[data-theme="dark"] .action-button.safe-button:hover {
+  background-color: #28a745;
+}
+
+[data-theme="dark"] .action-button.secret-button {
+  background-color: #802232;
+}
+
+[data-theme="dark"] .action-button.secret-button:hover {
+  background-color: #dc3545;
+}
+
 /* Fix security warning and info containers */
 [data-theme="dark"] .security-warning {
   background-color: rgba(220, 53, 69, 0.1);
@@ -646,6 +761,32 @@
 
 [data-theme="dark"] .security-warning strong {
   color: #ff6b6b;
+}
+
+/* Style for Call Indirect buttons in the table export component */
+[data-theme="dark"] .indirect-call-simulator .run-button {
+  background-color: #2a4d69;
+  color: #ffffff;
+  border: none;
+}
+
+[data-theme="dark"] .indirect-call-simulator .run-button:hover {
+  background-color: #3a6188;
+}
+
+/* Style for table visualization explanation */
+[data-theme="dark"] .table-visualization-explanation {
+  background-color: #292929;
+  border-left: 4px solid #4db8ff;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .table-visualization-explanation p {
+  color: #bbb;
+}
+
+[data-theme="dark"] .table-visualization-explanation strong {
+  color: #4db8ff;
 }
 
 [data-theme="dark"] .security-info {
@@ -1252,4 +1393,18 @@
 [data-theme="dark"] #side-channels .exploit-container > *:not(.control-flow-tabs):not(.code-panel) {
   background-color: #1a1a1a !important;
   color: #e0e0e0 !important;
+}
+
+/* Fix header in dark mode */
+[data-theme="dark"] header, [data-theme="dark"] .header, [data-theme="dark"] .app-header {
+  background-color: #181818 !important;
+  color: #e0e0e0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Fix footer in dark mode */
+[data-theme="dark"] footer, [data-theme="dark"] .footer, [data-theme="dark"] .app-footer {
+  background-color: #181818 !important;
+  color: #aaa !important;
+  border-top: 1px solid #333;
 }

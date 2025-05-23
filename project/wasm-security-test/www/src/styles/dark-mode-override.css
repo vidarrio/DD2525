@@ -59,10 +59,11 @@
 
 /* Fix Character Timing Analysis display */
 [data-theme="dark"] .character-timing-analysis {
-  background-color: #1a1a1a !important;
+  background-color: #23272e !important;
   color: #e0e0e0 !important;
-  border-radius: 6px;
-  padding: 1rem;
+  border-radius: 6px !important;
+  padding: 1rem !important;
+  border: 1px solid #333 !important;
 }
 
 [data-theme="dark"] .character-timing-analysis .character-row {
@@ -72,18 +73,82 @@
   border-bottom: 1px solid #333 !important;
 }
 
+[data-theme="dark"] .character-row {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 8px !important;
+}
+
 [data-theme="dark"] .character-timing-analysis .character-row:last-child {
   border-bottom: none !important;
 }
 
 [data-theme="dark"] .character-row .character {
-  color: #4db8ff !important;
-  font-weight: bold;
+  background-color: #333 !important;
+  color: #e0e0e0 !important;
+  border-radius: 4px !important;
+  padding: 6px 16px !important;
+  font-family: monospace !important;
+  font-size: 1rem !important;
+  display: inline-block !important;
+  margin-right: 1rem !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] .character-row .timing {
-  color: #e0e0e0 !important;
-  font-family: monospace;
+  color: #4db8ff !important;
+  font-family: monospace !important;
+  font-size: 1rem !important;
+  margin-left: auto !important;
+  background: none !important;
+  display: inline-block !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="dark"] .character-row .timing-bar {
+  background-color: #4db8ff !important;
+  height: 24px !important;
+  border-radius: 4px !important;
+  margin: 0 16px !important;
+  flex: 1 1 120px !important;
+  min-width: 40px !important;
+  max-width: 1000px !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  filter: none !important;
+  display: inline-block !important;
+  position: relative !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+[data-theme="dark"] .character-row.highlight .timing-bar {
+  background-color: #ff6b6b !important;
+}
+
+[data-theme="dark"] .character-row .timing-bar, [data-theme="dark"] .character-row .timing, [data-theme="dark"] .character-row *, [data-theme="dark"] .character-timing-analysis * {
+  background-image: none !important;
+  background-clip: border-box !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+[data-theme="dark"] .character-row .timing-bar, [data-theme="dark"] .character-row .timing {
+  z-index: 1 !important;
+}
+
+[data-theme="dark"] .character-row .character, [data-theme="dark"] .character-row .timing {
+  background-image: none !important;
+  filter: none !important;
+  outline: none !important;
+  text-shadow: none !important;
 }
 
 /* Fix the security notice boxes */
@@ -224,6 +289,24 @@
   max-width: calc(100% - 120px);
 }
 
+/* Force timing bars to be visible and colored in dark mode, overriding inline styles */
+[data-theme="dark"] .chart-bar .bar {
+  background-color: #4db8ff !important;
+  opacity: 1 !important;
+}
+
+[data-theme="dark"] .chart-bar .bar.highlight, 
+[data-theme="dark"] .chart-bar .bar:first-child {
+  background-color: #ff6b6b !important;
+  opacity: 1 !important;
+}
+
+/* Make only the top (first) timing bar red in dark mode */
+[data-theme="dark"] .chart-bar:first-child .bar {
+  background-color: #ff6b6b !important;
+  opacity: 1 !important;
+}
+
 /* Fix the log output area */
 [data-theme="dark"] .attack-log {
   background-color: #1e1e1e !important;
@@ -267,17 +350,60 @@
   color: #e0e0e0 !important;
 }
 
-[data-theme="dark"] .wasm-module-structure {
-  background-color: #1a1a1a !important;
-  border: 1px solid #333 !important;
-  padding: 1rem !important;
-  border-radius: 6px !important;
+[data-theme="dark"] .wasm-module {
+  background-color: #181a1f !important;
+  border: 2px solid #333 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
 }
 
-[data-theme="dark"] .wasm-module-structure h4 {
+[data-theme="dark"] .module-functions {
+  background-color: #23272e !important;
   color: #e0e0e0 !important;
-  margin-top: 0 !important;
-  margin-bottom: 1rem !important;
+  padding: 1rem !important;
+}
+
+[data-theme="dark"] .module-function {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding: 0.75rem !important;
+  border-radius: 4px !important;
+  margin-bottom: 0.5rem !important;
+  background-color: #23272e !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .module-function:last-child {
+  margin-bottom: 0 !important;
+}
+
+[data-theme="dark"] .function-export {
+  background-color: #182a3a !important;
+  color: #4db8ff !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="dark"] .function-name {
+  color: #e0e0e0 !important;
+  font-family: monospace !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="dark"] .function-name.secret-function {
+  color: #ff6b6b !important;
+}
+
+[data-theme="dark"] .function-name.safe-function {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .function-return {
+  color: #888 !important;
+  font-family: monospace !important;
 }
 
 /* JavaScript Environment styling */
@@ -361,13 +487,59 @@
 }
 
 [data-theme="dark"] .wasm-module {
-  border-color: #444 !important;
+  background-color: #181a1f !important;
+  border: 2px solid #333 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
 }
 
-[data-theme="dark"] .environment-label,
-[data-theme="dark"] .module-label {
-  background-color: #333 !important;
+[data-theme="dark"] .module-functions {
+  background-color: #23272e !important;
   color: #e0e0e0 !important;
+  padding: 1rem !important;
+}
+
+[data-theme="dark"] .module-function {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  padding: 0.75rem !important;
+  border-radius: 4px !important;
+  margin-bottom: 0.5rem !important;
+  background-color: #23272e !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .module-function:last-child {
+  margin-bottom: 0 !important;
+}
+
+[data-theme="dark"] .function-export {
+  background-color: #182a3a !important;
+  color: #4db8ff !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="dark"] .function-name {
+  color: #e0e0e0 !important;
+  font-family: monospace !important;
+  font-weight: 500 !important;
+}
+
+[data-theme="dark"] .function-name.secret-function {
+  color: #ff6b6b !important;
+}
+
+[data-theme="dark"] .function-name.safe-function {
+  color: #4db8ff !important;
+}
+
+[data-theme="dark"] .function-return {
+  color: #888 !important;
+  font-family: monospace !important;
 }
 
 /* Fix code tables */
@@ -553,4 +725,388 @@
   background-color: #dc3545 !important;
   color: white !important;
   border: none !important;
+}
+
+/* Fix valid usernames display */
+[data-theme="dark"] .valid-usernames {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border-radius: 4px !important;
+  padding: 1rem 1.5rem !important;
+  font-family: monospace !important;
+  margin: 1rem 0 !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  border: 1px solid #333 !important;
+  min-width: 200px !important;
+}
+
+[data-theme="dark"] .side-channel-attack .valid-usernames {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border-radius: 4px !important;
+  padding: 1rem 1.5rem !important;
+  font-family: monospace !important;
+  margin: 1rem 0 !important;
+  display: inline-block !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  border: 1px solid #333 !important;
+  min-width: 200px !important;
+}
+
+[data-theme="dark"] .valid-usernames span, [data-theme="dark"] .valid-usernames code, [data-theme="dark"] .valid-usernames pre {
+  background: none !important;
+  color: inherit !important;
+}
+
+/* Fix found usernames display */
+[data-theme="dark"] .found-usernames {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border-radius: 4px !important;
+  padding: 15px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+  margin-bottom: 20px !important;
+  border: 1px solid #333 !important;
+}
+
+[data-theme="dark"] .username-badge {
+  background-color: #182a3a !important;
+  color: #4db8ff !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  font-family: monospace !important;
+  font-size: 14px !important;
+  display: inline-block !important;
+}
+
+/* --- Indirect Call Logic Flaw Table: Dark Mode Adaptation --- */
+[data-theme="dark"] .function-table-visualization {
+  background-color: #181a1f !important;
+  border-color: #333 !important;
+}
+[data-theme="dark"] .function-table-diagram {
+  background-color: transparent !important;
+}
+[data-theme="dark"] .function-caller {
+  color: #e0e0e0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+[data-theme="dark"] .function-table {
+  background-color: #1a1a1a !important;
+  border-color: #444 !important;
+  color: #e0e0e0 !important;
+}
+[data-theme="dark"] .table-header {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border-color: #444 !important;
+}
+[data-theme="dark"] .table-slot {
+  background-color: #1a1a1a !important;
+  border-bottom: 1px solid #23272e !important;
+  color: #e0e0e0 !important;
+}
+[data-theme="dark"] .table-slot.selected {
+  background-color: rgba(77, 184, 255, 0.08) !important;
+  border-left: 4px solid #4db8ff !important;
+}
+[data-theme="dark"] .table-slot.active-function {
+  animation: highlight-function-dark 1s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+@keyframes highlight-function-dark {
+  0% { background-color: rgba(77, 184, 255, 0.15); }
+  50% { background-color: rgba(77, 184, 255, 0.3); }
+  100% { background-color: rgba(77, 184, 255, 0.15); }
+}
+[data-theme="dark"] .slot-index {
+  background-color: #23272e !important;
+  color: #4db8ff !important;
+}
+[data-theme="dark"] .slot-function.safe-function {
+  color: #32cd57 !important;
+}
+[data-theme="dark"] .slot-function.secret-function {
+  color: #ff6b6b !important;
+}
+[data-theme="dark"] .slot-return {
+  color: #888 !important;
+}
+[data-theme="dark"] .table-visualization-explanation {
+  background-color: #23272e !important;
+  border-left: 4px solid #4db8ff !important;
+  color: #e0e0e0 !important;
+}
+[data-theme="dark"] .table-visualization-explanation strong {
+  color: #4db8ff !important;
+}
+[data-theme="dark"] .indirect-call-simulator {
+  background-color: #23272e !important;
+  border: 1px solid #444 !important;
+  color: #e0e0e0 !important;
+}
+[data-theme="dark"] .index-selector .index-button {
+  background-color: #181a1f !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #333 !important;
+}
+[data-theme="dark"] .index-selector .index-button.active {
+  background-color: #4db8ff !important;
+  color: #181a1f !important;
+  border-color: #4db8ff !important;
+}
+[data-theme="dark"] .execute-button {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+  border: none !important;
+}
+[data-theme="dark"] .execute-button:disabled {
+  opacity: 0.65 !important;
+  background-color: #444 !important;
+  color: #aaa !important;
+}
+/* Remove any transparency or filter from table rows */
+[data-theme="dark"] .function-table *,
+[data-theme="dark"] .wasm-function-table * {
+  background-image: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+/* --- Indirect Call Logic Flaw: Arrow and Caller Code Box for Dark Mode --- */
+[data-theme="dark"] .function-caller-arrow, [data-theme="dark"] .function-arrow {
+  border-left: 2px solid #4db8ff !important;
+  background: none !important;
+  min-height: 32px;
+  margin: 0 auto;
+  width: 0 !important;
+}
+[data-theme="dark"] .function-caller-arrow-head, [data-theme="dark"] .function-arrow:after {
+  border-top: 10px solid #4db8ff !important;
+  border-left: 10px solid transparent !important;
+  border-right: 10px solid transparent !important;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  background: none !important;
+  content: '' !important;
+  display: block !important;
+}
+[data-theme="dark"] .caller-code-box, [data-theme="dark"] .function-code {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border-radius: 6px !important;
+  padding: 4px 12px !important;
+  font-family: monospace !important;
+  font-size: 1rem !important;
+  box-shadow: 0 1px 2px rgba(77,184,255,0.06) !important;
+  border: 1px solid #333 !important;
+  display: inline-block !important;
+  margin: 0 auto !important;
+}
+
+/* --- Ensure arrow and caller code box are never transparent or overridden in dark mode --- */
+[data-theme="dark"] .function-caller-arrow,
+[data-theme="dark"] .function-caller-arrow-head,
+[data-theme="dark"] .caller-code-box,
+[data-theme="dark"] .function-arrow,
+[data-theme="dark"] .function-arrow:after {
+  opacity: 1 !important;
+  background: none !important;
+  background-color: transparent !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border-style: solid !important;
+}
+[data-theme="dark"] .function-caller-arrow {
+  border-left: 2px solid #4db8ff !important;
+}
+[data-theme="dark"] .function-caller-arrow-head,
+[data-theme="dark"] .function-arrow:after {
+  border-top: 8px solid #4db8ff !important;
+  border-left: 8px solid transparent !important;
+  border-right: 8px solid transparent !important;
+}
+[data-theme="dark"] .caller-code-box,
+[data-theme="dark"] .function-code {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border-radius: 6px !important;
+  padding: 8px 18px !important;
+  font-family: monospace !important;
+  font-size: 1.1rem !important;
+  box-shadow: 0 2px 8px rgba(77,184,255,0.08) !important;
+  border: 1px solid #333 !important;
+  display: inline-block !important;
+}
+
+/* --- Home Page Category Boxes: Dark Mode --- */
+[data-theme="dark"] .category-box, [data-theme="dark"] .home-category-box {
+  background-color: #181a1f !important;
+  border-radius: 12px !important;
+  border: 1.5px solid #23272e !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  color: #e0e0e0 !important;
+  transition: background 0.2s, color 0.2s;
+}
+[data-theme="dark"] .category-box.active, [data-theme="dark"] .home-category-box.active {
+  background-color: #23272e !important;
+  border-color: #4db8ff !important;
+}
+[data-theme="dark"] .category-box h3, [data-theme="dark"] .home-category-box h3 {
+  color: #fff !important;
+}
+[data-theme="dark"] .category-box ul, [data-theme="dark"] .home-category-box ul {
+  color: #b0c4d4 !important;
+}
+[data-theme="dark"] .category-box p, [data-theme="dark"] .home-category-box p {
+  color: #b0b8c1 !important;
+}
+[data-theme="dark"] .category-box *, [data-theme="dark"] .home-category-box * {
+  text-shadow: none !important;
+}
+
+/* --- Force home page category boxes to be fully opaque and override all transparency and background issues in dark mode --- */
+[data-theme="dark"] .category-box, [data-theme="dark"] .home-category-box, [data-theme="dark"] .category-card, [data-theme="dark"] .home-container .category-card {
+  background-color: #181a1f !important;
+  border-radius: 12px !important;
+  border: 1.5px solid #23272e !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  color: #e0e0e0 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  background-image: none !important;
+  transition: background 0.2s, color 0.2s;
+}
+[data-theme="dark"] .category-card::before {
+  opacity: 1 !important;
+  background-image: none !important;
+}
+[data-theme="dark"] .category-card h3, [data-theme="dark"] .category-box h3, [data-theme="dark"] .home-category-box h3 {
+  color: #fff !important;
+}
+[data-theme="dark"] .category-card p, [data-theme="dark"] .category-box p, [data-theme="dark"] .home-category-box p {
+  color: #b0b8c1 !important;
+}
+[data-theme="dark"] .category-card ul, [data-theme="dark"] .category-box ul, [data-theme="dark"] .home-category-box ul {
+  color: #b0c4d4 !important;
+}
+[data-theme="dark"] .category-card li {
+  color: #b0c4d4 !important;
+}
+[data-theme="dark"] .category-card *, [data-theme="dark"] .category-box *, [data-theme="dark"] .home-category-box * {
+  text-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+[data-theme="dark"] body, [data-theme="dark"] .home-main, [data-theme="dark"] .home-content {
+  background-color: #111216 !important;
+  color: #e0e0e0 !important;
+}
+
+/* --- Username Enumeration Login Button: Dark Mode --- */
+[data-theme="dark"] .vulnerable-implementation .login-button,
+[data-theme="dark"] .secure-implementation .login-button,
+[data-theme="dark"] .vulnerable-implementation button.login-button,
+[data-theme="dark"] .secure-implementation button.login-button {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #333 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  background-image: none !important;
+  transition: background 0.2s, color 0.2s;
+}
+[data-theme="dark"] .vulnerable-implementation .login-button:hover,
+[data-theme="dark"] .secure-implementation .login-button:hover,
+[data-theme="dark"] .vulnerable-implementation button.login-button:hover,
+[data-theme="dark"] .secure-implementation button.login-button:hover {
+  background-color: #2a2d32 !important;
+  color: #4db8ff !important;
+  border-color: #4db8ff !important;
+}
+
+/* --- Side Channel Subexploit Login Button: Dark Mode, Maximum Specificity --- */
+[data-theme="dark"] .side-channels .login-button,
+[data-theme="dark"] .side-channels button.login-button,
+[data-theme="dark"] .side-channel-attack .login-button,
+[data-theme="dark"] .side-channel-attack button.login-button,
+[data-theme="dark"] .side-channel-subexploit .login-button,
+[data-theme="dark"] .side-channel-subexploit button.login-button {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #333 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  background-image: none !important;
+  transition: background 0.2s, color 0.2s;
+  z-index: 1 !important;
+}
+[data-theme="dark"] .side-channels .login-button:hover,
+[data-theme="dark"] .side-channels button.login-button:hover,
+[data-theme="dark"] .side-channel-attack .login-button:hover,
+[data-theme="dark"] .side-channel-attack button.login-button:hover,
+[data-theme="dark"] .side-channel-subexploit .login-button:hover,
+[data-theme="dark"] .side-channel-subexploit button.login-button:hover {
+  background-color: #2a2d32 !important;
+  color: #4db8ff !important;
+  border-color: #4db8ff !important;
+}
+
+/* --- Highly specific dark mode CSS rules for submit buttons --- */
+[data-theme="dark"] .vulnerable-implementation button[type="submit"],
+[data-theme="dark"] .secure-implementation button[type="submit"] {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border: 1.5px solid #333 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  background-image: none !important;
+  min-width: 120px !important;
+  min-height: 38px !important;
+  padding: 8px 18px !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  transition: background 0.2s, color 0.2s !important;
+  z-index: 10000 !important;
+  position: relative !important;
+  isolation: isolate !important;
+}
+[data-theme="dark"] .vulnerable-implementation button[type="submit"]:not(.run-attack-btn),
+[data-theme="dark"] .secure-implementation button[type="submit"]:not(.run-attack-btn) {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border: 1.5px solid #333 !important;
+}
+[data-theme="dark"] .vulnerable-implementation button[type="submit"]:hover,
+[data-theme="dark"] .secure-implementation button[type="submit"]:hover {
+  background-color: #2a2d32 !important;
+  color: #4db8ff !important;
+  border-color: #4db8ff !important;
+}
+[data-theme="dark"] .vulnerable-implementation form button[type="submit"],
+[data-theme="dark"] .secure-implementation form button[type="submit"] {
+  background-color: #23272e !important;
+  color: #e0e0e0 !important;
+  border: 1.5px solid #333 !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  background-image: none !important;
+  z-index: 10001 !important;
+  position: relative !important;
+  isolation: isolate !important;
 }

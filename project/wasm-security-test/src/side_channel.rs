@@ -66,7 +66,6 @@ pub fn safe_check_credentials_storage(username: &str, password: &str) -> String 
 pub struct TimingResult {
     message: String,
     simulated_time_ms: f64,
-    matching_chars: u32,
 }
 
 #[wasm_bindgen]
@@ -80,11 +79,6 @@ impl TimingResult {
     pub fn simulated_time_ms(&self) -> f64 {
         self.simulated_time_ms
     }
-    
-    #[wasm_bindgen(getter)]
-    pub fn matching_chars(&self) -> u32 {
-        self.matching_chars
-    }
 }
 
 // UNSAFE VERSION: Leaks password length through timing
@@ -93,8 +87,7 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
     if username != "admin" {
         return TimingResult {
             message: "Error: Invalid username or password".to_string(),
-            simulated_time_ms: 50.0, // Base processing time
-            matching_chars: 0,
+            simulated_time_ms: 0.85, // Base processing time (milliseconds)
         };
     }
     
@@ -102,8 +95,8 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
     
     // Insecure character-by-character comparison
     let mut is_correct = true;
+    let mut simulated_time: f64 = 0.85; // Base processing time (milliseconds)
     let min_length = std::cmp::min(password.len(), correct_password.len());
-    let mut matching_chars = 0;
     
     for i in 0..min_length {
         // Check each character
@@ -111,18 +104,14 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
             is_correct = false;
             break;
         }
-        
-        matching_chars += 1;
+
+        simulated_time += 0.03; // Add ~30 microseconds per character (shown as ms)
     }
     
     // If lengths are different, it's incorrect
     if password.len() != correct_password.len() {
         is_correct = false;
     }
-    
-    // SIMULATED TIMING:
-    // Base processing time (50ms) + 2ms for each matching character
-    let simulated_time = 50.0 + (matching_chars as f64 * 2.0);
     
     TimingResult {
         message: if is_correct {
@@ -131,7 +120,6 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
             "Error: Invalid username or password".to_string()
         },
         simulated_time_ms: simulated_time,
-        matching_chars,
     }
 }
 
@@ -141,8 +129,7 @@ pub fn safe_check_credentials_timing(username: &str, password: &str) -> TimingRe
     if username != "admin" {
         return TimingResult {
             message: "Error: Invalid username or password".to_string(),
-            simulated_time_ms: 300.0, // Constant processing time
-            matching_chars: 0,
+            simulated_time_ms: 1.05, // Constant processing time (milliseconds)
         };
     }
     
@@ -160,18 +147,13 @@ pub fn safe_check_credentials_timing(username: &str, password: &str) -> TimingRe
         result &= if pass_char == correct_char { 1 } else { 0 };
     }
     
-    // SIMULATED TIMING:
-    // In the secure version, timing is constant regardless of input
-    let correct_chars = if result == 1 { correct_password.len() as u32 } else { 0 };
-    
     TimingResult {
         message: if result == 1 {
             "Login successful".to_string()
         } else {
             "Error: Invalid username or password".to_string()
         },
-        simulated_time_ms: 300.0, // Always constant time
-        matching_chars: correct_chars,
+        simulated_time_ms: 1.05, // Always constant time (milliseconds)
     }
 }
 
@@ -247,9 +229,9 @@ pub fn unsafe_cache_timing(probe_index: u32) -> CacheTimingResult {
     // Simulate timing - accessing the SECRET_INDEX is FASTER (cache hit)
     // while all other indices are slower (cache miss)
     let simulated_time = if index == SECRET_INDEX {
-        0.2 
+        0.02  // 20 nanoseconds for cache hit (shown as ms)
     } else {
-        4.5 + (index as f64 * 0.1)
+        0.12 + (index as f64 * 0.005)  // ~120-200 nanoseconds for cache miss (shown as ms)
     };
     
     // Track which indices were accessed (for visualization)
@@ -309,7 +291,7 @@ pub fn safe_cache_timing(probe_index: u32) -> CacheTimingResult {
     
     CacheTimingResult {
         message: format!("Accessed key byte: 0x{:02X}", accessed_value),
-        simulated_time_ms: 5.2, // Constant time regardless of index
+        simulated_time_ms: 0.25, // Constant time regardless of index (milliseconds)
         access_pattern,
         memory_value: accessed_value,
     }

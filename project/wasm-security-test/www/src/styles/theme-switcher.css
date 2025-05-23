@@ -73,10 +73,13 @@
   cursor: pointer;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  display: inline-block;
+  overflow: hidden;
+  border: 1.5px solid #4db8ff;
 }
 
 .theme-toggle.dark {
-  background-color: #4db8ff;
+  background-color: #222;
 }
 
 .toggle-thumb {
@@ -89,6 +92,7 @@
   border-radius: 50%;
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }
 
 .theme-toggle.dark .toggle-thumb {
@@ -103,6 +107,26 @@
   margin-right: 8px;
   font-size: 18px;
   user-select: none;
+}
+
+/* Remove all dark mode size/padding/border-radius overrides for .theme-toggle, .theme-switcher, .toggle-thumb */
+[data-theme="dark"] .theme-toggle {
+  background-color: #222 !important;
+}
+[data-theme="dark"] .theme-toggle.dark {
+  background-color: #222 !important;
+}
+[data-theme="dark"] .theme-toggle .toggle-thumb {
+  background-color: #4db8ff !important; /* bright blue thumb for visibility */
+  box-shadow: 0 2px 8px #222, 0 0 0 2px #4db8ff44;
+}
+
+/* Make the theme-switcher container stand out from the header in dark mode */
+[data-theme="dark"] .theme-switcher {
+  background-color: #232b36 !important; /* deep blue-gray for contrast */
+  box-shadow: 0 2px 8px rgba(77, 184, 255, 0.10), 0 1.5px 8px rgba(0,0,0,0.18);
+  border: 1.5px solid #4db8ff;
+  color: #e0e0e0;
 }
 
 /* Additional dark mode specific overrides */
@@ -342,4 +366,9 @@
 
 [data-theme="dark"] .control-row .run-button.safe:hover {
   background-color: #1a9358;
+}
+
+[data-theme="dark"] #main-nav a.active {
+  background-color: var(--primary-color) !important;
+  color: #181818 !important;
 }
