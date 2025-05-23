@@ -1,0 +1,52 @@
+/* Implementation buttons styling */
+
+/* Styles for the row of implementation buttons */
+.control-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Enhance the active state for more visibility */
+.control-row .run-button.active {
+  outline: 3px solid;
+  position: relative;
+  z-index: 1;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+}
+
+.control-row .run-button.unsafe.active {
+  outline-color: rgba(220, 53, 69, 0.5);
+  background-color: #d9534f;
+  border: 2px solid #c9302c;
+}
+
+.control-row .run-button.safe.active {
+  outline-color: rgba(40, 167, 69, 0.5);
+  background-color: #1e9a44;
+  border: 2px solid #198a3b;
+}
+
+/* Add an active indicator */
+.control-row .run-button.active:before {
+  content: '✓';
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+/* Make inactive buttons more distinct */
+.control-row .run-button:not(.active) {
+  opacity: 0.75;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Labels for the buttons */
+.implementation-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,93 @@
+/* Control Flow tabs styling */
+
+.control-flow-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  gap: 0.5rem;
+}
+
+.control-flow-tabs .tab-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-color);
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s ease;
+}
+
+.control-flow-tabs .tab-btn.active {
+  color: var(--primary-color);
+  background-color: rgba(0, 120, 215, 0.05);
+  font-weight: 500;
+}
+
+.control-flow-tabs .tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+/* Mode toggle styling */
+.mode-toggle {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.mode-toggle label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mode-toggle input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* Consistent button styling */
+.control-flow-content .run-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  min-width: 150px;
+}
+
+.control-flow-content .run-button:hover {
+  background-color: #0056b3;
+}
+
+.control-flow-content .run-button.unsafe {
+  background-color: #dc3545;
+}
+
+.control-flow-content .run-button.unsafe:hover {
+  background-color: #c82333;
+}
+
+.control-flow-content .run-button.safe {
+  background-color: #28a745;
+}
+
+.control-flow-content .run-button.safe:hover {
+  background-color: #218838;
+}
+
+.control-flow-content .run-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

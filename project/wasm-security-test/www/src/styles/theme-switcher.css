@@ -1,0 +1,345 @@
+/* Theme Switcher Styles */
+
+/* Dark theme variable overrides */
+[data-theme="dark"] {
+  --primary-color: #4db8ff;
+  --secondary-color: #1a1a1a;
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --border-color: #444;
+  
+  /* Additional semantic colors - slightly adjusted for dark mode */
+  --success-color: #32cd57;
+  --warning-color: #ffdb58;
+  --danger-color: #ff6b6b;
+  --info-color: #4db8ff;
+  
+  /* UI element colors */
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-text: #212121;
+  --btn-primary-hover: #7ac9ff;
+  
+  /* Layout variables */
+  --header-bg: #0d0d0d;
+  --footer-bg: #0d0d0d;
+  --card-bg: #1e1e1e;
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  
+  /* Tab colors */
+  --tab-active-bg: rgba(77, 184, 255, 0.15);
+  --tab-hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* Light theme (default in variables.css) is now explicit */
+[data-theme="light"] {
+  --primary-color: #0078d7;
+  --secondary-color: #2b2b2b;
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --border-color: #ddd;
+  
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #0056b3;
+  
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-text: white;
+  --btn-primary-hover: #0056b3;
+  
+  --header-bg: var(--secondary-color);
+  --footer-bg: var(--secondary-color);
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Theme switcher button styling */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  margin-left: 10px;
+  background-color: #333;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle.dark {
+  background-color: #4db8ff;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle.dark .toggle-thumb {
+  transform: translateX(26px);
+}
+
+.theme-toggle:hover .toggle-thumb {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.theme-toggle-icon {
+  margin-right: 8px;
+  font-size: 18px;
+  user-select: none;
+}
+
+/* Additional dark mode specific overrides */
+[data-theme="dark"] code, 
+[data-theme="dark"] pre {
+  background-color: #2d2d2d;
+  border-color: #444;
+}
+
+[data-theme="dark"] .memory-cell {
+  background-color: #2d2d2d;
+  border: 1px solid #555;
+}
+
+[data-theme="dark"] .memory-address {
+  color: #aaa;
+}
+
+[data-theme="dark"] .exploit-controls input[type="text"],
+[data-theme="dark"] .exploit-controls input[type="number"],
+[data-theme="dark"] .exploit-controls textarea {
+  background-color: #2d2d2d;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .code-viewer-container .code-panel {
+  background-color: #1e1e1e;
+  border-color: #555;
+}
+
+[data-theme="dark"] .code-viewer-container .code-tabs {
+  background-color: #252525;
+  border-bottom-color: #555;
+}
+
+[data-theme="dark"] .code-viewer-container .code-tab {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .code-viewer-container .code-tab.active {
+  background-color: #1e1e1e;
+}
+
+[data-theme="dark"] .exploit-explanation {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .implementation-button {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+/* Tab styling for dark mode */
+[data-theme="dark"] .control-flow-tabs .tab-btn,
+[data-theme="dark"] .memory-safety-tabs .tab-btn,
+[data-theme="dark"] .tabs .tab-btn {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .control-flow-tabs .tab-btn.active,
+[data-theme="dark"] .memory-safety-tabs .tab-btn.active,
+[data-theme="dark"] .tabs .tab-btn.active {
+  color: var(--primary-color);
+  background-color: var(--tab-active-bg);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .control-flow-tabs .tab-btn:hover:not(.active),
+[data-theme="dark"] .memory-safety-tabs .tab-btn:hover:not(.active),
+[data-theme="dark"] .tabs .tab-btn:hover:not(.active) {
+  background-color: var(--tab-hover-bg);
+}
+
+/* Main content background */
+[data-theme="dark"] .page,
+[data-theme="dark"] main,
+[data-theme="dark"] #content {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="dark"] .output-panel {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+/* Additional dark mode styles for specific elements */
+[data-theme="dark"] .home-container .category-card {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+[data-theme="dark"] .home-container .category-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transform: translateY(-5px);
+}
+
+[data-theme="dark"] .code-viewer-container .code-toggle-button {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+[data-theme="dark"] .starry-night-block {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .info-box {
+  background-color: rgba(38, 70, 83, 0.2);
+  border-color: #2a6f97;
+}
+
+[data-theme="dark"] .security-warning {
+  background-color: rgba(220, 53, 69, 0.2);
+}
+
+[data-theme="dark"] .security-success {
+  background-color: rgba(40, 167, 69, 0.2);
+}
+
+/* Control Flow specific components */
+[data-theme="dark"] .function-table-visualization {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+[data-theme="dark"] .function-table-visualization .table-header {
+  background-color: #292929;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .function-table-visualization .table-row {
+  border-color: #444;
+}
+
+[data-theme="dark"] .function-table-slots {
+  background-color: #1e1e1e;
+}
+
+[data-theme="dark"] .function-table-slot {
+  background-color: #292929;
+  border-color: #444;
+}
+
+[data-theme="dark"] .wasm-module-visualization {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+[data-theme="dark"] .js-environment {
+  background-color: #292929;
+  border-color: #444;
+}
+
+[data-theme="dark"] .wasm-environment {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+[data-theme="dark"] .environment-label {
+  background-color: rgba(77, 184, 255, 0.2);
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .js-code .code-line {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .code-line {
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .code-comment {
+  color: #6c757d;
+}
+
+[data-theme="dark"] .control-row .run-button.active {
+  transform: scale(1.05);
+  outline-color: rgba(77, 184, 255, 0.7);
+}
+
+[data-theme="dark"] .result-info {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #444;
+}
+
+[data-theme="dark"] .section-intro,
+[data-theme="dark"] .exploit-explanation p,
+[data-theme="dark"] .exploit-container p {
+  color: #e0e0e0;
+}
+
+/* Make header h1 - h6 same color as text */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: #e0e0e0;
+}
+
+/* Implementation selector improvements for dark mode */
+[data-theme="dark"] .implementation-label {
+  color: #a0d7ff;
+}
+
+/* Improve the control-row buttons in dark mode */
+[data-theme="dark"] .control-row .run-button {
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+[data-theme="dark"] .control-row .run-button.unsafe {
+  background-color: rgba(176, 42, 55, 0.9);
+}
+
+[data-theme="dark"] .control-row .run-button.unsafe.active {
+  background-color: #b02a37;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3);
+}
+
+[data-theme="dark"] .control-row .run-button.unsafe:hover {
+  background-color: #c42f3b;
+}
+
+[data-theme="dark"] .control-row .run-button.safe {
+  background-color: rgba(25, 135, 84, 0.9);
+}
+
+[data-theme="dark"] .control-row .run-button.safe.active {
+  background-color: #198754;
+  box-shadow: 0 0 0 2px rgba(50, 205, 87, 0.3);
+}
+
+[data-theme="dark"] .control-row .run-button.safe:hover {
+  background-color: #1a9358;
+}

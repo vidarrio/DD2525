@@ -1,4 +1,5 @@
 import React from 'react';
+import ThemeSwitcher from './ThemeSwitcher';
 
 interface HeaderProps {
   activePage: string;
@@ -7,15 +8,18 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activePage }) => {
   return (
     <header>
-      <h1 
-        style={{ cursor: 'pointer' }} 
-        onClick={() => window.location.assign('#home')} 
-        tabIndex={0} 
-        role="button" 
-        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.assign('#home'); } }}
-      >
-        WebAssembly Security: Exploits & Mitigations
-      </h1>
+      <div className="header-content">
+        <h1 
+          style={{ cursor: 'pointer' }} 
+          onClick={() => window.location.assign('#home')} 
+          tabIndex={0} 
+          role="button" 
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.assign('#home'); } }}
+        >
+          WebAssembly Security: Exploits & Mitigations
+        </h1>
+        <ThemeSwitcher />
+      </div>
       <nav id="main-nav">
         <ul>
           <li>

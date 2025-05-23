@@ -1,0 +1,98 @@
+/* Code viewer styles */
+.code-viewer-container {
+  margin: 15px 0;
+}
+
+.code-toggle-button {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.code-toggle-button:hover {
+  background-color: #e9ecef;
+}
+
+.code-panel {
+  margin-top: 15px;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #2b2b2b;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border: none;
+}
+
+.code-panel h4 {
+  display: none; /* Hide the title to match Stack Overflow style */
+}
+
+.code-tabs {
+  display: flex;
+  border-bottom: 1px solid #444;
+  background-color: #444;
+  padding: 8px 15px;
+}
+
+.code-tab {
+  padding: 5px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  color: #ccc;
+}
+
+.single-code-header {
+  background-color: #444;
+  padding: 8px 15px;
+  color: #fff;
+  font-size: 14px;
+  border-bottom: 1px solid #444;
+  font-weight: 500;
+}
+
+.single-code-panel {
+  margin-top: 0;
+  border-top: 1px solid #ddd;
+}
+
+.single-code-panel h4 {
+  display: none;
+}
+
+.code-tab:hover {
+  color: #fff;
+}
+
+.code-tab.active {
+  color: #fff;
+  font-weight: bold;
+}
+
+.code-tab.active[onclick*="unsafe"] {
+  color: #ff6b6b;
+}
+
+.code-tab.active[onclick*="safe"] {
+  color: #69db7c;
+}
+
+.code-content {
+  border: 12px solid #444;
+  border-top: none;
+}
+
+.unsafe-code, .safe-code {
+  border-left: none !important;
+}
+
+.starry-night-block {
+  /* Add padding inside the code block for better readability */
+  padding: 10px;
+}

@@ -1,0 +1,24 @@
+/* Global CSS Variables */
+:root {
+  --primary-color: #0078d7;
+  --secondary-color: #2b2b2b;
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --border-color: #ddd;
+  
+  /* Additional semantic colors */
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #0056b3;
+  
+  /* UI element colors */
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-text: white;
+  --btn-primary-hover: #0056b3;
+  
+  /* Layout variables */
+  --header-bg: var(--secondary-color);
+  --footer-bg: var(--secondary-color);
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}

@@ -7,6 +7,7 @@ import SandboxEscapes from './components/Exploits/SandboxEscapes/SandboxEscapes'
 import Home from './components/General/Home';
 import ControlFlow from './components/Exploits/ControlFlow/ControlFlow';
 import * as wasm from 'wasm-security-test';
+import { ThemeProvider } from './ThemeContext';
 
 // Create a context for WASM errors
 export const WasmErrorContext = createContext<{
@@ -65,22 +66,24 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <WasmErrorContext.Provider value={{ errors: wasmErrors, addError: addWasmError, clearErrors }}>
-            <Header activePage={activePage} />
-            
-            <main id="content">
-                {activePage === 'home' && <Home />}
-                {activePage === 'memory-safety' && <MemorySafety />}
-                {activePage === 'code-injection' && <CodeInjection />}
-                {activePage === 'side-channels' && <SideChannels />}
-                {activePage === 'sandbox-escapes' && <SandboxEscapes />}
-                {activePage === 'control-flow' && <ControlFlow />}
-            </main>
-            
-            <footer>
-                <p>WebAssembly Security Project for DD2525</p>
-            </footer>
-        </WasmErrorContext.Provider>
+        <ThemeProvider>
+            <WasmErrorContext.Provider value={{ errors: wasmErrors, addError: addWasmError, clearErrors }}>
+                <Header activePage={activePage} />
+                
+                <main id="content">
+                    {activePage === 'home' && <Home />}
+                    {activePage === 'memory-safety' && <MemorySafety />}
+                    {activePage === 'code-injection' && <CodeInjection />}
+                    {activePage === 'side-channels' && <SideChannels />}
+                    {activePage === 'sandbox-escapes' && <SandboxEscapes />}
+                    {activePage === 'control-flow' && <ControlFlow />}
+                </main>
+                
+                <footer>
+                    <p>WebAssembly Security Project for DD2525</p>
+                </footer>
+            </WasmErrorContext.Provider>
+        </ThemeProvider>
     );
 };
 

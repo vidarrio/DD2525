@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import StarryNightHighlighter from './StarryNightHighlighter';
 import '../../styles/code-injection/code-viewer.css';
 
-interface CodeViewerProps {
+interface EnhancedCodeViewerProps {
   unsafeCode?: string;
   safeCode?: string;
-  title?: string;
   singleCode?: string;
+  title?: string;
 }
 
-const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCode, title = "Implementation Code" }) => {
+const EnhancedCodeViewer: React.FC<EnhancedCodeViewerProps> = ({ 
+  unsafeCode, 
+  safeCode, 
+  singleCode, 
+  title = "Implementation Code" 
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'unsafe' | 'safe'>('unsafe');
   
-  // Determine if we're in single code mode
+  // Determine if we're using single code mode
   const isSingleCodeMode = !!singleCode;
 
   // Use a more generic button label
@@ -21,22 +26,16 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCod
 
   return (
     <div className="code-viewer-container">
-      {/* Only show toggle button if we're not in single code mode */}
-      {!isSingleCodeMode && (
-        <button 
-          className="code-toggle-button" 
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {buttonLabel}
-        </button>
-      )}
-      
-      {/* Show code panel if we're in single code mode or if the panel is open */}
-      {(isSingleCodeMode || isOpen) && (
-        <div className={`code-panel ${isSingleCodeMode ? 'single-code-panel' : ''}`}>
+      <button 
+        className="code-toggle-button" 
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {buttonLabel}
+      </button>
+      {isOpen && (
+        <div className="code-panel">
           <h4>{title}</h4>
-          
-          {/* Only show tabs if we're not in single code mode and we have both unsafe and safe code */}
+          {/* Only show tabs if we have both unsafe and safe code */}
           {!isSingleCodeMode && unsafeCode && safeCode && (
             <div className="code-tabs">
               <button 
@@ -53,15 +52,9 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCod
               </button>
             </div>
           )}
-          
-          {/* Add a header bar for single code mode */}
-          {isSingleCodeMode && (
-            <div className="single-code-header">{title}</div>
-          )}
-          
           <div className="code-content">
             <StarryNightHighlighter
-              code={isSingleCodeMode ? singleCode! : (activeTab === 'unsafe' ? (unsafeCode || 'No unsafe implementation provided.') : (safeCode || 'No safe implementation provided.'))}
+              code={isSingleCodeMode ? singleCode! : (activeTab === 'unsafe' ? unsafeCode! : safeCode!)}
               language="rust"
               className={isSingleCodeMode ? 'single-code starry-night-block' : (activeTab === 'unsafe' ? 'unsafe-code starry-night-block' : 'safe-code starry-night-block')}
             />
@@ -72,4 +65,4 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCod
   );
 };
 
-export default CodeViewer;
+export default EnhancedCodeViewer;

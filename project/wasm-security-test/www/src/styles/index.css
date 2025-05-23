@@ -1,0 +1,10 @@
+/* index.css - Main entry point for modular CSS structure */
+@import './variables.css';
+@import './theme-switcher.css'; /* Import theme switcher before other styles */
+@import './layout.css';
+@import './components.css';
+@import './exploits.css';
+@import './home.css';
+@import './dark-mode-fixes.css'; /* Additional dark mode fixes */
+
+/* Category-specific styles are imported directly in the components or in index.ts */
