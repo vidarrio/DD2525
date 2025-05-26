@@ -1,0 +1,179 @@
+.dangerous-host-exposure {
+  padding: 20px 0;
+}
+
+.exploit-implementations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.implementation {
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.implementation.vulnerable {
+  border-color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.05);
+}
+
+.implementation.secure {
+  border-color: #28a745;
+  background-color: rgba(40, 167, 69, 0.05);
+}
+
+.exploit-controls {
+  margin: 20px 0;
+}
+
+.exploit-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.exploit-section h5 {
+  margin: 0 0 15px 0;
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 500;
+  color: #333;
+}
+
+.input-group input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.exploit-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.exploit-button.dangerous {
+  background-color: #dc3545;
+  color: white;
+}
+
+.exploit-button.dangerous:hover {
+  background-color: #c82333;
+}
+
+.exploit-button.safe {
+  background-color: #28a745;
+  color: white;
+}
+
+.exploit-button.safe:hover {
+  background-color: #218838;
+}
+
+.security-warning {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+}
+
+.security-success {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  color: #155724;
+}
+
+.results-panel {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.result-item {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.result-item.active {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.result-content {
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.result-content.danger {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+}
+
+.result-content.safe {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .exploit-section {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #555;
+}
+
+[data-theme="dark"] .input-group label {
+  color: #ddd;
+}
+
+[data-theme="dark"] .input-group input {
+  background-color: #333;
+  border-color: #555;
+  color: #ddd;
+}
+
+[data-theme="dark"] .results-panel {
+  background-color: #2d2d2d;
+  border-color: #555;
+}
+
+[data-theme="dark"] .implementation.vulnerable {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+[data-theme="dark"] .implementation.secure {
+  background-color: rgba(40, 167, 69, 0.1);
+}

@@ -2,6 +2,7 @@ mod utils;
 mod memory_safety;
 mod side_channel;
 mod control_flow;
+mod sandbox_escapes;
 
 use wasm_bindgen::prelude::*;
 
@@ -16,6 +17,9 @@ pub use side_channel::*;
 
 // Export the control flow functions
 pub use control_flow::*;
+
+// Export the sandbox escape functions
+pub use sandbox_escapes::*;
 
 #[wasm_bindgen]
 extern "C" {
