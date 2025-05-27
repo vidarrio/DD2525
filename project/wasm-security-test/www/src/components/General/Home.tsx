@@ -18,7 +18,8 @@ const Home: React.FC = () => {
     {
       id: 'code-injection',
       title: 'Code Injection',
-      description: 'Learn about code injection vulnerabilities and how WebAssembly\'s execution model helps mitigate them.'
+      description: 'Explore vulnerabilities at the WASM-JavaScript boundary where unsanitized user data can lead to XSS and code execution.',
+      items: ['WASM-to-DOM Injection', 'Dynamic JS Generation']
     },
     {
       id: 'side-channels',
@@ -29,7 +30,14 @@ const Home: React.FC = () => {
     {
       id: 'sandbox-escapes',
       title: 'Sandbox Escapes',
-      description: 'Understand how WebAssembly\'s sandbox protection works and potential vulnerabilities in its implementation.'
+      description: 'Explore how WebAssembly\'s sandbox can be compromised when hosts carelessly expose dangerous JavaScript functions.',
+      items: ['Dangerous Host Function Exposure']
+    },
+    {
+      id: 'concurrency',
+      title: 'Concurrency & Race Conditions',
+      description: 'Discover how timing-dependent vulnerabilities like TOCTOU can bypass security checks through race conditions.',
+      items: ['Time-of-Check-to-Time-of-Use (TOCTOU)']
     },
     {
       id: 'control-flow',

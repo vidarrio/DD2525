@@ -3,6 +3,8 @@ mod memory_safety;
 mod side_channel;
 mod control_flow;
 mod sandbox_escapes;
+mod code_injection;
+mod concurrency;
 
 use wasm_bindgen::prelude::*;
 
@@ -20,6 +22,12 @@ pub use control_flow::*;
 
 // Export the sandbox escape functions
 pub use sandbox_escapes::*;
+
+// Export the code injection functions
+pub use code_injection::*;
+
+// Export the concurrency functions
+pub use concurrency::*;
 
 #[wasm_bindgen]
 extern "C" {

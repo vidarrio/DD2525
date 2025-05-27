@@ -63,6 +63,14 @@ const Header: React.FC<HeaderProps> = ({ activePage }) => {
             </a>
           </li>
           <li>
+            <a 
+              href="#concurrency" 
+              className={`nav-link ${activePage === 'concurrency' ? 'active' : ''}`}
+            >
+              Concurrency & Race Conditions
+            </a>
+          </li>
+          <li>
             <a
               href="#control-flow"
               className={`nav-link ${activePage === 'control-flow' ? 'active' : ''}`}

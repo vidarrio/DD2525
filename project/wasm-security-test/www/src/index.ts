@@ -9,6 +9,7 @@ import './styles/side-channels/index.css';
 import './styles/control-flow/index.css';
 import './styles/code-injection/index.css';
 import './styles/sandbox-escapes/index.css';
+import './styles/concurrency/index.css';
 import './styles/dark-mode-override.css'; // Additional overrides for dark mode
 
 // Initialize the React application

@@ -4,6 +4,7 @@ import MemorySafety from './components/Exploits/MemorySafety/MemorySafety';
 import CodeInjection from './components/Exploits/CodeInjection/CodeInjection';
 import SideChannels from './components/Exploits/SideChannels/SideChannels';
 import SandboxEscapes from './components/Exploits/SandboxEscapes/SandboxEscapes';
+import Concurrency from './components/Exploits/Concurrency/Concurrency';
 import Home from './components/General/Home';
 import ControlFlow from './components/Exploits/ControlFlow/ControlFlow';
 import * as wasm from 'wasm-security-test';
@@ -76,6 +77,7 @@ const App: React.FC = () => {
                     {activePage === 'code-injection' && <CodeInjection />}
                     {activePage === 'side-channels' && <SideChannels />}
                     {activePage === 'sandbox-escapes' && <SandboxEscapes />}
+                    {activePage === 'concurrency' && <Concurrency />}
                     {activePage === 'control-flow' && <ControlFlow />}
                 </main>
                 
