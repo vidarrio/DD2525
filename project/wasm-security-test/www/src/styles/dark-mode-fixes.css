@@ -34,6 +34,54 @@
   background-color: #218838;
 }
 
+/* Fix WASM-to-DOM and Dynamic JS Generation button colors */
+button, .wasm-dom-btn, .dynamic-js-btn {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, .wasm-dom-btn:hover, .dynamic-js-btn:hover {
+  background-color: #1565c0;
+  color: #fff;
+}
+[data-theme="dark"] button, [data-theme="dark"] .wasm-dom-btn, [data-theme="dark"] .dynamic-js-btn {
+  background-color: #2196f3;
+  color: #fff;
+}
+[data-theme="dark"] button:hover, [data-theme="dark"] .wasm-dom-btn:hover, [data-theme="dark"] .dynamic-js-btn:hover {
+  background-color: #1565c0;
+  color: #fff;
+}
+
+/* WASM-to-DOM page: make only the vulnerable/secure comment buttons green/red */
+.wasm-dom-btn.vulnerable {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  border: none !important;
+}
+.wasm-dom-btn.secure {
+  background-color: #198754 !important;
+  color: #fff !important;
+  border: none !important;
+}
+.wasm-dom-btn.vulnerable:hover {
+  background-color: #b02a37 !important;
+}
+.wasm-dom-btn.secure:hover {
+  background-color: #157347 !important;
+}
+
+/* Fix input box width overflow in comment form */
+.wasm-dom-comment-input {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 /* Make the control flow tabs more prominent in dark mode */
 [data-theme="dark"] .control-flow-tabs .tab-btn {
   background-color: #1e1e1e;
@@ -200,10 +248,31 @@
   border-top: none;
 }
 
+/* Remove the border for single-code mode and set proper background color */
+[data-theme="dark"] .single-code-panel .code-content {
+  border: none !important;
+  background-color: #1e1e1e !important;
+}
+
+/* Override the starry-night-block background for single-code mode */
+[data-theme="dark"] .single-code-panel .code-content .starry-night-block {
+  background-color: #1e1e1e !important;
+}
+
+/* Target all divs inside code content to ensure background color */
+[data-theme="dark"] .single-code-panel .code-content > div,
+[data-theme="dark"] .single-code-panel .code-content div,
+[data-theme="dark"] .single-code-panel .code-content div > div {
+  background-color: #1e1e1e !important;
+}
+
 [data-theme="dark"] .single-code-header {
-  background-color: #1a1a1a;
-  color: #e0e0e0;
-  border-bottom: 1px solid #333;
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 /* Fix control flow tabs */
@@ -969,21 +1038,23 @@
 [data-theme="dark"] button.show-code,
 [data-theme="dark"] button.hide-code,
 [data-theme="dark"] .show-code {
-  background-color: #292929;
-  color: #e0e0e0;
-  border: 1px solid #444;
+  background-color: #292929 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444 !important;
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.85rem;
+  box-shadow: none !important;
 }
 
 [data-theme="dark"] .code-toggle-button:hover,
 [data-theme="dark"] button.show-code:hover,
 [data-theme="dark"] button.hide-code:hover,
 [data-theme="dark"] .show-code:hover {
-  background-color: #333333;
-  border-color: #4db8ff;
+  background-color: #333 !important;
+  color: #4db8ff !important;
+  border-color: #4db8ff !important;
 }
 
 /* Fix implementation selection area */
@@ -1024,6 +1095,7 @@
   background-color: #444;
   border-radius: 10px;
   height: 8px;
+  color: #2196f3;
 }
 
 [data-theme="dark"] input[type="range"]::-webkit-slider-thumb {
@@ -1045,14 +1117,23 @@
 }
 
 [data-theme="dark"] input[type="range"]::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, #4db8ff, #4db8ff) no-repeat;
-  background-size: var(--range-progress, 0%) 100%;
-  border-radius: 10px;
+  background: linear-gradient(to right, #2196f3 var(--value, 50%), #444 var(--value, 50%));
+}
+
+[data-theme="dark"] input[type="range"]::-moz-range-progress {
+  background-color: #2196f3;
 }
 
 [data-theme="dark"] input[type="range"]::-moz-range-track {
   background-color: #444;
-  border-radius: 10px;
+}
+
+[data-theme="dark"] input[type="range"]::-ms-fill-lower {
+  background-color: #2196f3;
+}
+
+[data-theme="dark"] input[type="range"]::-ms-fill-upper {
+  background-color: #444;
 }
 
 /* Fix buffer results display */
@@ -1361,10 +1442,18 @@
   color: #bbb;
 }
 
-/* Override any inline styles with !important */
+/* Override any inline styles with !important, but exempt code blocks */
 [data-theme="dark"] * {
   background-color: var(--bg-override, initial) !important;
   --bg-override: initial;
+}
+
+/* Exception for code content areas - allow custom background */
+[data-theme="dark"] .single-code-panel .code-content,
+[data-theme="dark"] .single-code-panel .code-content .starry-night-block,
+[data-theme="dark"] .single-code-panel .code-content pre,
+[data-theme="dark"] .single-code-panel .starry-night-block {
+  background-color: #1e1e1e !important;
 }
 
 [data-theme="dark"] .exploit-description,
@@ -1380,7 +1469,7 @@
 }
 
 [data-theme="dark"] .code-panel {
-  --bg-override: #2b2b2b;
+  --bg-override: #1e1e1e;
 }
 
 [data-theme="dark"] .js-code,
@@ -1407,4 +1496,77 @@
   background-color: #181818 !important;
   color: #aaa !important;
   border-top: 1px solid #333;
+}
+
+/* Fix carousel pagination dots in dark mode */
+[data-theme="dark"] .carousel-dot {
+  background-color: #555 !important;
+}
+
+[data-theme="dark"] .carousel-dot.active {
+  background-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .carousel-dot:hover {
+  background-color: #777 !important;
+}
+
+/* Add a left blue border to input containers in dark mode */
+[data-theme="dark"] .input-container, [data-theme="dark"] .buffer-input-container {
+  border-left: 4px solid #2196f3 !important;
+}
+
+/* --- FIX BUTTON AND TAB COLOR OVERRIDES --- */
+/* Restore safe/unsafe button colors in dark mode */
+[data-theme="dark"] .run-button.safe,
+[data-theme="dark"] .safe-function-button,
+[data-theme="dark"] .action-button.safe-button {
+  background-color: #198754 !important;
+  color: #fff !important;
+  border: none !important;
+}
+[data-theme="dark"] .run-button.unsafe,
+[data-theme="dark"] .secret-function-button,
+[data-theme="dark"] .action-button.secret-button,
+[data-theme="dark"] .run-button.unsafe,
+[data-theme="dark"] button.run-button.unsafe {
+  background-color: #dc3545 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* Restore .code-toggle-button and .show-code button neutral style */
+[data-theme="dark"] .code-toggle-button,
+[data-theme="dark"] button.show-code,
+[data-theme="dark"] button.hide-code,
+[data-theme="dark"] .show-code {
+  background-color: #292929 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #444 !important;
+}
+[data-theme="dark"] .code-toggle-button:hover,
+[data-theme="dark"] button.show-code:hover,
+[data-theme="dark"] button.hide-code:hover,
+[data-theme="dark"] .show-code:hover {
+  background-color: #333 !important;
+  color: #4db8ff !important;
+  border-color: #4db8ff !important;
+}
+
+/* Tabs: transparent background except active */
+[data-theme="dark"] .code-tab,
+[data-theme="dark"] .tab-btn {
+  background: none !important;
+  color: #e0e0e0 !important;
+}
+[data-theme="dark"] .code-tab.active,
+[data-theme="dark"] .tab-btn.active {
+  background: #181a1a !important;
+  color: #4db8ff !important;
+  border-bottom: 2px solid #4db8ff !important;
+}
+[data-theme="dark"] .code-tab:hover:not(.active),
+[data-theme="dark"] .tab-btn:hover:not(.active) {
+  background: #23272e !important;
+  color: #4db8ff !important;
 }

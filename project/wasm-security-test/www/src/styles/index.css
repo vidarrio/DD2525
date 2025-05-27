@@ -2,6 +2,7 @@
 @import './variables.css';
 @import './theme-switcher.css'; /* Import theme switcher before other styles */
 @import './layout.css';
+@import './header.css'; /* Enhanced header styles */
 @import './components.css';
 @import './exploits.css';
 @import './home.css';

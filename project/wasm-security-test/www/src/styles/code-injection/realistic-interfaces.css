@@ -465,7 +465,7 @@
 /* IDE Layout (JavaScript Demo) */
 .ide-content {
   display: flex;
-  height: 500px;
+  min-height: 500px;
   width: 100% !important;
 }
 
@@ -539,7 +539,7 @@
   flex: 1;
   padding: 20px;
   background: var(--background-color);
-  overflow-y: auto;
+  overflow-y: visible;
   width: 100%;
   box-sizing: border-box;
 }

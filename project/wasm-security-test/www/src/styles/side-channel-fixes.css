@@ -1,0 +1,56 @@
+/* Storage Side Channel specific dark mode fixes */
+
+/* Login buttons */
+[data-theme="dark"] .implementation .login-button.unsafe {
+  background-color: #dc3545 !important; 
+  color: white !important;
+  border: none !important;
+}
+
+[data-theme="dark"] .implementation .login-button.safe {
+  background-color: #198754 !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* Attack buttons */
+[data-theme="dark"] .implementation-attack .run-attack-btn {
+  background-color: #0d6efd !important;
+  color: white !important;
+  border: none !important;
+  width: 100%;
+}
+
+[data-theme="dark"] .implementation-attack .run-attack-btn:hover {
+  background-color: #0b5ed7 !important;
+}
+
+[data-theme="dark"] .implementation-attack .run-attack-btn.stop-attack {
+  background-color: #dc3545 !important;
+}
+
+/* Fix security box text readability */
+[data-theme="dark"] .security-success {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .security-success strong {
+  color: #50d987 !important; /* Brighter green for better contrast */
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .security-warning {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .security-warning strong {
+  color: #ff6b6b !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .side-channel-subexploit h2,
+[data-theme="dark"] .side-channels h2,
+[data-theme="dark"] .side-channel-attack h2 {
+  background: none !important;
+  background-color: transparent !important;
+}

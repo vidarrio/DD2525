@@ -18,6 +18,9 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCod
 
   // Use a more generic button label
   const buttonLabel = isOpen ? 'Hide Code' : 'Show Code';
+  
+  // Background color based on theme - darker in dark mode
+  const bgColorStyle = { ['--bg-override' as string]: '#1e1e1e' };
 
   return (
     <div className="code-viewer-container">
@@ -34,7 +37,8 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCod
       {/* Show code panel if we're in single code mode or if the panel is open */}
       {(isSingleCodeMode || isOpen) && (
         <div className={`code-panel ${isSingleCodeMode ? 'single-code-panel' : ''}`}>
-          <h4>{title}</h4>
+          {/* Only show h4 title if not in single code mode */}
+          {!isSingleCodeMode && <h4>{title}</h4>}
           
           {/* Only show tabs if we're not in single code mode and we have both unsafe and safe code */}
           {!isSingleCodeMode && unsafeCode && safeCode && (
@@ -59,11 +63,12 @@ const CodeViewer: React.FC<CodeViewerProps> = ({ unsafeCode, safeCode, singleCod
             <div className="single-code-header">{title}</div>
           )}
           
-          <div className="code-content">
+          <div className="code-content dark-code-bg" style={bgColorStyle}>
             <StarryNightHighlighter
               code={isSingleCodeMode ? singleCode! : (activeTab === 'unsafe' ? (unsafeCode || 'No unsafe implementation provided.') : (safeCode || 'No safe implementation provided.'))}
               language="rust"
               className={isSingleCodeMode ? 'single-code starry-night-block' : (activeTab === 'unsafe' ? 'unsafe-code starry-night-block' : 'safe-code starry-night-block')}
+              style={bgColorStyle}
             />
           </div>
         </div>
