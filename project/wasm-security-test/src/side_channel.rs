@@ -61,7 +61,6 @@ pub fn safe_check_credentials_storage(username: &str, password: &str) -> String 
 // Timing Side-Channel Attack
 // ----------------------------------------------------------
 
-// Create a struct to return timing result and debugging info
 #[wasm_bindgen]
 pub struct TimingResult {
     message: String,
@@ -95,20 +94,18 @@ pub fn unsafe_check_credentials_timing(username: &str, password: &str) -> Timing
     
     // Insecure character-by-character comparison
     let mut is_correct = true;
-    let mut simulated_time: f64 = 0.85; // Base processing time (milliseconds)
+    let mut simulated_time: f64 = 0.85;
     let min_length = std::cmp::min(password.len(), correct_password.len());
     
     for i in 0..min_length {
-        // Check each character
         if password.chars().nth(i) != correct_password.chars().nth(i) {
             is_correct = false;
             break;
         }
 
-        simulated_time += 0.03; // Add ~30 microseconds per character (shown as ms)
+        simulated_time += 0.03;
     }
     
-    // If lengths are different, it's incorrect
     if password.len() != correct_password.len() {
         is_correct = false;
     }
@@ -195,11 +192,10 @@ impl CacheTimingResult {
 // Unsafe implementation - accesses memory in patterns that depend on secret data
 #[wasm_bindgen]
 pub fn unsafe_cache_timing(probe_index: u32) -> CacheTimingResult {
-    // Create an array to simulate an AES lookup table in memory
     let buffer_size = 16;
     let mut lookup_table: Vec<u8> = vec![0; buffer_size];
     
-    // Fill with realistic-looking encryption key bytes
+    // Lookup table filled with "encryption key" bytes
     lookup_table[0] = 0x7A; 
     lookup_table[1] = 0x2B;
     lookup_table[2] = 0x15;
@@ -229,9 +225,9 @@ pub fn unsafe_cache_timing(probe_index: u32) -> CacheTimingResult {
     // Simulate timing - accessing the SECRET_INDEX is FASTER (cache hit)
     // while all other indices are slower (cache miss)
     let simulated_time = if index == SECRET_INDEX {
-        0.02  // 20 nanoseconds for cache hit (shown as ms)
+        0.02
     } else {
-        0.12 + (index as f64 * 0.005)  // ~120-200 nanoseconds for cache miss (shown as ms)
+        0.12 + (index as f64 * 0.005)
     };
     
     // Track which indices were accessed (for visualization)
@@ -249,11 +245,10 @@ pub fn unsafe_cache_timing(probe_index: u32) -> CacheTimingResult {
 // Safe implementation - access pattern doesn't depend on secret data
 #[wasm_bindgen]
 pub fn safe_cache_timing(probe_index: u32) -> CacheTimingResult {
-    // Create an array to simulate an AES lookup table in memory
     let buffer_size = 16;
     let mut lookup_table: Vec<u8> = vec![0; buffer_size];
     
-    // Fill with realistic-looking encryption key bytes
+    // Lookup table filled with "encryption key" bytes
     lookup_table[0] = 0x7A;
     lookup_table[1] = 0x2B;
     lookup_table[2] = 0x15;
