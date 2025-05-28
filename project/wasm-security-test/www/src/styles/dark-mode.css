@@ -1,0 +1,217 @@
+/* Ultra-Complete Dark Mode System */
+/* This file handles ALL dark mode color variable overrides and the theme switcher */
+
+/* ===== DARK MODE VARIABLE OVERRIDES ===== */
+[data-theme="dark"] {
+  /* === CORE THEME COLORS === */
+  --primary-color: #4db8ff;
+  --secondary-color: var(--code-bg);
+  --bg-color: #121212;
+  --bg-secondary: var(--input-bg);
+  --bg-tertiary: #262626;
+  --text-color: #cccccc;
+  --text-secondary: #cccccc;
+  --text-muted: #999999;
+  --border-color: #444444;
+  --border-secondary: #555555;
+  
+  /* === SEMANTIC COLORS === */
+  --success-color: #32cd57;
+  --success-hover: #28a745;
+  --success-active: #1e7e34;
+  --success-light: rgba(50, 205, 87, 0.15);
+  --warning-color: #ffdb58;
+  --warning-hover: #ffc107;
+  --warning-active: #e0a800;
+  --warning-light: rgba(255, 219, 88, 0.15);
+  --danger-color: #ff6b6b;
+  --danger-hover: #ff5252;
+  --danger-active: #e53e3e;
+  --danger-light: rgba(255, 107, 107, 0.15);
+  --info-color: var(--primary-color);
+  --info-hover: #339af0;
+  --info-active: #228be6;
+  --info-light: rgba(77, 184, 255, 0.15);
+  
+  /* === BUTTON SYSTEM === */
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-text: #212121;
+  --btn-primary-hover: #7ac9ff;
+  --btn-secondary-bg: #555555;
+  --btn-secondary-text: #e0e0e0;
+  --btn-secondary-hover: #666666;
+  --btn-safe-bg: var(--success-color);
+  --btn-safe-text: #212121;
+  --btn-safe-hover: var(--success-hover);
+  --btn-safe-active: var(--success-active);
+  --btn-unsafe-bg: var(--danger-color);
+  --btn-unsafe-text: #212121;
+  --btn-unsafe-hover: var(--danger-hover);
+  --btn-unsafe-active: var(--danger-active);
+  
+  /* === CODE & SYNTAX === */
+  --code-bg: #1a1a1a;
+  --code-border: #444444;
+  --code-text: #e0e0e0;
+  --code-keyword: var(--primary-color);
+  --code-string: var(--success-color);
+  --code-function: #c792ea;
+  --code-comment: #999999;
+  --code-api: #82b1ff;
+  
+  /* === LAYOUT & UI === */
+  --header-bg: #0d0d0d;
+  --header-text: #e0e0e0;
+  --footer-bg: #0d0d0d;
+  --footer-text: #cccccc;
+  --card-bg: var(--bg-tertiary);
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 4px 15px rgba(0, 0, 0, 0.5);
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  
+  /* === FORM ELEMENTS === */
+  --input-bg: #1e1e1e;
+  --input-border: #444444;
+  --input-focus-border: var(--primary-color);
+  --input-text: #e0e0e0;
+  --input-placeholder: #999999;
+  
+  /* === TABLES === */
+  --table-bg: var(--input-bg);
+  --table-header-bg: #262626;
+  --table-header-text: #e0e0e0;
+  --table-border: #444444;
+  --table-stripe: #242424;
+  --table-hover: #2a2a2a;
+  
+  /* === TABS === */
+  --tab-bg: transparent;
+  --tab-text: #cccccc;
+  --tab-active-bg: var(--bg-tertiary);
+  --tab-active-text: var(--primary-color);
+  --tab-hover-bg: rgba(255, 255, 255, 0.05);
+  --tab-border: #444444;
+  
+  /* === MEMORY VISUALIZATION === */
+  --memory-cell-bg: var(--input-bg);
+  --memory-cell-border: #444444;
+  --memory-cell-text: #e0e0e0;
+  --memory-address-text: #999999;
+  --memory-overwritten-bg: var(--danger-light);
+  --memory-overwritten-text: var(--danger-color);
+  
+  /* === ATTACK LOGS === */
+  --log-bg: var(--code-bg);
+  --log-border: #444444;
+  --log-text: #e0e0e0;
+  
+  /* === IMPLEMENTATION CONTAINERS === */
+  --impl-vulnerable-border: var(--danger-color);
+  --impl-secure-border: var(--success-color);
+  --impl-bg: var(--bg-tertiary);
+  
+  /* === ADDITIONAL MISSING COLORS === */
+  --accent-color: var(--primary-color);
+  --primary-dark: #7ac9ff;
+  --text-color-inverse: #121212;
+  --info-text: #4db8ff;
+  --info-border: #444444;
+  --border-color-primary: var(--border-color);
+  --border-color-secondary: var(--border-secondary);
+  --secondary-bg: #444444;
+  --card-bg-color: var(--bg-tertiary);
+  
+  /* === TIMING AND CHART COLORS === */
+  --chart-bar-bg: var(--primary-color);
+  --chart-bar-highlight: var(--danger-color);
+  --timing-bar-bg: var(--primary-color);
+  --timing-bar-highlight: var(--danger-color);
+  
+  /* === SPECIFIC COMPONENT COLORS === */
+  --function-export-bg: rgba(77, 184, 255, 0.2);
+  --function-export-text: var(--primary-color);
+  --function-safe-color: var(--success-color);
+  --function-secret-color: var(--danger-color);
+  --slot-index-bg: var(--bg-tertiary);
+  --slot-index-text: var(--primary-color);
+  
+  /* === MODULE AND ENVIRONMENT COLORS === */
+  --module-bg: var(--module-bg);
+  --module-border: #333333;
+  --environment-label-bg: rgba(77, 184, 255, 0.2);
+  --environment-label-text: #e0e0e0;
+  
+  /* === SECURITY MESSAGE COLORS === */
+  --security-success-bg: var(--success-light);
+  --security-success-text: #81c784;
+  --security-warning-bg: var(--warning-light);
+  --security-warning-text: #ffb74d;
+  --security-error-bg: var(--danger-light);
+  --security-error-text: #e57373;
+  --security-info-bg: var(--info-light);
+  --security-info-text: #64b5f6;
+}
+
+/* ===== THEME SWITCHER COMPONENT ===== */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  margin-left: 10px;
+  background-color: #333;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+  overflow: hidden;
+  border: 1.5px solid var(--primary-color);
+}
+
+.theme-toggle.dark {
+  background-color: #222;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.theme-toggle.dark .toggle-thumb {
+  transform: translateX(26px);
+}
+
+/* Dark mode theme switcher overrides */
+[data-theme="dark"] .theme-toggle {
+  background-color: #222 !important;
+}
+
+[data-theme="dark"] .theme-toggle .toggle-thumb {
+  background-color: #4db8ff !important;
+  box-shadow: 0 2px 8px #222, 0 0 0 2px rgba(77, 184, 255, 0.3);
+}
+
+[data-theme="dark"] .theme-switcher {
+  background-color: #232b36 !important;
+  box-shadow: 0 2px 8px rgba(77, 184, 255, 0.10), 0 1.5px 8px rgba(0,0,0,0.18);
+  border: 1.5px solid #4db8ff;
+  color: var(--text-color);
+}

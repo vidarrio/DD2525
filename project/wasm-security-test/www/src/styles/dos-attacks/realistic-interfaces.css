@@ -3,7 +3,7 @@
 /* Complexity Bomb Interface - OptimizeAI Pro */
 .complexity-bomb-interface {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
 
 .complexity-bomb-interface .mock-app-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--text-color-inverse);
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
@@ -71,13 +71,13 @@
 .complexity-bomb-interface .main-content {
   display: flex;
   flex: 1;
-  background: white;
+  background: var(--bg-color);
 }
 
 .complexity-bomb-interface .sidebar {
   width: 280px;
-  background: #f8f9fa;
-  border-right: 1px solid #e9ecef;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color-primary);
   padding: 20px;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .complexity-bomb-interface .section h3 {
-  color: #495057;
+  color: var(--text-color);
   margin-bottom: 15px;
   font-size: 1em;
   font-weight: 600;
@@ -100,8 +100,8 @@
 
 .complexity-bomb-interface .template-btn {
   padding: 10px 15px;
-  border: 1px solid #dee2e6;
-  background: white;
+  border: 1px solid var(--border-color-secondary);
+  background: var(--bg-color);
   border-radius: 6px;
   cursor: pointer;
   text-align: left;
@@ -110,13 +110,13 @@
 }
 
 .complexity-bomb-interface .template-btn:hover {
-  background: #e9ecef;
+  background: var(--border-color-primary);
   border-color: #667eea;
 }
 
 .complexity-bomb-interface .engine-status {
-  background: white;
-  border: 1px solid #dee2e6;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color-secondary);
   border-radius: 6px;
   padding: 15px;
 }
@@ -132,23 +132,23 @@
 }
 
 .complexity-bomb-interface .status-label {
-  color: #6c757d;
+  color: var(--text-color-secondary);
   font-size: 0.9em;
 }
 
 .complexity-bomb-interface .status-value {
-  color: #495057;
+  color: var(--text-color);
   font-size: 0.9em;
   font-weight: 500;
 }
 
 .complexity-bomb-interface .status-value.online {
-  color: #28a745;
+  color: var(--success-color);
 }
 
 .complexity-bomb-interface .metrics {
-  background: white;
-  border: 1px solid #dee2e6;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color-secondary);
   border-radius: 6px;
   padding: 15px;
 }
@@ -164,12 +164,12 @@
 }
 
 .complexity-bomb-interface .metric-label {
-  color: #6c757d;
+  color: var(--text-color-secondary);
   font-size: 0.9em;
 }
 
 .complexity-bomb-interface .metric-value {
-  color: #495057;
+  color: var(--text-color);
   font-size: 0.9em;
   font-weight: 500;
 }
@@ -189,7 +189,7 @@
 }
 
 .complexity-bomb-interface .editor-header h2 {
-  color: #495057;
+  color: var(--text-color);
   margin: 0;
   font-size: 1.3em;
 }
@@ -201,37 +201,37 @@
 }
 
 .complexity-bomb-interface .tab {
-  background: #e9ecef;
+  background: var(--border-color-primary);
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 0.9em;
-  color: #495057;
+  color: var(--text-color);
 }
 
 .complexity-bomb-interface .tab.active {
   background: #667eea;
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 .complexity-bomb-interface .tab-close {
-  color: #6c757d;
+  color: var(--text-color-secondary);
   cursor: pointer;
   margin-left: 5px;
 }
 
 .complexity-bomb-interface .editor-content {
   display: flex;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color-secondary);
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 20px;
 }
 
 .complexity-bomb-interface .line-numbers {
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   padding: 10px 8px;
-  border-right: 1px solid #dee2e6;
-  color: #6c757d;
+  border-right: 1px solid var(--border-color-secondary);
+  color: var(--text-color-secondary);
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
   min-width: 40px;
@@ -250,8 +250,8 @@
   font-size: 0.9em;
   line-height: 1.5;
   resize: vertical;
-  background: white;
-  color: #495057;
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
 .complexity-bomb-interface .code-editor:focus {
@@ -266,7 +266,7 @@
 
 .complexity-bomb-interface .primary-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: var(--text-color-inverse);
   border: none;
   padding: 12px 20px;
   border-radius: 6px;
@@ -286,7 +286,7 @@
 }
 
 .complexity-bomb-interface .secondary-btn {
-  background: white;
+  background: var(--bg-color);
   color: #667eea;
   border: 1px solid #667eea;
   padding: 12px 20px;
@@ -298,7 +298,7 @@
 
 .complexity-bomb-interface .secondary-btn:hover:not(:disabled) {
   background: #667eea;
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 .complexity-bomb-interface .secondary-btn:disabled {
@@ -307,16 +307,16 @@
 }
 
 .complexity-bomb-interface .result-panel {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color-secondary);
   border-radius: 6px;
   overflow: hidden;
 }
 
 .complexity-bomb-interface .result-header {
-  background: #e9ecef;
+  background: var(--border-color-primary);
   padding: 15px 20px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color-secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -324,13 +324,13 @@
 
 .complexity-bomb-interface .result-header h3 {
   margin: 0;
-  color: #495057;
+  color: var(--text-color);
   font-size: 1.1em;
 }
 
 .complexity-bomb-interface .warning-badge {
-  background: #dc3545;
-  color: white;
+  background: var(--danger-color);
+  color: var(--text-color-inverse);
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.8em;
@@ -345,20 +345,20 @@
   margin: 0;
   font-family: 'Courier New', monospace;
   font-size: 0.9em;
-  color: #495057;
+  color: var(--text-color);
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 .complexity-bomb-interface .status-bar {
-  background: #e9ecef;
+  background: var(--border-color-primary);
   padding: 8px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var(--border-color-secondary);
   font-size: 0.9em;
-  color: #6c757d;
+  color: var(--text-color-secondary);
 }
 
 .complexity-bomb-interface .status-left {
@@ -371,11 +371,11 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #28a745;
+  background: var(--success-color);
 }
 
 .complexity-bomb-interface .status-indicator.online {
-  background: #28a745;
+  background: var(--success-color);
 }
 
 .complexity-bomb-interface .status-right {
@@ -387,15 +387,15 @@
 /* Memory Exhaustion Interface - DataCrunch Analytics */
 .memory-exhaustion-interface {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .memory-exhaustion-interface .mock-app-header {
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
+  color: var(--text-color-inverse);
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
@@ -406,24 +406,24 @@
 .memory-exhaustion-interface .main-content {
   display: flex;
   flex: 1;
-  background: white;
+  background: var(--bg-color);
 }
 
 .memory-exhaustion-interface .sidebar {
   width: 280px;
-  background: #f8f9fa;
-  border-right: 1px solid #e9ecef;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color-primary);
   padding: 20px;
 }
 
 .memory-exhaustion-interface .template-btn.danger {
-  border-color: #dc3545;
-  color: #dc3545;
+  border-color: var(--danger-color);
+  color: var(--danger-color);
 }
 
 .memory-exhaustion-interface .template-btn.danger:hover {
-  background: #dc3545;
-  color: white;
+  background: var(--danger-color);
+  color: var(--text-color-inverse);
 }
 
 .memory-exhaustion-interface .alerts {
@@ -444,7 +444,7 @@
 }
 
 .memory-exhaustion-interface .alert.warning {
-  background: #fff3cd;
+  background: var(--bg-tertiary);
   color: #856404;
   border: 1px solid #ffeaa7;
 }
@@ -460,45 +460,45 @@
 .memory-exhaustion-interface .form-group label {
   display: block;
   margin-bottom: 5px;
-  color: #495057;
+  color: var(--text-color);
   font-weight: 500;
 }
 
 .memory-exhaustion-interface .form-input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color-secondary);
   border-radius: 4px;
   font-size: 1em;
-  color: #495057;
+  color: var(--text-color);
 }
 
 .memory-exhaustion-interface .form-input:focus {
   outline: none;
-  border-color: #28a745;
+  border-color: var(--success-color);
   box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
 }
 
 .memory-exhaustion-interface .form-select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color-secondary);
   border-radius: 4px;
   font-size: 1em;
-  color: #495057;
-  background: white;
+  color: var(--text-color);
+  background: var(--bg-color);
 }
 
 .memory-exhaustion-interface .form-select:focus {
   outline: none;
-  border-color: #28a745;
+  border-color: var(--success-color);
   box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
 }
 
 .memory-exhaustion-interface .input-hint {
   margin-top: 5px;
   font-size: 0.9em;
-  color: #6c757d;
+  color: var(--text-color-secondary);
 }
 
 .memory-exhaustion-interface .processing-indicator {
@@ -521,21 +521,21 @@
 }
 
 .memory-exhaustion-interface .status.ready {
-  color: #28a745;
+  color: var(--success-color);
 }
 
 .memory-exhaustion-interface .metric-value.danger {
-  color: #dc3545;
+  color: var(--danger-color);
 }
 
 .memory-exhaustion-interface .metric-value.success {
-  color: #28a745;
+  color: var(--success-color);
 }
 
 /* Host Function Abuse Interface - WebRender Studio */
 .host-abuse-interface {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -543,7 +543,7 @@
 
 .host-abuse-interface .mock-app-header {
   background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
-  color: white;
+  color: var(--text-color-inverse);
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
@@ -554,13 +554,13 @@
 .host-abuse-interface .main-content {
   display: flex;
   flex: 1;
-  background: white;
+  background: var(--bg-color);
 }
 
 .host-abuse-interface .sidebar {
   width: 280px;
-  background: #f8f9fa;
-  border-right: 1px solid #e9ecef;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color-primary);
   padding: 20px;
 }
 
@@ -575,7 +575,7 @@
 }
 
 .host-abuse-interface .status.ready {
-  color: #28a745;
+  color: var(--success-color);
 }
 
 .host-abuse-interface .preview-area {
@@ -583,14 +583,14 @@
 }
 
 .host-abuse-interface .preview-area h3 {
-  color: #495057;
+  color: var(--text-color);
   margin-bottom: 10px;
   font-size: 1.1em;
 }
 
 .host-abuse-interface .animation-preview {
   height: 200px;
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color-secondary);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -601,7 +601,7 @@
 
 .host-abuse-interface .preview-content {
   text-align: center;
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 .host-abuse-interface .preview-spinner {
@@ -615,103 +615,8 @@
 }
 
 .host-abuse-interface .preview-placeholder {
-  color: #6c757d;
+  color: var(--text-color-secondary);
   text-align: center;
 }
 
-/* Dark mode support */
-[data-theme="dark"] .complexity-bomb-interface,
-[data-theme="dark"] .memory-exhaustion-interface,
-[data-theme="dark"] .host-abuse-interface {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
 
-[data-theme="dark"] .complexity-bomb-interface .main-content,
-[data-theme="dark"] .memory-exhaustion-interface .main-content,
-[data-theme="dark"] .host-abuse-interface .main-content {
-  background: #2d3748;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .sidebar,
-[data-theme="dark"] .memory-exhaustion-interface .sidebar,
-[data-theme="dark"] .host-abuse-interface .sidebar {
-  background: #1a202c;
-  border-right-color: #4a5568;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .template-btn,
-[data-theme="dark"] .memory-exhaustion-interface .template-btn,
-[data-theme="dark"] .host-abuse-interface .template-btn {
-  background: #2d3748;
-  border-color: #4a5568;
-  color: #e0e0e0;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .template-btn:hover,
-[data-theme="dark"] .memory-exhaustion-interface .template-btn:hover,
-[data-theme="dark"] .host-abuse-interface .template-btn:hover {
-  background: #4a5568;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .engine-status,
-[data-theme="dark"] .memory-exhaustion-interface .engine-status,
-[data-theme="dark"] .host-abuse-interface .engine-status {
-  background: #2d3748;
-  border-color: #4a5568;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .metrics,
-[data-theme="dark"] .memory-exhaustion-interface .metrics,
-[data-theme="dark"] .host-abuse-interface .metrics {
-  background: #2d3748;
-  border-color: #4a5568;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .code-editor,
-[data-theme="dark"] .memory-exhaustion-interface .form-input,
-[data-theme="dark"] .memory-exhaustion-interface .form-select,
-[data-theme="dark"] .host-abuse-interface .form-input,
-[data-theme="dark"] .host-abuse-interface .form-select {
-  background: #2d3748;
-  border-color: #4a5568;
-  color: #e0e0e0;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .result-panel,
-[data-theme="dark"] .memory-exhaustion-interface .result-panel,
-[data-theme="dark"] .host-abuse-interface .result-panel {
-  background: #1a202c;
-  border-color: #4a5568;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .result-header,
-[data-theme="dark"] .memory-exhaustion-interface .result-header,
-[data-theme="dark"] .host-abuse-interface .result-header {
-  background: #2d3748;
-  border-bottom-color: #4a5568;
-}
-
-[data-theme="dark"] .complexity-bomb-interface .status-bar,
-[data-theme="dark"] .memory-exhaustion-interface .status-bar,
-[data-theme="dark"] .host-abuse-interface .status-bar {
-  background: #1a202c;
-  border-top-color: #4a5568;
-}
-
-[data-theme="dark"] .memory-exhaustion-interface .alert.danger {
-  background: #742a2a;
-  color: #fed7d7;
-  border-color: #e53e3e;
-}
-
-[data-theme="dark"] .memory-exhaustion-interface .alert.warning {
-  background: #744210;
-  color: #faf089;
-  border-color: #d69e2e;
-}
-
-[data-theme="dark"] .host-abuse-interface .animation-preview {
-  border-color: #4a5568;
-  background: #2d3748;
-}

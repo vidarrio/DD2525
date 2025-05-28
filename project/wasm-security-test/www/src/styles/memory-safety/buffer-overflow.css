@@ -39,7 +39,7 @@
 }
 
 .buffer-display {
-  background-color: #f8f8f8;
+  background-color: var(--bg-secondary);
   border-radius: 6px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -69,7 +69,7 @@
 }
 
 .buffer-value {
-  background-color: white;
+  background-color: var(--bg-tertiary);
   padding: 0.5rem 0.75rem;
   border: 1px solid #e0e0e0;
   border-radius: 4px;

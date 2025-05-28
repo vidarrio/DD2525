@@ -19,7 +19,7 @@
 
 .memory-address {
   width: 100px;
-  background-color: #f5f5f5;
+  background-color: var(--bg-secondary);
   padding: 0.5rem;
   font-weight: bold;
   border-right: 1px solid #eee;

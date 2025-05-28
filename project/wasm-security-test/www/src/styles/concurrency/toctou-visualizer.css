@@ -7,8 +7,8 @@
 }
 
 .vulnerability-description {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 2rem;
@@ -47,7 +47,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #dc3545;
+  background-color: var(--danger-color);
   transition: 0.3s;
   border-radius: 30px;
 }
@@ -59,13 +59,13 @@
   width: 22px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: var(--bg-color);
   transition: 0.3s;
   border-radius: 50%;
 }
 
 input:checked + .toggle-slider {
-  background-color: #28a745;
+  background-color: var(--success-color);
 }
 
 input:checked + .toggle-slider:before {
@@ -74,7 +74,7 @@ input:checked + .toggle-slider:before {
 
 .toggle-label {
   font-weight: 600;
-  color: #495057;
+  color: var(--text-color);
 }
 
 .toctou-timeline-container h4 {
@@ -86,7 +86,7 @@ input:checked + .toggle-slider:before {
 }
 
 .vulnerability-info {
-  background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.05));
+  background: linear-gradient(135deg, var(--warning-light), var(--warning-light));
   border: 1px solid var(--warning-color);
   border-radius: 6px;
   padding: 1rem;
@@ -125,27 +125,27 @@ input:checked + .toggle-slider:before {
 
 .timeline-step.active {
   border-color: var(--warning-color);
-  background: var(--warning-light-bg, rgba(255, 193, 7, 0.1));
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+  background: var(--warning-light);
+  box-shadow: 0 0 10px var(--warning-light);
   animation: pulse 1.5s infinite;
 }
 
 .timeline-step.completed {
   border-color: var(--success-color);
-  background: var(--success-light-bg, rgba(40, 167, 69, 0.1));
+  background: var(--success-light);
   box-shadow: none;
   animation: none;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+    box-shadow: 0 0 5px var(--warning-light);
   }
   50% {
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+    box-shadow: 0 0 15px var(--warning-light);
   }
   100% {
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+    box-shadow: 0 0 5px var(--warning-light);
   }
 }
 
@@ -154,7 +154,7 @@ input:checked + .toggle-slider:before {
   height: 32px;
   border-radius: 50%;
   background: var(--primary-color);
-  color: white;
+  color: var(--text-color-inverse);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,25 +172,25 @@ input:checked + .toggle-slider:before {
 
 .vulnerability-window {
   border-color: var(--danger-color) !important;
-  background: rgba(220, 53, 69, 0.1) !important;
+  background: var(--danger-light) !important;
 }
 
 .vulnerability-window.active {
   border-color: var(--danger-color);
-  background: rgba(220, 53, 69, 0.15);
-  box-shadow: 0 0 15px rgba(220, 53, 69, 0.4);
+  background: var(--danger-light);
+  box-shadow: 0 0 15px var(--danger-light);
   animation: danger-pulse 1.5s infinite;
 }
 
 @keyframes danger-pulse {
   0% {
-    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+    box-shadow: 0 0 5px var(--danger-light);
   }
   50% {
-    box-shadow: 0 0 20px rgba(220, 53, 69, 0.6);
+    box-shadow: 0 0 20px var(--danger-light);
   }
   100% {
-    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+    box-shadow: 0 0 5px var(--danger-light);
   }
 }
 
@@ -260,7 +260,7 @@ input:checked + .toggle-slider:before {
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .state-panel h4 {
@@ -289,14 +289,14 @@ input:checked + .toggle-slider:before {
 
 /* Button Styling */
 .race-button {
-  background: linear-gradient(135deg, var(--warning-color), #e0a800);
+  background: linear-gradient(135deg, var(--warning-color), var(--warning-hover));
   border: none;
-  color: white;
+  color: var(--text-color-inverse);
   font-weight: 600;
 }
 
 .race-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #e0a800, var(--warning-color));
+  background: linear-gradient(135deg, var(--warning-hover), var(--warning-color));
   transform: translateY(-1px);
 }
 
@@ -335,23 +335,6 @@ input:checked + .toggle-slider:before {
     min-width: 100%;
     max-width: 300px;
   }
-}
-
-/* Dark Mode Specific Adjustments */
-[data-theme="dark"] .timeline-step.active {
-  background: rgba(255, 193, 7, 0.15);
-}
-
-[data-theme="dark"] .timeline-step.completed {
-  background: rgba(40, 167, 69, 0.15);
-}
-
-[data-theme="dark"] .race-condition-result {
-  background: var(--secondary-bg);
-}
-
-[data-theme="dark"] .state-content {
-  background: var(--secondary-bg);
 }
 
 /* Real-world examples styling */
@@ -393,12 +376,12 @@ input:checked + .toggle-slider:before {
 /* Output Styling Enhancement */
 .exploit-output.vulnerable-output {
   border-left: 4px solid var(--danger-color);
-  background: rgba(220, 53, 69, 0.05);
+  background: var(--danger-light);
 }
 
 .exploit-output.secure-output {
   border-left: 4px solid var(--success-color);
-  background: rgba(40, 167, 69, 0.05);
+  background: var(--success-light);
 }
 
 /* Control Enhancement */
@@ -414,7 +397,7 @@ input:checked + .toggle-slider:before {
   top: -8px;
   right: -8px;
   background: var(--danger-color);
-  color: white;
+  color: var(--text-color-inverse);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -431,7 +414,7 @@ input:checked + .toggle-slider:before {
   border-radius: 8px;
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .demo-instructions h4 {
@@ -461,7 +444,7 @@ input:checked + .toggle-slider:before {
 
 .instruction-step .step-number {
   background: var(--accent-color);
-  color: white;
+  color: var(--text-color-inverse);
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -478,14 +461,14 @@ input:checked + .toggle-slider:before {
 }
 
 .instruction-step .step-content strong {
-  color: var(--text-primary);
+  color: var(--text-color);
   display: block;
   margin-bottom: 5px;
 }
 
 /* Improved Controls Styling */
 .scenario-setup {
-  background: var(--info-bg);
+  background: var(--info-light);
   border: 1px solid var(--info-border);
   border-radius: 6px;
   padding: 15px;
@@ -526,14 +509,13 @@ input:checked + .toggle-slider:before {
 
 .button-section h5 {
   margin: 0;
-  color: var(--text-primary);
+  color: var(--text-color);
   font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 5px;
 }
 
-.button-section .exploit-button,
 .button-section .utility-button {
   display: flex;
   align-items: center;
@@ -554,7 +536,7 @@ input:checked + .toggle-slider:before {
 .current-scenario h5 {
   margin-top: 0;
   margin-bottom: 10px;
-  color: var(--text-primary);
+  color: var(--text-color);
 }
 
 .current-scenario p {
@@ -565,59 +547,59 @@ input:checked + .toggle-slider:before {
 
 /* Enhanced button styling with icons */
 .vulnerable-button {
-  background: linear-gradient(135deg, #ff6b6b, #ff5252);
-  color: white;
+  background: linear-gradient(135deg, var(--danger-color), var(--danger-hover));
+  color: var(--text-color-inverse);
   border: none;
 }
 
 .vulnerable-button:hover {
-  background: linear-gradient(135deg, #ff5252, #f44336);
+  background: linear-gradient(135deg, var(--danger-hover), var(--danger-active));
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 4px 12px var(--danger-light);
 }
 
 .secure-button {
-  background: linear-gradient(135deg, #4caf50, #45a049);
-  color: white;
+  background: linear-gradient(135deg, var(--success-color), var(--success-hover));
+  color: var(--text-color-inverse);
   border: none;
 }
 
 .secure-button:hover {
-  background: linear-gradient(135deg, #45a049, #388e3c);
+  background: linear-gradient(135deg, var(--success-hover), var(--success-active));
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 4px 12px var(--success-light);
 }
 
 .race-button {
-  background: linear-gradient(135deg, #ff9800, #f57c00);
-  color: white;
+  background: linear-gradient(135deg, var(--warning-color), var(--warning-hover));
+  color: var(--text-color-inverse);
   border: none;
   font-weight: 600;
 }
 
 .race-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #f57c00, #ef6c00);
+  background: linear-gradient(135deg, var(--warning-hover), var(--warning-color));
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+  box-shadow: 0 4px 12px var(--warning-light);
 }
 
 .race-button:disabled {
-  background: linear-gradient(135deg, #bdbdbd, #9e9e9e);
+  background: linear-gradient(135deg, var(--btn-secondary-bg), var(--btn-secondary-hover));
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
 .utility-button {
-  background: linear-gradient(135deg, #607d8b, #546e7a);
-  color: white;
+  background: linear-gradient(135deg, var(--btn-secondary-bg), var(--btn-secondary-hover));
+  color: var(--text-color-inverse);
   border: none;
 }
 
 .utility-button:hover {
-  background: linear-gradient(135deg, #546e7a, #455a64);
+  background: linear-gradient(135deg, var(--btn-secondary-hover), var(--btn-secondary-bg));
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* Responsive design for controls */
@@ -712,7 +694,7 @@ body.dark-theme .scenario-setup {
   background: var(--danger-color);
   border-radius: 30px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--card-shadow);
 }
 
 .slider::before {
@@ -722,10 +704,10 @@ body.dark-theme .scenario-setup {
   left: 3px;
   width: 24px;
   height: 24px;
-  background: white;
+  background: var(--bg-color);
   border-radius: 50%;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .toggle-switch input:checked + .slider {
@@ -737,7 +719,7 @@ body.dark-theme .scenario-setup {
 }
 
 .toggle-switch:hover .slider {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .toggle-label {
@@ -749,14 +731,14 @@ body.dark-theme .scenario-setup {
 
 /* Secure Timeline Styles */
 .toctou-timeline.mitigated {
-  background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(40, 167, 69, 0.02));
+  background: var(--success-light);
   border: 1px solid var(--success-color);
   border-radius: 8px;
   padding: 1.5rem;
 }
 
 .toctou-timeline.vulnerable {
-  background: linear-gradient(135deg, rgba(220, 53, 69, 0.05), rgba(220, 53, 69, 0.02));
+  background: var(--danger-light);
   border: 1px solid var(--danger-color);
   border-radius: 8px;
   padding: 1.5rem;
@@ -764,56 +746,56 @@ body.dark-theme .scenario-setup {
 
 .secure-step {
   border-color: var(--success-color) !important;
-  background: rgba(40, 167, 69, 0.08) !important;
+  background: var(--success-light) !important;
 }
 
 .secure-step.active {
   border-color: var(--success-color);
-  background: rgba(40, 167, 69, 0.15);
-  box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+  background: var(--success-light);
+  box-shadow: 0 0 15px var(--success-light);
   animation: secure-pulse 1.5s infinite;
 }
 
 .secure-step.completed {
   border-color: var(--success-color);
-  background: rgba(40, 167, 69, 0.1);
+  background: var(--success-light);
   box-shadow: none;
   animation: none;
 }
 
 .blocked-attack {
   border-color: var(--warning-color) !important;
-  background: rgba(255, 193, 7, 0.1) !important;
+  background: var(--warning-light) !important;
 }
 
 .blocked-attack.active {
   border-color: var(--warning-color);
-  background: rgba(255, 193, 7, 0.15);
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+  background: var(--warning-light);
+  box-shadow: 0 0 15px var(--warning-light);
   animation: blocked-pulse 1.5s infinite;
 }
 
 @keyframes secure-pulse {
   0% {
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 0 5px var(--success-light);
   }
   50% {
-    box-shadow: 0 0 15px rgba(40, 167, 69, 0.6);
+    box-shadow: 0 0 15px var(--success-light);
   }
   100% {
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 0 5px var(--success-light);
   }
 }
 
 @keyframes blocked-pulse {
   0% {
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+    box-shadow: 0 0 5px var(--warning-light);
   }
   50% {
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+    box-shadow: 0 0 15px var(--warning-light);
   }
   100% {
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+    box-shadow: 0 0 5px var(--warning-light);
   }
 }
 
@@ -841,44 +823,10 @@ body.dark-theme .scenario-setup {
   }
 }
 
-/* Dark mode adjustments for toggle */
-[data-theme="dark"] .slider {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] .slider::before {
-  background: var(--card-bg);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-[data-theme="dark"] .toctou-timeline.mitigated {
-  background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(40, 167, 69, 0.05));
-}
-
-[data-theme="dark"] .toctou-timeline.vulnerable {
-  background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
-}
-
-[data-theme="dark"] .secure-step {
-  background: rgba(40, 167, 69, 0.15) !important;
-}
-
-[data-theme="dark"] .secure-step.active {
-  background: rgba(40, 167, 69, 0.25) !important;
-}
-
-[data-theme="dark"] .blocked-attack {
-  background: rgba(255, 193, 7, 0.15) !important;
-}
-
-[data-theme="dark"] .blocked-attack.active {
-  background: rgba(255, 193, 7, 0.25) !important;
-}
-
 /* Demo Section */
 .demo-section {
-  background: white;
-  border: 1px solid #dee2e6;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color-secondary);
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 2rem;
@@ -899,14 +847,14 @@ body.dark-theme .scenario-setup {
 
 .input-group label {
   font-weight: 600;
-  color: #495057;
+  color: var(--text-color);
 }
 
 .input-group select {
   padding: 0.5rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border-color-primary);
   border-radius: 4px;
-  background: white;
+  background: var(--bg-color);
   min-width: 150px;
 }
 
@@ -927,32 +875,32 @@ body.dark-theme .scenario-setup {
 }
 
 .btn-vulnerable {
-  background-color: #dc3545;
-  color: white;
+  background-color: var(--danger-color);
+  color: var(--text-color-inverse);
 }
 
 .btn-vulnerable:hover {
-  background-color: #c82333;
+  background-color: var(--danger-hover);
   transform: translateY(-1px);
 }
 
 .btn-secure {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--success-color);
+  color: var(--text-color-inverse);
 }
 
 .btn-secure:hover {
-  background-color: #218838;
+  background-color: var(--success-hover);
   transform: translateY(-1px);
 }
 
 .btn-race {
-  background-color: #ffc107;
-  color: #212529;
+  background-color: var(--warning-color);
+  color: var(--text-color);
 }
 
 .btn-race:hover {
-  background-color: #e0a800;
+  background-color: var(--warning-hover);
   transform: translateY(-1px);
 }
 
@@ -963,37 +911,37 @@ body.dark-theme .scenario-setup {
 }
 
 .btn-vulnerable-demo {
-  background-color: #fd7e14;
-  color: white;
+  background-color: var(--danger-color);
+  color: var(--text-color-inverse);
 }
 
 .btn-secure-demo {
-  background-color: #17a2b8;
-  color: white;
+  background-color: var(--info-color);
+  color: var(--text-color-inverse);
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-color-inverse);
 }
 
 .btn-secondary:hover {
-  background-color: #5a6268;
+  background-color: var(--btn-secondary-hover);
   transform: translateY(-1px);
 }
 
 /* Output Section */
 .output-section {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color-secondary);
   border-radius: 6px;
   padding: 1rem;
 }
 
 .output-content {
   font-family: 'Courier New', monospace;
-  background: #212529;
-  color: #f8f9fa;
+  background: var(--text-color);
+  color: var(--bg-secondary);
   padding: 1rem;
   border-radius: 4px;
   white-space: pre-wrap;
@@ -1002,12 +950,12 @@ body.dark-theme .scenario-setup {
 
 /* Timeline Visualization */
 .timeline-visualization {
-  background: white;
-  border: 1px solid #dee2e6;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color-secondary);
   border-radius: 8px;
   padding: 2rem;
   margin: 2rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--card-shadow);
 }
 
 .timeline {
@@ -1034,7 +982,7 @@ body.dark-theme .scenario-setup {
   position: relative;
   opacity: 0.6;
   transition: all 0.5s ease;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   border: 2px solid #dee2e6;
   border-radius: 8px;
   text-align: center;
@@ -1053,13 +1001,13 @@ body.dark-theme .scenario-setup {
 }
 
 .timeline-step.vulnerability {
-  border-color: #dc3545;
+  border-color: var(--danger-color);
   background: rgba(220, 53, 69, 0.08);
   animation: pulse-danger 2s infinite;
 }
 
 .timeline-step.secure {
-  border-color: #28a745;
+  border-color: var(--success-color);
   background: rgba(40, 167, 69, 0.08);
   animation: pulse-success 2s infinite;
 }
@@ -1117,11 +1065,11 @@ body.dark-theme .scenario-setup {
 }
 
 .timeline-step.vulnerability .timeline-marker {
-  background: #dc3545;
+  background: var(--danger-color);
 }
 
 .timeline-step.secure .timeline-marker {
-  background: #28a745;
+  background: var(--success-color);
 }
 
 .timeline-content h6 {
@@ -1208,17 +1156,17 @@ body.dark-theme .scenario-setup {
 }
 
 .timeline-step.vulnerability .step-description {
-  color: #dc3545;
+  color: var(--danger-color);
   font-weight: 600;
 }
 
 .timeline-step.secure .step-description {
-  color: #28a745;
+  color: var(--success-color);
   font-weight: 600;
 }
 
 .race-result {
-  background: #fff3cd;
+  background: var(--bg-tertiary);
   border: 1px solid #ffeaa7;
   border-radius: 6px;
   padding: 1rem;
@@ -1235,7 +1183,7 @@ body.dark-theme .scenario-setup {
 }
 
 .state-panel {
-  background: white;
+  background: var(--bg-tertiary);
   border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 1rem;
@@ -1250,7 +1198,7 @@ body.dark-theme .scenario-setup {
 
 .state-content {
   font-family: 'Courier New', monospace;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   border: 1px solid #dee2e6;
   border-radius: 4px;
   padding: 1rem;
@@ -1283,7 +1231,7 @@ body.dark-theme .scenario-setup {
 .code-section h5 {
   margin: 0;
   padding: 1rem;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   border-bottom: 1px solid #dee2e6;
   font-weight: 600;
 }
@@ -1302,7 +1250,7 @@ body.dark-theme .scenario-setup {
 
 /* Educational Content */
 .educational-content {
-  background: white;
+  background: var(--bg-tertiary);
   border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 1.5rem;
@@ -1337,7 +1285,7 @@ body.dark-theme .scenario-setup {
   border-left: 3px solid #007bff;
   padding-left: 1rem;
   margin-bottom: 0.5rem;
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   border-radius: 0 4px 4px 0;
 }
 
@@ -1478,4 +1426,43 @@ body.dark-theme .scenario-setup {
   .timeline-visualization {
     padding: 1rem 0.5rem;
   }
+}
+
+/* Additional UI Quirk Fixes */
+
+/* Ensure TOCTOU dropdown visibility in dark mode */
+.toctou-vulnerability .input-group select,
+.toctou-vulnerability .control-group select,
+.toctou-vulnerability .form-group select {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: 1px solid var(--input-border) !important;
+}
+
+.toctou-vulnerability .input-group select option,
+.toctou-vulnerability .control-group select option,
+.toctou-vulnerability .form-group select option {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+}
+
+/* Fix button hover states specifically for TOCTOU */
+.toctou-vulnerability .run-button:hover {
+  background-color: var(--btn-primary-hover) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+.toctou-vulnerability .run-button.unsafe:hover {
+  background-color: var(--btn-unsafe-hover) !important;
+  color: var(--btn-unsafe-text) !important;
+}
+
+.toctou-vulnerability .run-button.safe:hover {
+  background-color: var(--btn-safe-hover) !important;
+  color: var(--btn-safe-text) !important;
+}
+
+/* Keep native dropdown appearance but fix colors */
+select {
+  /* Use native appearance for proper dropdown functionality */
 }

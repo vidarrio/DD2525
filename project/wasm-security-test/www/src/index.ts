@@ -4,13 +4,13 @@ import App from './App';
 
 // Import CSS - these will be processed by webpack's css-loader
 import './styles/index.css'; // Main CSS that imports common styles
+import './styles/shared-components.css'; // Shared component styles
 import './styles/memory-safety/index.css';
 import './styles/side-channels/index.css';
 import './styles/control-flow/index.css';
 import './styles/code-injection/index.css';
 import './styles/sandbox-escapes/index.css';
 import './styles/concurrency/index.css';
-import './styles/dark-mode-override.css'; // Additional overrides for dark mode
 
 // Initialize the React application
 const container = document.getElementById('root');

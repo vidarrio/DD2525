@@ -8,25 +8,25 @@
 
 /* Add styles for single-code mode */
 .single-code-panel {
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .single-code-header {
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
   padding: 16px 20px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color);
   font-weight: 600;
-  color: #495057;
+  color: var(--text-color);
   font-size: 16px;
   margin: 0;
 }
 
 .code-content {
-  background-color: #fff;
+  background-color: var(--bg-color);
   padding: 0;
   max-height: 500px;
   overflow: auto;
@@ -61,16 +61,16 @@
 }
 
 .code-viewer-header {
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
   padding: 12px 20px;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color);
   font-weight: 500;
-  color: #495057;
+  color: var(--text-color);
 }
 
 .code-viewer-tabs {
   display: flex;
-  background-color: #e9ecef;
+  background-color: var(--color-bg-tertiary);
 }
 
 .code-viewer-tab {
@@ -84,62 +84,62 @@
 }
 
 .code-viewer-tab.active {
-  background-color: #fff;
-  color: #0078d7;
+  background-color: var(--bg-color);
+  color: var(--color-primary);
 }
 
 .code-viewer-tab.unsafe {
-  color: #dc3545;
+  color: var(--danger-color);
 }
 
 .code-viewer-tab.unsafe.active {
-  background-color: #fff8f8;
-  border-bottom: 2px solid #dc3545;
+  background-color: var(--danger-color-light);
+  border-bottom: 2px solid var(--danger-color);
 }
 
 .code-viewer-tab.safe {
-  color: #28a745;
+  color: var(--success-color);
 }
 
 .code-viewer-tab.safe.active {
-  background-color: #f8fff8;
-  border-bottom: 2px solid #28a745;
+  background-color: var(--success-color-light);
+  border-bottom: 2px solid var(--success-color);
 }
 
 .code-viewer-content {
-  background-color: #fff;
+  background-color: var(--bg-color);
   padding: 0;
   max-height: 500px;
   overflow: auto;
 }
 
 .code-viewer-single {
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
 }
 
 /* General code panel styles */
 .code-panel {
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .code-panel h4 {
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
   padding: 16px 20px;
   margin: 0;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--border-color);
   font-weight: 600;
-  color: #495057;
+  color: var(--text-color);
   font-size: 16px;
 }
 
 .code-tabs {
   display: flex;
-  background-color: #e9ecef;
-  border-bottom: 1px solid #dee2e6;
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .code-tab {
@@ -149,26 +149,41 @@
   border: none;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.2s ease;
-  color: #6c757d;
+  transition: all 0.2s ease;
+  color: var(--text-color-muted);
+  position: relative;
+  border-radius: 6px 6px 0 0;
 }
 
 .code-tab.active {
-  background-color: #fff;
-  color: #0078d7;
-  border-bottom: 2px solid #0078d7;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 120, 215, 0.3);
+}
+
+.code-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px 2px 0 0;
 }
 
 .code-tab:hover:not(.active) {
-  background-color: #f8f9fa;
-  color: #495057;
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+  border-radius: 6px 6px 0 0;
 }
 
 /* Toggle button styling */
 .code-toggle-button {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #495057;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
   padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -178,137 +193,8 @@
 }
 
 .code-toggle-button:hover {
-  background-color: #e9ecef;
-  border-color: #adb5bd;
-}
-
-/* Dark mode support */
-[data-theme="dark"] .code-viewer-container {
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .single-code-panel {
-  background-color: var(--bg-primary);
-  border-color: var(--border-color);
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .single-code-header {
-  background-color: var(--bg-secondary);
-  border-bottom-color: var(--border-color);
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-viewer-header {
-  background-color: var(--bg-secondary);
-  border-bottom-color: var(--border-color);
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-viewer-tabs {
-  background-color: var(--bg-tertiary);
-}
-
-[data-theme="dark"] .code-viewer-tab {
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-viewer-tab.active {
-  background-color: var(--bg-primary);
-}
-
-[data-theme="dark"] .code-viewer-content {
-  background-color: var(--bg-primary);
-}
-
-[data-theme="dark"] .code-viewer-single {
-  background-color: var(--bg-secondary);
-}
-
-[data-theme="dark"] .single-code-panel .code-content {
-  background-color: #2b2b2b !important; /* Match single code version background */
-}
-
-/* Ensure no background color conflicts in dark mode - with highest specificity */
-html[data-theme="dark"] body .single-code-panel .code-content .starry-night-block {
-  background-color: #2b2b2b !important; /* Match single code version background */
-}
-
-[data-theme="dark"] .single-code-panel .code-content pre {
-  background-color: #2b2b2b !important; /* Match single code version background */
-  color: #f8f8f2 !important; /* Ensure light text color */
-}
-
-html[data-theme="dark"] body .single-code-panel .code-content pre code {
-  color: #f8f8f2 !important; /* Force light text color for contrast */
-  background-color: transparent !important; /* Ensure no background on code elements */
-}
-
-/* Override general .code-content styles in dark mode */
-[data-theme="dark"] .code-content {
-  border: 12px solid #1a1a1a;
-  border-top: none;
-}
-
-/* Override with more specific selector for single-code mode */
-[data-theme="dark"] .single-code-panel .code-content {
-  background-color: #2b2b2b !important; /* Force consistent dark background */
-  border: none !important; /* Remove any borders */
-}
-
-/* Final fix for dark mode - ensure all inner elements have the correct background */
-[data-theme="dark"] .single-code-panel .code-content * {
-  background-color: #2b2b2b !important;
-}
-
-/* Preserve code syntax highlighting by only setting background, not color */
-[data-theme="dark"] .single-code-panel .code-content span,
-[data-theme="dark"] .single-code-panel .code-content span * {
-  background-color: transparent !important;
-}
-
-/* Dark mode for general code panel components */
-[data-theme="dark"] .code-panel {
-  background-color: var(--bg-primary);
-  border-color: var(--border-color);
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .code-panel h4 {
-  background-color: var(--bg-secondary);
-  border-bottom-color: var(--border-color);
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-tabs {
-  background-color: var(--bg-tertiary);
-  border-bottom-color: var(--border-color);
-}
-
-[data-theme="dark"] .code-tab {
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-tab.active {
-  background-color: var(--bg-primary);
-  color: #4db8ff;
-  border-bottom-color: #4db8ff;
-}
-
-[data-theme="dark"] .code-tab:hover:not(.active) {
-  background-color: var(--bg-secondary);
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-toggle-button {
-  background-color: var(--bg-secondary);
-  border-color: var(--border-color);
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .code-toggle-button:hover {
-  background-color: var(--bg-tertiary);
-  border-color: var(--border-color);
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--border-color-secondary);
 }
 
 /* Specific class for dark code background that will work in both light and dark mode */
@@ -341,24 +227,5 @@ html[data-theme="dark"] body .single-code-panel .code-content pre code {
 
 /* Exception for syntax highlighting spans */
 .dark-code-bg span {
-  background-color: transparent !important;
-}
-
-/* More specific override for dark mode to ensure it works properly */
-[data-theme="dark"] .dark-code-bg,
-[data-theme="dark"] .dark-code-bg pre,
-[data-theme="dark"] .dark-code-bg .starry-night-block,
-[data-theme="dark"] .code-panel .code-content,
-[data-theme="dark"] .code-panel .code-content pre,
-[data-theme="dark"] .code-panel .code-content .starry-night-block,
-[data-theme="dark"] .dark-code-bg > div {
-  background-color: #2b2b2b !important;
-}
-
-/* Ensure code text doesn't have its own background in dark mode */
-[data-theme="dark"] .code-panel .code-content span,
-[data-theme="dark"] .code-panel .code-content code span,
-[data-theme="dark"] .dark-code-bg span,
-[data-theme="dark"] .dark-code-bg code span {
   background-color: transparent !important;
 }

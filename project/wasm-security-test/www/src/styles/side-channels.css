@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
+  color: var(--text-secondary);
   font-style: italic;
 }
 
@@ -29,7 +29,7 @@
   height: 30px;
   text-align: center;
   line-height: 30px;
-  background-color: #f0f0f0;
+  background-color: var(--bg-secondary);
   border-radius: 4px;
   font-weight: 500;
   min-width: 30px;
@@ -56,7 +56,7 @@
 
 /* Timing chart improvements */
 .timing-chart {
-  background-color: white;
+  background-color: var(--bg-tertiary);
   padding: 15px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -66,7 +66,7 @@
 
 /* Username enumeration attack styling */
 .found-usernames {
-  background-color: white;
+  background-color: var(--bg-tertiary);
   padding: 15px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -81,7 +81,7 @@
 }
 
 .username-badge {
-  background-color: #0078d7;
+  background-color: var(--primary-color);
   color: white;
   padding: 5px 10px;
   border-radius: 4px;
@@ -98,7 +98,7 @@
 .memory-pattern {
   margin-top: 15px;
   padding: 15px;
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
   border-radius: 6px;
 }
 
@@ -106,7 +106,7 @@
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 .pattern-visualization {
@@ -123,17 +123,17 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  background-color: #f0f0f0;
+  background-color: var(--bg-secondary);
   font-family: monospace;
   font-size: 12px;
-  color: #555;
+  color: var(--text-secondary);
   position: relative;
 }
 
 .pattern-visualization .memory-cell.accessed {
   background-color: rgba(0, 120, 215, 0.2);
   border: 1px solid rgba(0, 120, 215, 0.5);
-  color: #0078d7;
+  color: var(--primary-color);
   font-weight: bold;
 }
 
@@ -154,7 +154,7 @@
 }
 
 .found-secret {
-  background-color: white;
+  background-color: var(--bg-tertiary);
   padding: 15px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -175,12 +175,12 @@
 
 .secret-info {
   font-size: 13px;
-  color: #666;
+  color: var(--text-secondary);
   margin-top: 5px;
 }
 
 .secret-badge {
-  background-color: #0078d7;
+  background-color: var(--primary-color);
   color: white;
   padding: 5px 10px;
   border-radius: 4px;
@@ -194,5 +194,5 @@
 
 .secret-matches {
   font-size: 14px;
-  color: #555;
+  color: var(--text-secondary);
 }

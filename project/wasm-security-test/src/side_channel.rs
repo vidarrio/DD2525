@@ -271,14 +271,25 @@ pub fn safe_cache_timing(probe_index: u32) -> CacheTimingResult {
     
     // Always access EVERY element in the table regardless of the secret index
     let mut accessed_value = 0;
+    let mut dummy_accumulator = 0u8;
+    
     for i in 0..buffer_size {
-        // Use a dummy operation that can't be optimized away
+        // Access every element to prevent optimization
+        let value = lookup_table[i];
         if i == index {
-            accessed_value = lookup_table[i];
+            accessed_value = value;
         } else {
-            // Still access the memory location, but don't use the value
-            let _ = lookup_table[i];
+            // Use the value in a way that can't be optimized away
+            // but doesn't affect the actual result
+            dummy_accumulator = dummy_accumulator.wrapping_add(value);
         }
+    }
+    
+    // Use the dummy_accumulator in a way that doesn't affect the result
+    // but prevents the compiler from optimizing away the accesses
+    if dummy_accumulator == 255 {
+        // This condition is very unlikely but prevents optimization
+        accessed_value = accessed_value.wrapping_add(0);
     }
     
     // Track all memory accesses (for visualization)

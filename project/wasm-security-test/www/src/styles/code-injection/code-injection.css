@@ -1,17 +1,17 @@
-/* Code Injection main styles */
+/* Code Injection main styles - simplified to use standardized components */
 .code-injection-container {
-  padding: 20px;
+  padding: var(--spacing-xl);
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Live demo disclaimer styles */
+/* Live demo disclaimer styles - unique styling for security warnings */
 .live-demo-disclaimer {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, var(--danger-color), #ff8e8e);
   color: white;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px 0;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  margin: var(--spacing-xl) 0;
   border: 3px solid #ff4757;
   box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
   animation: glow-warning 3s ease-in-out infinite;
@@ -27,7 +27,7 @@
 }
 
 .live-demo-disclaimer h3 {
-  margin: 0 0 15px 0;
+  margin: 0 0 var(--spacing-md) 0;
   font-size: 1.3em;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -35,14 +35,14 @@
 
 .live-demo-disclaimer ul {
   background: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 8px;
-  margin: 15px 0;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  margin: var(--spacing-md) 0;
   backdrop-filter: blur(10px);
 }
 
 .live-demo-disclaimer li {
-  margin: 8px 0;
+  margin: var(--spacing-sm) 0;
   font-weight: 500;
 }
 
@@ -50,12 +50,12 @@
   display: block;
   text-align: center;
   font-style: italic;
-  margin-top: 15px;
+  margin-top: var(--spacing-md);
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Enhanced page title */
+/* Enhanced page title - unique gradient styling */
 .page h2 {
   text-align: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -63,9 +63,16 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-size: 2.2em;
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-sm);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* Code injection specific content styling */
+.code-injection-content {
+  padding: var(--spacing-md) 0;
+}
+
+/* All other tab and button styling is now handled by standardized components */
 
 /* Code injection tabs */
 .code-injection-tabs {
@@ -93,7 +100,7 @@
 
 .code-injection-tabs .tab-btn:hover {
   background: var(--hover-bg);
-  color: var(--text-primary);
+  color: var(--text-color);
   transform: translateY(-1px);
 }
 

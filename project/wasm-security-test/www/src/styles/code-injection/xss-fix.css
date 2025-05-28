@@ -14,7 +14,7 @@
 .btn.btn-primary.vulnerable,
 .action-group.vulnerable .btn,
 button.vulnerable {
-  background-color: #dc3545 !important;
+  background-color: var(--danger-color) !important;
   color: white !important;
   border: none !important;
 }
@@ -22,13 +22,13 @@ button.vulnerable {
 .btn.btn-primary.vulnerable:hover,
 .action-group.vulnerable .btn:hover,
 button.vulnerable:hover {
-  background-color: #bb2d3b !important;
+  background-color: var(--danger-color-dark) !important;
 }
 
 .btn.btn-primary.secure,
 .action-group.secure .btn,
 button.secure {
-  background-color: #198754 !important;
+  background-color: var(--success-color) !important;
   color: white !important;
   border: none !important;
 }
@@ -36,18 +36,7 @@ button.secure {
 .btn.btn-primary.secure:hover,
 .action-group.secure .btn:hover,
 button.secure:hover {
-  background-color: #157347 !important;
+  background-color: var(--success-color-dark) !important;
 }
 
-/* Dark mode fixes */
-[data-theme="dark"] .btn.btn-primary.vulnerable,
-[data-theme="dark"] .action-group.vulnerable .btn,
-[data-theme="dark"] button.vulnerable {
-  background-color: #dc3545 !important;
-}
 
-[data-theme="dark"] .btn.btn-primary.secure,
-[data-theme="dark"] .action-group.secure .btn,
-[data-theme="dark"] button.secure {
-  background-color: #198754 !important;
-}

@@ -4,7 +4,7 @@
   margin: 20px 0;
   border-radius: 8px;
   overflow: hidden;
-  background: var(--background-color);
+  background: var(--bg-color);
   border: 1px solid var(--border-color);
   width: 100% !important;
   max-width: none !important;
@@ -21,7 +21,7 @@
 /* Simplified App Header */
 .app-header {
   background: var(--primary-color);
-  color: white;
+  color: var(--text-color-inverse);
   padding: 12px 20px;
   display: flex;
   align-items: center;
@@ -66,7 +66,7 @@
 
 /* Simplified Form Section */
 .comment-form-section, .code-generation-panel {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 16px;
@@ -150,7 +150,7 @@
 
 .action-group.vulnerable .btn {
   background-color: var(--danger-color);
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 .action-group.vulnerable .btn:hover {
@@ -159,7 +159,7 @@
 
 .action-group.secure .btn {
   background-color: var(--success-color);
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 .action-group.secure .btn:hover {
@@ -175,7 +175,7 @@
 
 /* Comment Preview Section */
 .comment-preview-section {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   padding: 20px;
   border: 1px solid var(--border-color);
@@ -207,19 +207,19 @@
 }
 
 .processing-status.unsafe {
-  background-color: var(--danger-bg);
+  background-color: var(--danger-light);
   color: var(--danger-color);
   border: 1px solid var(--danger-color);
 }
 
 .processing-status.safe {
-  background-color: var(--success-bg);
+  background-color: var(--success-light);
   color: var(--success-color);
   border: 1px solid var(--success-color);
 }
 
 .generated-output {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -234,7 +234,7 @@
 }
 
 .output-header {
-  background: var(--background-color);
+  background: var(--bg-color);
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 500;
@@ -262,13 +262,13 @@
 }
 
 .security-alert.danger {
-  background: var(--danger-bg);
+  background: var(--danger-light);
   border-color: var(--danger-color);
   color: var(--danger-color);
 }
 
 .security-alert.success {
-  background: var(--success-bg);
+  background: var(--success-light);
   border-color: var(--success-color);
   color: var(--success-color);
 }
@@ -292,7 +292,7 @@
 
 /* Payload Testing Section */
 .payload-testing-section {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 8px;
   padding: 20px;
   margin-top: 20px;
@@ -322,7 +322,7 @@
 }
 
 .payload-card {
-  background: var(--background-color);
+  background: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 12px 16px;
@@ -371,7 +371,7 @@
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 14px;
   color: var(--text-color);
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   padding: 10px 14px;
   border-radius: 5px;
   word-break: break-all;
@@ -506,7 +506,7 @@
 }
 
 .wasm-info {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   padding: 12px;
 }
@@ -538,7 +538,7 @@
 .main-editor {
   flex: 1;
   padding: 20px;
-  background: var(--background-color);
+  background: var(--bg-color);
   overflow-y: visible;
   width: 100%;
   box-sizing: border-box;
@@ -552,7 +552,7 @@
 }
 
 .code-generation-panel {
-  background: white;
+  background: var(--bg-color);
   border-radius: 8px;
   padding: 20px;
   border: 1px solid #e2e8f0;
@@ -590,7 +590,7 @@
 
 .engine-toggle {
   display: flex;
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   padding: 2px;
 }
@@ -608,7 +608,7 @@
 }
 
 .engine-btn.active {
-  background: var(--background-color);
+  background: var(--bg-color);
   color: var(--text-color);
 }
 
@@ -674,12 +674,12 @@
 
 .generation-controls .btn.vulnerable {
   background-color: var(--danger-color);
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 .generation-controls .btn.secure {
   background-color: var(--success-color);
-  color: white;
+  color: var(--text-color-inverse);
 }
 
 /* Templates Section */
@@ -690,14 +690,6 @@
 }
 
 .templates-section h4 {
-  margin: 0 0 8px 0;
-  color: #2d3748;
-  font-size: 16px;
-}
-
-.templates-section p {
-  margin: 0 0 16px 0;
-  .templates-section h4 {
   margin: 0 0 8px 0;
   color: var(--text-color);
   font-size: 16px;
@@ -716,7 +708,7 @@
 }
 
 .template-card {
-  background: var(--background-color);
+  background: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 12px;
@@ -736,7 +728,7 @@
   border-color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
 }
 
 .template-card:active {
@@ -833,14 +825,14 @@
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 11px;
   color: var(--text-secondary);
-  background: var(--background-color);
+  background: var(--bg-color);
   padding: 6px;
   border-radius: 4px;
 }
 
 /* Output Section */
 .output-section {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   padding: 20px;
   border: 1px solid var(--border-color);
@@ -871,19 +863,19 @@
 }
 
 .engine-indicator.unsafe {
-  background: var(--danger-bg);
+  background: var(--danger-light);
   color: var(--danger-color);
   border: 1px solid var(--danger-color);
 }
 
 .engine-indicator.safe {
-  background: var(--success-bg);
+  background: var(--success-light);
   color: var(--success-color);
   border: 1px solid var(--success-color);
 }
 
 .output-display {
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -898,7 +890,7 @@
 }
 
 .output-label {
-  background: var(--background-color);
+  background: var(--bg-color);
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 500;
@@ -918,7 +910,7 @@
 /* Live execution demonstration styling */
 .live-execution-demo {
   margin-top: 20px;
-  background: var(--background-secondary);
+  background: var(--bg-secondary);
   border-radius: 8px;
   padding: 20px;
   border: 2px solid var(--danger-color);
@@ -984,105 +976,3 @@
   }
 }
 
-/* Dark mode support */
-[data-theme="dark"] .realistic-interface {
-  background: #1a202c;
-  border-color: #2d3748;
-}
-
-[data-theme="dark"] .app-mockup {
-  background: #1a202c;
-}
-
-[data-theme="dark"] .content-area,
-[data-theme="dark"] .main-editor {
-  background: #1a202c;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .comment-form-section,
-[data-theme="dark"] .code-generation-panel,
-[data-theme="dark"] .comment-preview-section,
-[data-theme="dark"] .output-section {
-  background: #2d3748;
-  border-color: #4a5568;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .page-title h3,
-[data-theme="dark"] .form-header h4,
-[data-theme="dark"] .input-header h4,
-[data-theme="dark"] .preview-header h4,
-[data-theme="dark"] .output-header h4,
-[data-theme="dark"] .editor-header h3 {
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .comment-textarea,
-[data-theme="dark"] .code-textarea {
-  background: #1a202c;
-  border-color: #4a5568;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .comment-textarea:focus,
-[data-theme="dark"] .code-textarea:focus {
-  background: #2d3748;
-  border-color: #667eea;
-}
-
-[data-theme="dark"] .generated-output,
-[data-theme="dark"] .output-display {
-  background: #1a202c;
-  border-color: #4a5568;
-}
-
-[data-theme="dark"] .output-header,
-[data-theme="dark"] .output-label {
-  background: #2d3748;
-  color: #a0aec0;
-}
-
-[data-theme="dark"] .output-content,
-[data-theme="dark"] .output-code {
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .payload-card,
-[data-theme="dark"] .template-card {
-  background: #2d3748;
-  border-color: #4a5568;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .payload-code,
-[data-theme="dark"] .template-code {
-  background: #1a202c;
-  color: #e2e8f0;
-}
-
-[data-theme="dark"] .security-alert.danger {
-  background: rgba(255, 107, 107, 0.1);
-  border-color: rgba(255, 107, 107, 0.3);
-  color: #feb2b2;
-}
-
-[data-theme="dark"] .security-alert.success {
-  background: rgba(46, 213, 115, 0.1);
-  border-color: rgba(46, 213, 115, 0.3);
-  color: #9ae6b4;
-}
-
-[data-theme="dark"] .engine-toggle {
-  background: #1a202c;
-}
-
-[data-theme="dark"] .engine-btn {
-  color: #a0aec0;
-}
-
-[data-theme="dark"] .engine-btn.active {
-  background: #2d3748;
-  color: #e2e8f0;
-}
-}

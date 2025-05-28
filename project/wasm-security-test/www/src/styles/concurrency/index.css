@@ -1,33 +1,7 @@
 /* Concurrency & Race Conditions styles */
 @import './toctou-visualizer.css';
 
-.concurrency-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 10px;
-}
-
-.concurrency-tabs .tab-btn {
-  padding: 10px 20px;
-  border: none;
-  background: var(--bg-secondary);
-  color: var(--text-color);
-  cursor: pointer;
-  border-radius: 6px 6px 0 0;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
-
-.concurrency-tabs .tab-btn:hover {
-  background: var(--bg-hover);
-}
-
-.concurrency-tabs .tab-btn.active {
-  background: var(--accent-color);
-  color: white;
-}
+/* Concurrency tabs now use standardized .tabs and .tab-btn classes from components.css */
 
 .concurrency-content {
   padding: 20px 0;
@@ -203,12 +177,12 @@
 }
 
 .vulnerable-result {
-  background: var(--danger-bg);
+  background: var(--danger-light);
   border-left: 4px solid var(--danger-color);
 }
 
 .secure-result {
-  background: var(--success-bg);
+  background: var(--success-light);
   border-left: 4px solid var(--success-color);
 }
 
@@ -286,7 +260,7 @@
 
 /* Error section */
 .error-section {
-  background: var(--danger-bg);
+  background: var(--danger-light);
   padding: 15px;
   border-radius: 6px;
   border-left: 4px solid var(--danger-color);

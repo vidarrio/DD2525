@@ -1,11 +1,11 @@
 /* WASM Module Visualization styles */
 
 .wasm-module-visualization {
-  border: 1px solid #e9ecef;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
 }
 
 .module-diagram {
@@ -98,7 +98,7 @@
 
 .module-functions {
   padding: 1rem;
-  background-color: white;
+  background-color: var(--bg-tertiary);
 }
 
 .module-function {
@@ -108,7 +108,7 @@
   padding: 0.75rem;
   border-radius: 4px;
   margin-bottom: 0.5rem;
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
 }
 
 .module-function:last-child {
@@ -145,7 +145,7 @@
 }
 
 .function-name.secret-function {
-  color: #dc3545;
+  color: var(--danger-color);
 }
 
 .function-return {
@@ -169,5 +169,5 @@
 }
 
 .secret-function-button {
-  background-color: #dc3545;
+  background-color: var(--danger-color);
 }
