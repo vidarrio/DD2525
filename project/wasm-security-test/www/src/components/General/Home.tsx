@@ -115,7 +115,7 @@ const Home: React.FC = () => {
   };
   
   // Pre-render cards offscreen to ensure height is calculated properly
-  // This helps ensure cards don't appear one-by-one with delayed heights
+  // Prevents cards from appearing one-by-one with delayed heights
   const renderHiddenCards = () => {
     return (
       <div style={{ 

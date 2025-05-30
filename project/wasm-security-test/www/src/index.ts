@@ -12,6 +12,9 @@ import './styles/code-injection/index.css';
 import './styles/sandbox-escapes/index.css';
 import './styles/concurrency/index.css';
 
+// Import dangerous host functions for sandbox escape demonstration
+import './utils/dangerousHostFunctions';
+
 // Initialize the React application
 const container = document.getElementById('root');
 if (container) {

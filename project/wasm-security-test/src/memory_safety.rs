@@ -100,7 +100,7 @@ pub fn safe_heap_corruption(input: &str, position: usize) -> String {
     let (region1, region2) = buffer.split_at_mut(16);
 
     for (i, byte) in input.bytes().enumerate() {
-        // This will panic if position + i >= 16
+        // Panics if position + i >= 16
         region1[position + i] = byte;
     }
 

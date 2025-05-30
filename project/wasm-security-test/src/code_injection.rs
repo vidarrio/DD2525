@@ -104,7 +104,7 @@ pub fn secure_generate_javascript(user_function_name: &str, user_code: &str) -> 
 
 
 
-// Demo function to showcase common XSS payloads (for educational purposes)
+// Common XSS payloads for educational purposes
 #[wasm_bindgen]
 pub fn get_xss_payloads() -> String {
     let payloads = vec![
@@ -119,7 +119,7 @@ pub fn get_xss_payloads() -> String {
     format!("Common XSS payloads for testing:\n{}", payloads.join("\n"))
 }
 
-// Function to demonstrate different injection contexts
+// Show different injection contexts
 #[wasm_bindgen]
 pub fn demonstrate_injection_contexts() -> String {
     let contexts = vec![

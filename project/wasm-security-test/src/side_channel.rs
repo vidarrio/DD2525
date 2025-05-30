@@ -14,7 +14,7 @@ pub fn unsafe_check_credentials_storage(username: &str, password: &str) -> Strin
         return "Error: Username does not exist".to_string();
     }
     
-    // For the demo, we'll use simple fixed passwords
+    // Just hardcoded passwords for the demo
     let correct_password = match username {
         "admin" => "admin123",
         "user" => "user123",
