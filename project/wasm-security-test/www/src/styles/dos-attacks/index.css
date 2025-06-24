@@ -1,0 +1,143 @@
+/* DoS Attacks main styles */
+@import './realistic-interfaces.css';
+
+/* Tab styling to match other exploit categories */
+.dos-attacks-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  gap: 0.5rem;
+}
+
+.dos-attacks-tabs .tab-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-color);
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s ease;
+}
+
+.dos-attacks-tabs .tab-btn.active {
+  color: var(--primary-color);
+  background-color: rgba(0, 120, 215, 0.05);
+  font-weight: 500;
+}
+
+.dos-attacks-tabs .tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+.dos-attacks-content {
+  margin-top: 1rem;
+}
+
+/* DoS-specific analysis sections */
+.wasm-dos-analysis {
+  background-color: rgba(0, 120, 215, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--primary-color);
+}
+
+.wasm-dos-analysis h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.dos-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dos-category {
+  background-color: var(--bg-tertiary);
+  border-radius: 6px;
+  padding: 1.25rem;
+  border-left: 4px solid var(--primary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.dos-category h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.dos-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dos-category li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dos-category li:last-child {
+  border-bottom: none;
+}
+
+.dos-category strong {
+  color: var(--primary-color);
+}
+
+/* Mitigation strategies section */
+.dos-mitigation-info {
+  background-color: rgba(40, 167, 69, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--success-color);
+}
+
+.dos-mitigation-info h3 {
+  color: var(--success-color);
+  margin-bottom: 1rem;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.mitigation-strategies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.strategy {
+  background-color: var(--bg-tertiary);
+  border-radius: 6px;
+  padding: 1rem;
+  border-left: 4px solid var(--success-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.strategy h4 {
+  color: var(--success-color);
+  margin-bottom: 0.75rem;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.strategy p {
+  color: var(--text-color);
+  margin: 0;
+  font-size: 0.9em;
+}

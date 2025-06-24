@@ -1,0 +1,98 @@
+/* Memory visualization styles */
+
+.memory-visualization {
+  font-family: monospace;
+  margin: 1.5rem 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.memory-row {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.memory-row:last-child {
+  border-bottom: none;
+}
+
+.memory-address {
+  width: 100px;
+  background-color: var(--bg-secondary);
+  padding: 0.5rem;
+  font-weight: bold;
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+
+.memory-cells {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.memory-cell {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+  margin: 2px;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.memory-cell.buffer1 {
+  background-color: rgba(255, 99, 71, 0.2);
+  border-color: rgba(255, 99, 71, 0.5);
+}
+
+.memory-cell.buffer2 {
+  background-color: rgba(100, 149, 237, 0.2);
+  border-color: rgba(100, 149, 237, 0.5);
+}
+
+.memory-cell.overwritten {
+  background-color: rgba(255, 215, 0, 0.3);
+  border-color: rgba(255, 165, 0, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(255, 165, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 165, 0, 0); }
+}
+
+.memory-legend {
+  display: flex;
+  margin: 1rem 0;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.legend-color.buffer1 {
+  background-color: rgba(255, 99, 71, 0.2);
+}
+
+.legend-color.buffer2 {
+  background-color: rgba(100, 149, 237, 0.2);
+}
+
+.legend-color.overwritten {
+  background-color: rgba(255, 215, 0, 0.3);
+}

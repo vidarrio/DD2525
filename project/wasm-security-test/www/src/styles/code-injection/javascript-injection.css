@@ -1,0 +1,90 @@
+/* JavaScript Code Injection specific styles */
+.javascript-injection-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.javascript-injection-container .description {
+  background: var(--info-light);
+  border-left: 4px solid var(--info-border);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.function-input, .code-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.code-input {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.examples-section {
+  margin-top: 20px;
+}
+
+.examples-section h4 {
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.example-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.example-btn {
+  padding: 8px 15px;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.example-btn.malicious {
+  background: var(--danger-light);
+  color: var(--danger-text);
+  border-color: var(--danger-border);
+}
+
+.example-btn.malicious:hover {
+  background: var(--danger-hover);
+  transform: translateY(-1px);
+}
+
+.example-btn.safe {
+  background: var(--success-light);
+  color: var(--success-text);
+  border-color: var(--success-border);
+}
+
+.example-btn.safe:hover {
+  background: var(--success-hover);
+  transform: translateY(-1px);
+}
+
+/* Inherit common styles from xss-html-injection.css */

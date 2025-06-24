@@ -1,0 +1,12 @@
+/* Implementation buttons styling - simplified to use standardized components */
+
+/* Control row styling is now handled by .control-row in components.css */
+/* Run button styling is now handled by .run-button classes in components.css */
+/* Implementation label styling is now handled by .implementation-label in components.css */
+
+/* Control Flow specific customizations only */
+.control-flow .run-button {
+  min-width: 150px; /* Consistent button width for control flow */
+}
+
+/* Any remaining control-flow specific button customizations can be added here */

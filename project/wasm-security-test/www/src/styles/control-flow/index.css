@@ -1,0 +1,5 @@
+/* Control Flow main styles */
+@import './tabs.css';
+@import './function-table.css';
+@import './wasm-module.css';
+@import './implementation-selector.css';

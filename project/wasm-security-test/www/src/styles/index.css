@@ -1,0 +1,10 @@
+/* index.css - Main entry point for modular CSS structure */
+@import './variables.css';
+@import './dark-mode.css'; /* Ultra-simple dark mode system */
+@import './layout.css';
+@import './header.css'; /* Enhanced header styles */
+@import './components.css';
+@import './exploits.css';
+@import './home.css';
+
+/* Category-specific styles are imported directly in the components or in index.ts */

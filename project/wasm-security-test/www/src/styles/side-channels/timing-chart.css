@@ -1,0 +1,64 @@
+/* Timing chart styles */
+
+.chart-container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 30px); /* Leave space for the heading */
+}
+
+.chart-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  height: 30px; /* Fixed height for each bar */
+}
+
+.chart-placeholder {
+  height: 310px; /* Height to show 10 items at 30px + margins */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-style: italic;
+}
+
+.bar-label {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: var(--bg-secondary);
+  border-radius: 4px;
+  font-weight: 500;
+  min-width: 30px;
+  flex-shrink: 0;
+}
+
+.bar {
+  height: 24px;
+  min-width: 4px;
+  margin: 0 10px;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+  flex-grow: 1;
+  max-width: calc(100% - 120px); /* Ensure bar doesn't push the value off screen */
+}
+
+.bar-value {
+  width: 70px;
+  font-family: monospace;
+  font-size: 14px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Timing chart improvements */
+.timing-chart {
+  background-color: var(--bg-tertiary);
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  height: 350px; /* Fixed height to prevent layout shifts */
+  overflow-y: auto; /* Add scrollbar if needed */
+}

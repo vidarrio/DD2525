@@ -1,0 +1,12 @@
+/* Memory Safety main styles - simplified to use standardized components */
+@import './buffer-overflow.css';
+@import './memory-visualizer.css';
+
+/* Memory Safety specific customizations only */
+/* Tab styling is now handled by standardized .tabs, .tab-btn, .tab-content classes */
+
+.memory-safety-content {
+  padding: var(--spacing-md) 0;
+}
+
+/* Any memory-safety specific overrides can be added here */

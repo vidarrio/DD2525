@@ -1,0 +1,30 @@
+/* Username enumeration attack styles */
+
+.found-usernames {
+  background-color: var(--bg-tertiary);
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  margin-bottom: 20px;
+}
+
+.username-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.username-badge {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.username-item {
+  margin-bottom: 5px;
+}

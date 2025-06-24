@@ -1,0 +1,42 @@
+/* XSS HTML Injection and Dynamic JS Generation style fixes */
+
+/* Fix textarea widths */
+.comment-textarea,
+.code-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: calc(100% - 2px); /* Account for border */
+  resize: vertical;
+  overflow-x: hidden;
+}
+
+/* Fix button colors */
+.btn.btn-primary.vulnerable,
+.action-group.vulnerable .btn,
+button.vulnerable {
+  background-color: var(--danger-color) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn.btn-primary.vulnerable:hover,
+.action-group.vulnerable .btn:hover,
+button.vulnerable:hover {
+  background-color: var(--danger-color-dark) !important;
+}
+
+.btn.btn-primary.secure,
+.action-group.secure .btn,
+button.secure {
+  background-color: var(--success-color) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn.btn-primary.secure:hover,
+.action-group.secure .btn:hover,
+button.secure:hover {
+  background-color: var(--success-color-dark) !important;
+}
+
+

@@ -1,0 +1,51 @@
+/* Implementation selector styles */
+
+.implementation-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.implementation-button {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-tertiary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.implementation-button.active {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.implementation-button.unsafe-active {
+  border-color: var(--danger-color);
+}
+
+.implementation-button.safe-active {
+  border-color: var(--success-color);
+}
+
+.implementation-icon {
+  font-size: 1.5rem;
+}
+
+.implementation-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.implementation-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

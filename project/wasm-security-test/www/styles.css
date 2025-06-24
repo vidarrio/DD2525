@@ -1,0 +1,8 @@
+/* Main stylesheet for WebAssembly Security Test */
+/* This file now simply imports the modular CSS structure */
+
+/* Import main styles from our modular structure */
+@import './src/styles/index.css';
+
+/* Note: Component-specific styles are imported directly in the components
+   or in the main src/index.ts file, making this structure more maintainable */

@@ -1,0 +1,157 @@
+/* Global CSS Variables */
+:root {
+  /* === CORE THEME COLORS === */
+  --primary-color: #0078d7;
+  --secondary-color: #2b2b2b;
+  --bg-color: #f5f5f5;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #ffffff;
+  --text-color: #333;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --border-color: #ddd;
+  --border-secondary: #e0e0e0;
+  
+  /* === SEMANTIC COLORS === */
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --success-active: #1e7e34;
+  --success-light: rgba(40, 167, 69, 0.1);
+  --warning-color: #ffc107;
+  --warning-hover: #e0a800;
+  --warning-active: #d39e00;
+  --warning-light: rgba(255, 193, 7, 0.1);
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --danger-active: #bd2130;
+  --danger-light: rgba(220, 53, 69, 0.1);
+  --info-color: #0056b3;
+  --info-hover: #004494;
+  --info-active: #003d82;
+  --info-light: rgba(0, 86, 179, 0.1);
+  
+  /* === BUTTON SYSTEM === */
+  --btn-primary-bg: var(--primary-color);
+  --btn-primary-text: white;
+  --btn-primary-hover: var(--info-hover);
+  --btn-secondary-bg: #6c757d;
+  --btn-secondary-text: white;
+  --btn-secondary-hover: #5a6268;
+  --btn-safe-bg: var(--success-color);
+  --btn-safe-text: white;
+  --btn-safe-hover: var(--success-hover);
+  --btn-safe-active: var(--success-active);
+  --btn-unsafe-bg: var(--danger-color);
+  --btn-unsafe-text: white;
+  --btn-unsafe-hover: var(--danger-hover);
+  --btn-unsafe-active: var(--danger-active);
+  
+  /* === CODE & SYNTAX === */
+  --code-bg: #f8f9fa;
+  --code-border: var(--border-color);
+  --code-text: var(--text-color);
+  --code-keyword: #0000ff;
+  --code-string: #008000;
+  --code-function: #795e26;
+  --code-comment: #008000;
+  --code-api: #267f99;
+  
+  /* === LAYOUT & UI === */
+  --header-bg: #ffffff;
+  --header-text: var(--text-color);
+  --footer-bg: var(--bg-secondary);
+  --footer-text: var(--text-secondary);
+  --card-bg: var(--bg-tertiary);
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --card-shadow-hover: 0 4px 15px rgba(0, 0, 0, 0.15);
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+  
+  /* === FORM ELEMENTS === */
+  --input-bg: white;
+  --input-border: var(--border-color);
+  --input-focus-border: var(--primary-color);
+  --input-text: var(--text-color);
+  --input-placeholder: var(--text-muted);
+  
+  /* === TABLES === */
+  --table-bg: white;
+  --table-header-bg: var(--bg-secondary);
+  --table-header-text: var(--text-color);
+  --table-border: var(--border-color);
+  --table-stripe: #f9f9f9;
+  --table-hover: #f5f5f5;
+  
+  /* === TABS === */
+  --tab-bg: transparent;
+  --tab-text: var(--text-secondary);
+  --tab-active-bg: var(--bg-tertiary);
+  --tab-active-text: var(--primary-color);
+  --tab-hover-bg: rgba(0, 0, 0, 0.05);
+  --tab-border: var(--border-color);
+  
+  /* === MEMORY VISUALIZATION === */
+  --memory-cell-bg: #f0f0f0;
+  --memory-cell-border: var(--border-color);
+  --memory-cell-text: var(--text-color);
+  --memory-address-text: var(--text-muted);
+  --memory-overwritten-bg: var(--danger-light);
+  --memory-overwritten-text: var(--danger-color);
+  
+  /* === ATTACK LOGS === */
+  --log-bg: var(--bg-secondary);
+  --log-border: var(--border-color);
+  --log-text: var(--text-color);
+  
+  /* === IMPLEMENTATION CONTAINERS === */
+  --impl-vulnerable-border: var(--danger-color);
+  --impl-secure-border: var(--success-color);
+  --impl-bg: var(--bg-tertiary);
+  
+  /* === COMPONENT SPACING === */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* === ADDITIONAL MISSING COLORS === */
+  --accent-color: var(--primary-color);
+  --primary-dark: #005cbf;
+  --text-color-inverse: white;
+  --info-text: #0c5460;
+  --info-border: #bee5eb;
+  --border-color-primary: var(--border-color);
+  --border-color-secondary: var(--border-secondary);
+  --secondary-bg: #6c757d;
+  --card-bg-color: var(--bg-tertiary);
+  
+  /* === TIMING AND CHART COLORS === */
+  --chart-bar-bg: var(--primary-color);
+  --chart-bar-highlight: var(--danger-color);
+  --timing-bar-bg: var(--primary-color);
+  --timing-bar-highlight: var(--danger-color);
+  
+  /* === SPECIFIC COMPONENT COLORS === */
+  --function-export-bg: rgba(0, 120, 215, 0.1);
+  --function-export-text: var(--primary-color);
+  --function-safe-color: var(--success-color);
+  --function-secret-color: var(--danger-color);
+  --slot-index-bg: var(--bg-secondary);
+  --slot-index-text: var(--primary-color);
+  
+  /* === MODULE AND ENVIRONMENT COLORS === */
+  --module-bg: var(--bg-tertiary);
+  --module-border: var(--border-color);
+  --environment-label-bg: var(--bg-secondary);
+  --environment-label-text: var(--text-color);
+  
+  /* === SECURITY MESSAGE COLORS === */
+  --security-success-bg: var(--success-light);
+  --security-success-text: var(--success-color);
+  --security-warning-bg: var(--warning-light);
+  --security-warning-text: var(--warning-color);
+  --security-error-bg: var(--danger-light);
+  --security-error-text: var(--danger-color);
+  --security-info-bg: var(--info-light);
+  --security-info-text: var(--info-color);
+}

@@ -1,0 +1,231 @@
+/* CodeViewer component styles */
+
+.code-viewer-container {
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: visible; /* Changed from hidden to allow button to be separate */
+}
+
+/* Add styles for single-code mode */
+.single-code-panel {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.single-code-header {
+  background-color: var(--bg-secondary);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 16px;
+  margin: 0;
+}
+
+.code-content {
+  background-color: var(--bg-color);
+  padding: 0;
+  max-height: 500px;
+  overflow: auto;
+}
+
+/* Override for single-code mode - use dark code background */
+.single-code-panel .code-content {
+  padding: 0;
+  background-color: #2b2b2b; /* Dark background for code area - unchanged for light mode */
+}
+
+/* Ensure proper spacing and padding for code blocks in single-code mode */
+.single-code-panel .code-content .starry-night-block {
+  padding: 16px 20px;
+  margin: 0;
+  background-color: #2b2b2b !important; /* Force dark background - unchanged for light mode */
+  background-image: none !important; /* Ensure no background images */
+}
+
+/* Add left padding for code text in both light and dark mode */
+.single-code-panel .code-content pre {
+  padding-left: 8px;
+  margin: 0;
+  background-color: #2b2b2b; /* Same dark background - unchanged for light mode */
+  color: #f8f8f2; /* Light text color for contrast */
+}
+
+/* Ensure proper text indentation for code lines */
+.single-code-panel .code-content pre code {
+  padding-left: 4px;
+  color: #f8f8f2; /* Light text color for contrast */
+}
+
+.code-viewer-header {
+  background-color: var(--bg-secondary);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.code-viewer-tabs {
+  display: flex;
+  background-color: var(--color-bg-tertiary);
+}
+
+.code-viewer-tab {
+  flex: 1;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.code-viewer-tab.active {
+  background-color: var(--bg-color);
+  color: var(--color-primary);
+}
+
+.code-viewer-tab.unsafe {
+  color: var(--danger-color);
+}
+
+.code-viewer-tab.unsafe.active {
+  background-color: var(--danger-color-light);
+  border-bottom: 2px solid var(--danger-color);
+}
+
+.code-viewer-tab.safe {
+  color: var(--success-color);
+}
+
+.code-viewer-tab.safe.active {
+  background-color: var(--success-color-light);
+  border-bottom: 2px solid var(--success-color);
+}
+
+.code-viewer-content {
+  background-color: var(--bg-color);
+  padding: 0;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.code-viewer-single {
+  background-color: var(--bg-secondary);
+}
+
+/* General code panel styles */
+.code-panel {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.code-panel h4 {
+  background-color: var(--bg-secondary);
+  padding: 16px 20px;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.code-tabs {
+  display: flex;
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.code-tab {
+  flex: 1;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: var(--text-color-muted);
+  position: relative;
+  border-radius: 6px 6px 0 0;
+}
+
+.code-tab.active {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 120, 215, 0.3);
+}
+
+.code-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px 2px 0 0;
+}
+
+.code-tab:hover:not(.active) {
+  background-color: var(--bg-secondary);
+  color: var(--text-color);
+  border-radius: 6px 6px 0 0;
+}
+
+/* Toggle button styling */
+.code-toggle-button {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.code-toggle-button:hover {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--border-color-secondary);
+}
+
+/* Specific class for dark code background that will work in both light and dark mode */
+.dark-code-bg {
+  background-color: #2b2b2b !important; /* Use !important to override any other styles */
+}
+
+/* Add padding for code in all modes, including tabbed view */
+.code-content .starry-night-block {
+  padding: 16px 20px !important; /* Add consistent padding for all code blocks */
+  margin: 0;
+}
+
+/* Ensure code blocks have proper spacing in tabbed view */
+.code-content pre {
+  padding-left: 8px !important; /* Add left padding to all pre elements */
+  margin: 0;
+}
+
+/* Add horizontal padding for code text in both tabbed and single views */
+.code-content pre code {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+/* Ensure all children also have the correct background */
+.dark-code-bg * {
+  background-color: #2b2b2b !important;
+}
+
+/* Exception for syntax highlighting spans */
+.dark-code-bg span {
+  background-color: transparent !important;
+}

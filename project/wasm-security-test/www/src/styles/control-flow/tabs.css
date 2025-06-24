@@ -1,0 +1,17 @@
+/* Control Flow tabs styling - simplified to use standardized components */
+
+/* Import standardized components from parent */
+/* Tabs styling is now handled by .tabs, .tab-btn, .tab-content in components.css */
+/* Button styling is now handled by .run-button classes in components.css */
+/* Mode toggle styling is now handled by .mode-toggle in components.css */
+
+/* Control Flow specific customizations only */
+.control-flow-content {
+  padding: var(--spacing-md) 0;
+}
+
+.control-flow-content .run-button {
+  min-width: 150px; /* Specific to control flow for consistency */
+}
+
+/* Any remaining control-flow specific styles can be added here */

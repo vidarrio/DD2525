@@ -1,0 +1,301 @@
+/* Home page styles */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.hero-section .lead {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+}
+
+.category-section {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.category-section > p {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Carousel outer container with navigation */
+.carousel-outer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Reduce gap to allow more space for cards */
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+}
+
+/* Navigation buttons */
+.carousel-nav-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 5;
+  flex-shrink: 0;
+  margin: 0 5px; /* Add spacing to push cards inward slightly */
+}
+
+.carousel-nav-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark, #005cbf);
+}
+
+.carousel-nav-btn:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.carousel-nav-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Carousel container */
+.carousel-container {
+  flex-grow: 1;
+  max-width: calc(100% - 80px); /* Space for navigation buttons */
+  position: relative;
+  overflow: hidden;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+  width: 100%;  /* Full width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Category Cards - Spinning carousel style */
+.category-cards.spinning {
+  display: flex;
+  width: 100%; /* Width to show all visible cards */
+  position: relative;
+  will-change: transform;
+}
+
+.category-cards.spinning .category-card {
+  flex: 0 0 calc(25% - 1rem); /* Exactly sized for 4 cards with margins */
+  margin-right: 1rem; /* Fixed margin size to ensure consistent spacing */
+  box-sizing: border-box;
+  width: calc(25% - 1rem); /* Explicitly set width to ensure consistency */
+}
+
+.category-cards.spinning .category-card:last-child {
+  margin-right: 0;
+}
+
+/* Original card styling */
+.category-card {
+  background-color: var(--bg-tertiary);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 1rem 1.25rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  max-height: 240px;
+  color: var(--text-color);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover);
+  z-index: 2;
+}
+
+/* Loading state styling */
+.carousel-outer-container.loading {
+  min-height: 240px; /* Match the max card height */
+  position: relative;
+}
+
+.carousel-outer-container.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.category-card.memory-safety::before {
+  background-color: var(--danger-color);
+}
+
+.category-card.code-injection::before {
+  background-color: #fd7e14;
+}
+
+.category-card.side-channels::before {
+  background-color: #6f42c1;
+}
+
+.category-card.sandbox-escapes::before {
+  background-color: #20c997;
+}
+
+.category-card.control-flow::before {
+  background-color: var(--primary-color);
+}
+
+.category-card.concurrency::before {
+  background-color: #ffc107;
+}
+
+.category-card h3 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.category-card p {
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.category-card ul {
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+
+.category-card li {
+  margin-bottom: 0.25rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+/* Carousel Pagination */
+.carousel-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carousel-dot.active {
+  background-color: var(--primary-color);
+}
+
+.carousel-dot:hover {
+  background-color: var(--text-muted);
+}
+
+.carousel-dot:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.project-info {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-top: 2rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.project-info h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.project-info p {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.project-info p:last-child {
+  margin-bottom: 0;
+}
+
+.category-card[role="button"] {
+  cursor: pointer;
+}
+
+.category-card[role="button"]:hover, .category-card[role="button"]:focus {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .category-cards.spinning .category-card {
+    flex: 0 0 calc(33.333% - 1rem); /* 3 cards per view on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .category-cards.spinning .category-card {
+    flex: 0 0 calc(50% - 0.75rem); /* 2 cards per view on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .category-cards.spinning .category-card {
+    flex: 0 0 100%; /* 1 card per view on small screens */
+    margin-right: 0;
+  }
+}

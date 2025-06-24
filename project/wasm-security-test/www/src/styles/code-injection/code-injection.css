@@ -1,0 +1,121 @@
+/* Code Injection main styles - simplified to use standardized components */
+.code-injection-container {
+  padding: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Live demo disclaimer styles - unique styling for security warnings */
+.live-demo-disclaimer {
+  background: linear-gradient(135deg, var(--danger-color), #ff8e8e);
+  color: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  margin: var(--spacing-xl) 0;
+  border: 3px solid #ff4757;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+  animation: glow-warning 3s ease-in-out infinite;
+}
+
+@keyframes glow-warning {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 35px rgba(255, 107, 107, 0.5);
+  }
+}
+
+.live-demo-disclaimer h3 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 1.3em;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.live-demo-disclaimer ul {
+  background: rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  margin: var(--spacing-md) 0;
+  backdrop-filter: blur(10px);
+}
+
+.live-demo-disclaimer li {
+  margin: var(--spacing-sm) 0;
+  font-weight: 500;
+}
+
+.live-demo-disclaimer em {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  margin-top: var(--spacing-md);
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced page title - unique gradient styling */
+.page h2 {
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.2em;
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Code injection specific content styling */
+.code-injection-content {
+  padding: var(--spacing-md) 0;
+}
+
+/* All other tab and button styling is now handled by standardized components */
+
+/* Code injection tabs */
+.code-injection-tabs {
+  display: flex;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 5px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.code-injection-tabs .tab-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.code-injection-tabs .tab-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-color);
+  transform: translateY(-1px);
+}
+
+.code-injection-tabs .tab-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Tab content styling */
+.tab-content {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
